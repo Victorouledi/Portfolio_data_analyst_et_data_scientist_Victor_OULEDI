@@ -1,4 +1,10 @@
-# Projet  analyse de données : système d'actionnariat chez Terre de Liens
+![image](https://github.com/Victorouledi/Portfolio-data-analyst-et-data-scientist/assets/147494448/30acf70d-e644-4085-86ce-f7859afecb54)#Plan du portfolio
+## 1.Projet  analyse de données : système d'actionnariat chez Terre de Liens
+## 2.Modélisation statistique en données de panel : application de la méthode des prix hédoniques au marché immobilier Lyonnais 
+## 3.Modélisation statistique en données de panel : analyse des déterminants des salaires aux Etats-Unis
+
+
+# 1.Projet  analyse de données : système d'actionnariat chez Terre de Liens
 ## Présentation du contexte de l'analyse de données
 J'ai pu réaliser ce projet d'analyse de données lors de mon stage en tant que data analyst chez Terre de Lien. Resituons dans un premier temps le système d’actionnariat mis en place par Terre de Liens. Ce dernier permet à tout individu d’acheter des actions auprès de sa société foncière afin d’augmenter le capital lui permettant d’acheter des terres agricoles et d’y installer des personnes ayant des projets d’installation agricole.
 
@@ -12,7 +18,7 @@ La base de données utilisée pour ce travail comportait dans sa version brute 3
 
 ## Code et quelques éléments de data vizualisation
 
-Le code de ce chantier d'analyse est disponible via ce [lien](https://github.com/Victorouledi/Portfolio-data-analyst-scientist/blob/5a26a1dabbc65a9b7792e66a4ad4848349767290/Jupyter_notebook_analyse_actionnariat.ipynb)
+Le code de ce chantier d'analyse est disponible via ce [lien](https://github.com/Victorouledi/Portfolio-data-analyst-scientist/blob/5a26a1dabbc65a9b7792e66a4ad4848349767290/Jupyter_notebook_analyse_actionnariat.ipynb. Il s'agit d'un code en python réalisé en Jupyter Notebook sous VS Code
 
 Le document complet de l'analyse qui contient plus de 100 indicateurs est retrouvable à ce [lien](https://github.com/Victorouledi/Portfolio-data-analyst-scientist/blob/main/doc%20complet/3.%20Export%20PDF%20des%20r%C3%A9sultats%20de%20l'analyse.pdf) quant à lui 
 
@@ -37,7 +43,7 @@ Le document complet de l'analyse qui contient plus de 100 indicateurs est retrou
 
 ![](https://github.com/Victorouledi/Portfolio-data-analyst-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20125319.png)
 
-# Modélisation statistique en données de panel : application de la méthode des prix hédoniques au marché immobilier Lyonnais 
+# 2.Modélisation statistique en données de panel : application de la méthode des prix hédoniques au marché immobilier Lyonnais 
 
 ## Présentation du contexte de la modélisation statistique portant sur l’application de la méthode des prix hédoniques au marché immobilier lyonnaise
 
@@ -48,10 +54,10 @@ Les résultats de cette analyse statistique auront permis de quantifier l’impa
 
 ## Code et quelques éléments de data vizualisation
 
-Le code qui aura permis de réaliser l'analyse de données et ensuite de spécifier un modèle statistique est disponible [ici](https://github.com/Victorouledi/Portfolio-data-analyst-et-data-scientist/blob/main/COTT%20cv.rmd)
+Le code qui aura permis de réaliser l'analyse de données et ensuite de spécifier un modèle statistique est disponible [ici](https://github.com/Victorouledi/Portfolio-data-analyst-et-data-scientist/blob/main/COTT%20cv.rmd). Le code a été écrit en language R et écrit sous Rstudio en markdown
 
-**Voici quelques statistiques descriptives ainsi qu'un des modèles spécifié tirés du projet**
-
+**Voici quelques statistiques descriptives ainsi qu'un des modèles spécifiés tirés du projet**
+ 
 **Statisitiques descrives portant sur les valeurs d'intérets de la base de données utilisée**
 ![](https://github.com/Victorouledi/Portfolio-data-analyst-et-data-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20181154.png)
 
@@ -63,3 +69,32 @@ Le code qui aura permis de réaliser l'analyse de données et ensuite de spécif
 
 **Modèle statististique permettant de tester l'effet l'éloignement au centre sur le prix des biens en isolant les effets de "prestige des arrondissements"**
 ![](https://github.com/Victorouledi/Portfolio-data-analyst-et-data-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20181340.png)
+
+# Modélisation statistique en données de panel : analyse des déterminants des salaires aux Etats-Unis
+
+## Présentation du contexte de la modélisation statistique
+
+Le travail de modélisation statistique s’est fait à partir de la base de données : wagepan disponible en open source dans le package wooldridge disponible avec R. Wooldridge. Elle contient des informations sur les salaires et les caractéristiques des travailleurs aux États-Unis. Il s’agit de données de panel donc ayant une dimension transversale et temporelle. L’enjeu principal du travail résidait dans le choix d’un estimateur adapté au contexte de l’étude (entre estimateur Within, Between, D1, Pooling) ainsi que dans le choix d’une spécification de modèle statistique le plus approprié permettant de comprendre la détermination des salaires aux Etats-Unis en vue des variables d’études à disposition.
+
+Ainsi il s’agissait de savoir s’il était préférable de spécifier un modèle considérant des effets individuels ou non (à savoir si les variables explicatives ont les mêmes effets pour chaque individu), si les caractéristiques individuelles inobservées étaient à considérer de manières fixe ou aléatoire ( à savoir si les caractéristiques intrinsèques de chaque individu étaient corrélées aux variables explicatives, ex : motivation et poursuite de longues études). Après la spécification d’un modèle à effets individuels fixes donc grâce à un estimateur within, l’enjeu était de déterminer les effets des caractéristiques constantes dans le temps (effet de la couleur de peau sur les salaires) qui sont par nature neutralisés par l’estimation within. La solution préconisée face à ce problème aura été de spécifier un modèle dynamique qu’est celui d'Haussmann-Taylor.
+
+Les résultats de cette analyse statistique auront permis de quantifier l’impact de différentes caractéristiques de personnes qu’elles soient constantes ou non dans le temps (origine ethnique, années d‘éducation vs expérience) sur la détermination des salaires d’états-unis. Les résultats sont à retrouver dans le [document présent](https://github.com/Victorouledi/Portfolio-data-analyst-et-data-scientist/blob/main/doc%20complet/2.Rapport%20final%20de%20la%20mod%C3%A9lisation%20statistique%20(1).pdf)
+
+## Code et quelques éléments de data vizualisation
+
+Le code qui a été produit pour ce projet d'analyse de données et de modélisation statistique est disponible [ici](https://github.com/Victorouledi/Portfolio-data-analyst-et-data-scientist/blob/main/doc%20complet/2.Rapport%20final%20de%20la%20mod%C3%A9lisation%20statistique%20(1).pdf). Le code a été écrit en language R et écrit sous Rstudio en markdown
+
+**Voici quelques statistiques descriptives ainsi qu'un des modèles spécifiés tirés du projet**
+
+**Distribution des salaires disponibles dans la base**
+![](https://github.com/Victorouledi/Portfolio-data-analyst-et-data-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20184528.png)
+
+**Box Plots des moyennes des salaires sur la période étudiée en fonction des catégories de métiers des individus présents dans la base**
+![](https://github.com/Victorouledi/Portfolio-data-analyst-et-data-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20184533.png)
+
+**Evolution des salaires moyens par secteurs d'activités sur la période étudiée**
+![](https://github.com/Victorouledi/Portfolio-data-analyst-et-data-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20184548.png)
+
+**Tableau des résultats de la spécification d'un modèle Haussmann Taylor permettant d'attester des effets de régresseurs constant dans le temps dans le cadre d'une estimation within à effet fixe**
+
+![]((https://github.com/Victorouledi/Portfolio-data-analyst-et-data-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20184700.png)
