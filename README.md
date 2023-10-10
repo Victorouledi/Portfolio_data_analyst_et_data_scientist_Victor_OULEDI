@@ -1,10 +1,11 @@
+```CSS
 <style>
 body {
   background-color: #000;
   color: #fff;
 }
 </style>
-
+```
 
 # Plan du portfolio
 
