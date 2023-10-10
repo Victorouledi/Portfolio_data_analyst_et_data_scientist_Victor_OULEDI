@@ -31,3 +31,4 @@ Régression linéaire du temps moyens pour reprises de souscription en fonction 
 
 Test Chi-2 et test post ANOVA pour définir la relation entre l'affectation des différentes souscriptions et le nombre moyens d'actions par souscription
 ![](https://github.com/Victorouledi/Portfolio-data-analyst-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20125319.png)
+
