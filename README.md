@@ -42,6 +42,24 @@ Le document complet de l'analyse qui contient plus de 100 indicateurs est retrou
 ## Présentation du contexte de la modélisation statistique portant sur l’application de la méthode des prix hédoniques au marché immobilier lyonnaise
 
 Le travail de modélisation statistique s’est fait à partir de 6 bases de données différentes comportant des informations sur des biens immobiliers mises à la vente sur Lyon et sur leur valeur foncière. Ce sont des bases de données open source à retrouver sur
-https://app.dvf.etalab.gouv.fr/. Il s’agissait avant tout pour ce travail de tester l’effet de l’éloignement au centre ville sur la détermination des prix des caractéristiques des biens (nombre de chambre, pièces, types de bien,etc). Il aura fallu s’intéresser aux valeurs foncières de biens de 2 quartiers à chaque fois, un loin du centre et un autre près du centre pour 2 arrondissements différents de Lyon (ayant la même réputation) et 2 quartiers (loin et près) de Villeurbanne (commune frontalière de Lyon). Les bases de données sont à retrouver dans le dossier “Bases de données à utiliser”.
+https://app.dvf.etalab.gouv.fr/. Il s’agissait avant tout pour ce travail de tester l’effet de l’éloignement au centre ville sur la détermination des prix des caractéristiques des biens (nombre de chambre, pièces, types de bien,etc). Il aura fallu s’intéresser aux valeurs foncières de biens de 2 quartiers à chaque fois, un loin du centre et un autre près du centre pour 2 arrondissements différents de Lyon (ayant la même réputation) et 2 quartiers (loin et près) de Villeurbanne (commune frontalière de Lyon). Les bases de données sont à retrouver dans le [document suivant](https://github.com/Victorouledi/Portfolio-data-analyst-et-data-scientist/tree/039a515698143db0484caab9a92b5ee5dd74bd07/BD%20DVF).
 
-Les résultats de cette analyse statistique auront permis de quantifier l’impact de l’éloignement ainsi que la dotation d’autres caractéristiques des logements sur la détermination de leur prix. Les résultats sont à retrouver dans le document “Rapport final de la modélisation statistique”
+Les résultats de cette analyse statistique auront permis de quantifier l’impact de l’éloignement ainsi que la dotation d’autres caractéristiques des logements sur la détermination de leur prix. Les résultats sont à retrouver sur le [document suivant](https://github.com/Victorouledi/Portfolio-data-analyst-et-data-scientist/blob/main/doc%20complet/2.Rapport%20final%20de%20la%20mod%C3%A9lisation%20statistique.pdf)
+
+## Code et quelques éléments de data vizualisation
+
+Le code qui aura permis de réaliser l'analyse de données et ensuite de spécifier un modèle statistique est disponible [ici](https://github.com/Victorouledi/Portfolio-data-analyst-et-data-scientist/blob/main/COTT%20cv.rmd)
+
+**Voici quelques statistiques descriptives ainsi qu'un des modèles spécifié tirés du projet**
+
+**Statisitiques descrives portant sur les valeurs d'intérets de la base de données utilisée**
+![](https://github.com/Victorouledi/Portfolio-data-analyst-et-data-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20181154.png)
+
+**Box plot des valeurs foncières dépendant des catégories de biens regroupés par nombre de pièces dont ils disposent**
+![](https://github.com/Victorouledi/Portfolio-data-analyst-et-data-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20181211.png)
+
+**Scatter plot de la valeur foncières des biens en fonction de leur éloignement au centre**
+![](https://github.com/Victorouledi/Portfolio-data-analyst-et-data-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20181233.png)
+
+**Modèle statististique permettant de tester l'effet l'éloignement au centre sur le prix des biens en isolant les effets de "prestige des arrondissements"**
+![](https://github.com/Victorouledi/Portfolio-data-analyst-et-data-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20181340.png)
