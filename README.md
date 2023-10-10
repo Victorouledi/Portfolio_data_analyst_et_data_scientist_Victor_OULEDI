@@ -14,5 +14,6 @@ La base de données utilisée pour ce travail comportait dans sa version brute 3
 
 Le code de ce chantier d'analyse est disponible via ce [lien](https://github.com/Victorouledi/Portfolio-data-analyst-scientist/blob/5a26a1dabbc65a9b7792e66a4ad4848349767290/Jupyter_notebook_analyse_actionnariat.ipynb)
 
-[](https://github.com/Victorouledi/Portfolio-data-analyst-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20125047.png)
+![](https://github.com/Victorouledi/Portfolio-data-analyst-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20125047.png) 
+
 
