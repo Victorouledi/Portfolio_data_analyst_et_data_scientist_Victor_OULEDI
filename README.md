@@ -1,10 +1,12 @@
-![image](https://github.com/Victorouledi/Portfolio-data-analyst-et-data-scientist/assets/147494448/30acf70d-e644-4085-86ce-f7859afecb54)#Plan du portfolio
+# Plan du portfolio
+
 ## 1.Projet  analyse de données : système d'actionnariat chez Terre de Liens
 ## 2.Modélisation statistique en données de panel : application de la méthode des prix hédoniques au marché immobilier Lyonnais 
 ## 3.Modélisation statistique en données de panel : analyse des déterminants des salaires aux Etats-Unis
 
 
 # 1.Projet  analyse de données : système d'actionnariat chez Terre de Liens
+
 ## Présentation du contexte de l'analyse de données
 J'ai pu réaliser ce projet d'analyse de données lors de mon stage en tant que data analyst chez Terre de Lien. Resituons dans un premier temps le système d’actionnariat mis en place par Terre de Liens. Ce dernier permet à tout individu d’acheter des actions auprès de sa société foncière afin d’augmenter le capital lui permettant d’acheter des terres agricoles et d’y installer des personnes ayant des projets d’installation agricole.
 
@@ -93,6 +95,7 @@ Le code qui a été produit pour ce projet d'analyse de données et de modélisa
 ![](https://github.com/Victorouledi/Portfolio-data-analyst-et-data-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20184533.png)
 
 **Evolution des salaires moyens par secteurs d'activités sur la période étudiée**
+![](https://github.com/Victorouledi/Portfolio-data-analyst-et-data-scientist/assets/147494448/30acf70d-e644-4085-86ce-f7859afecb54)
 ![](https://github.com/Victorouledi/Portfolio-data-analyst-et-data-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20184548.png)
 
 **Tableau des résultats de la spécification d'un modèle Haussmann Taylor permettant d'attester des effets de régresseurs constant dans le temps dans le cadre d'une estimation within à effet fixe**
