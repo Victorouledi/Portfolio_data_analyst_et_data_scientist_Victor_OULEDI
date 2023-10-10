@@ -83,7 +83,7 @@ Le code qui aura permis de réaliser l'analyse de données et ensuite de spécif
 
 ![](https://github.com/Victorouledi/Portfolio-data-analyst-et-data-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20181340.png)
 
-# Modélisation statistique en données de panel : analyse des déterminants des salaires aux Etats-Unis
+# 3. Modélisation statistique en données de panel : analyse des déterminants des salaires aux Etats-Unis
 
 ## Présentation du contexte de la modélisation statistique
 
