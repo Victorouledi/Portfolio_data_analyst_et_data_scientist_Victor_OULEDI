@@ -1,5 +1,5 @@
 
-`theme: cayman`
+`theme: jekyll_them_cayman`
 # Plan du portfolio
 
 **1.Projet  analyse de données : système d'actionnariat chez Terre de Liens**
