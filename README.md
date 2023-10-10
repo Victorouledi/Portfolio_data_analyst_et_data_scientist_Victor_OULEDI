@@ -1,5 +1,5 @@
 # Plan du portfolio
-
+ 
 **1.Projet  analyse de données : système d'actionnariat chez Terre de Liens**
 
 **2.Modélisation statistique en données de panel : application de la méthode des prix hédoniques au marché immobilier Lyonnais**
