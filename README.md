@@ -13,6 +13,7 @@ La base de données utilisée pour ce travail comportait dans sa version brute 3
 ## Code et quelques éléments de data vizualisation
 
 Le code de ce chantier d'analyse est disponible via ce [lien](https://github.com/Victorouledi/Portfolio-data-analyst-scientist/blob/5a26a1dabbc65a9b7792e66a4ad4848349767290/Jupyter_notebook_analyse_actionnariat.ipynb)
+
 Le document complet de l'analyse qui contient plus de 100 indicateurs est retrouvable à ce [lien](https://github.com/Victorouledi/Portfolio-data-analyst-scientist/blob/main/doc%20complet/3.%20Export%20PDF%20des%20r%C3%A9sultats%20de%20l'analyse.pdf) quant à lui 
 **Voici quelques indicateurs extraits de l'analyse :**
 Analyse de la variation moyenne du nombre d'actions souscrites entre chaque rang de souscriptions prises
