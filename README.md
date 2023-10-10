@@ -9,3 +9,7 @@ Ayant la volonté de mieux connaître et comprendre la stabilité de ce système
 Il était ensuite possible de procéder à différents tests statistiques pour mettre en lumière de potentielles corrélations ou pas entre différents profils d’actionnaires et différents comportements.
 
 La base de données utilisée pour ce travail comportait dans sa version brute 39 476 lignes et 25 champs d’intérêt. Dans un souci de protection des données, une base fictive a été recrée pour transmettre la méthodologie employée lors de ce chantier. Cette base fictive reproduit la structure de données initialement utilisées. Il est possible de la retrouver au sein de ce portafoglio dans le document 2. Jupyter notebook analyse actionnariat.ipynb, elle est alimentée aléatoirement par de nouvelles données à chaque fois que le code qui permet l’analyse est exécuté.
+
+## Code et quelques éléments de data vizualisation
+
+le code de ce chantier d'analyse est disponible via ce [lien](https://github.com/Victorouledi/Portfolio-data-analyst scientist/blob/main/2.%20Jupyter%20notebook%20analyse%20actionnariat.ipynb)
