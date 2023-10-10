@@ -17,7 +17,17 @@ Le code de ce chantier d'analyse est disponible via ce [lien](https://github.com
 Analyse de la variation moyenne du nombre d'actions souscrites entre chaque rang de souscriptions prises
 ![](https://github.com/Victorouledi/Portfolio-data-analyst-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20125047.png) 
 
-Distribution des types de variations du nombre d'actions prises entre la  et première souscription et la troisième et deuxième souscription
+Distribution des types de variations du nombre d'actions prises entre la septième et sixième  et entre la huitième et septième souscription
 ![](https://github.com/Victorouledi/Portfolio-data-analyst-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20125115.png)
 
+Box plot des durée entre reprises de souscription en fonction des différents types d'actionnaires
+![](https://github.com/Victorouledi/Portfolio-data-analyst-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20125152.png)
 
+Répartition des parts du capital possédé parmi les ç derniers centiles des actionnaires les plus riches
+![](https://github.com/Victorouledi/Portfolio-data-analyst-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20125214.png)
+
+Régression linéaire du temps moyens pour reprises de souscription en fonction du moyen d'actions par souscriptions prises par personnes
+![](https://github.com/Victorouledi/Portfolio-data-analyst-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20125255.png)
+
+Test Chi-2 et test post ANOVA pour définir la relation entre l'affectation des différentes souscriptions et le nombre moyens d'actions par souscription
+![](https://github.com/Victorouledi/Portfolio-data-analyst-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20125319.png)
