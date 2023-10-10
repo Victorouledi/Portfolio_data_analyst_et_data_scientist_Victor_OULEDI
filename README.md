@@ -1,4 +1,4 @@
-# Projet  analyse de données : système d'actionnariat
+# Projet  analyse de données : système d'actionnariat chez Terre de Liens
 ## Présentation du contexte 
 Le système d’actionnariat mis en place par Terre de Liens permet à tout individu d’acheter des actions auprès de sa société foncière afin d’augmenter le capital lui permettant d’acheter des terres agricoles et d’y installer des personnes ayant des projets d’installation agricole.
 
