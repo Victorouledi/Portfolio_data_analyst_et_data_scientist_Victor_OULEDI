@@ -1,5 +1,5 @@
 # Projet  analyse de données : système d'actionnariat chez Terre de Liens
-## Présentation du contexte 
+## Présentation du contexte de l'analyse de données
 J'ai pu réaliser ce projet d'analyse de données lors de mon stage en tant que data analyst chez Terre de Lien. Resituons dans un premier temps le système d’actionnariat mis en place par Terre de Liens. Ce dernier permet à tout individu d’acheter des actions auprès de sa société foncière afin d’augmenter le capital lui permettant d’acheter des terres agricoles et d’y installer des personnes ayant des projets d’installation agricole.
 
 Il est donc possible de souscrire à la Foncière Terre de liens en achetant une ou plusieurs actions et d’affecter ce montant à 3 post différents (à une ferme ou terre agricole en particulier, à la Fondation Terre de liens ou à une association régionale Terre de Liens.
@@ -18,21 +18,21 @@ Le document complet de l'analyse qui contient plus de 100 indicateurs est retrou
 
 **Voici quelques indicateurs extraits de l'analyse :**
 
-Analyse de la variation moyenne du nombre d'actions souscrites entre chaque rang de souscriptions prises
+**Analyse de la variation moyenne du nombre d'actions souscrites entre chaque rang de souscriptions prises**
 ![](https://github.com/Victorouledi/Portfolio-data-analyst-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20125047.png) 
 
-Distribution des types de variations du nombre d'actions prises entre la septième et sixième  et entre la huitième et septième souscription
+**Distribution des types de variations du nombre d'actions prises entre la septième et sixième  et entre la huitième et septième souscription**
 ![](https://github.com/Victorouledi/Portfolio-data-analyst-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20125115.png)
 
-Box plot des durée entre reprises de souscription en fonction des différents types d'actionnaires
+**Box plot des durée entre reprises de souscription en fonction des différents types d'actionnaires**
 ![](https://github.com/Victorouledi/Portfolio-data-analyst-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20125152.png)
 
-Répartition des parts du capital possédé parmi les ç derniers centiles des actionnaires les plus riches
+**Répartition des parts du capital possédé parmi les ç derniers centiles des actionnaires les plus riches**
 ![](https://github.com/Victorouledi/Portfolio-data-analyst-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20125214.png)
 
-Régression linéaire du temps moyens pour reprises de souscription en fonction du moyen d'actions par souscriptions prises par personnes
+**Régression linéaire du temps moyens pour reprises de souscription en fonction du moyen d'actions par souscriptions prises par personnes**
 ![](https://github.com/Victorouledi/Portfolio-data-analyst-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20125255.png)
 
-Test Chi-2 et test post ANOVA pour définir la relation entre l'affectation des différentes souscriptions et le nombre moyens d'actions par souscription
+**Test Chi-2 et test post ANOVA pour définir la relation entre l'affectation des différentes souscriptions et le nombre moyens d'actions par souscription**
 ![](https://github.com/Victorouledi/Portfolio-data-analyst-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20125319.png)
 
