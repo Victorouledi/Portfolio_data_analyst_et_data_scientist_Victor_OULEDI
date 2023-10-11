@@ -33,15 +33,19 @@ Le document complet de l'analyse qui contient plus de 100 indicateurs est retrou
 ![](image/Capture%20d'%C3%A9cran%202023-10-10%20125047.png)
 
 **Distribution des types de variations du nombre d'actions prises entre la septième et sixième  et entre la huitième et septième souscription**
+
 ![](image/Capture%20d'%C3%A9cran%202023-10-10%20125115.png)
 
 **Box plot des durée entre reprises de souscription en fonction des différents types d'actionnaires**
+
 ![](image/Capture%20d'%C3%A9cran%202023-10-10%20125152.png)
 
 **Répartition des parts du capital possédé parmi les ç derniers centiles des actionnaires les plus riches**
+
 ![](image/Capture%20d'%C3%A9cran%202023-10-10%20125214.png)
 
 **Régression linéaire du temps moyens pour reprises de souscription en fonction du moyen d'actions par souscriptions prises par personnes**
+
 ![](image/Capture%20d'%C3%A9cran%202023-10-10%20125255.png)
 
 **Test Chi-2 et test post ANOVA pour définir la relation entre l'affectation des différentes souscriptions et le nombre moyens d'actions par souscription**
@@ -64,15 +68,19 @@ Le code qui aura permis de réaliser l'analyse de données et ensuite de spécif
 **Voici quelques statistiques descriptives ainsi qu'un des modèles spécifiés tirés du projet**
  
 **Statisitiques descrives portant sur les valeurs d'intérets de la base de données utilisée**
+
 ![](image/Capture%20d'%C3%A9cran%202023-10-10%20181154.png)
 
 **Box plot des valeurs foncières dépendant des catégories de biens regroupés par nombre de pièces dont ils disposent**
+
 ![](image/Capture%20d'%C3%A9cran%202023-10-10%20181211.png)
 
 **Scatter plot de la valeur foncières des biens en fonction de leur éloignement au centre**
+
 ![](image/Capture%20d'%C3%A9cran%202023-10-10%20181233.png)
 
 **Modèle statististique permettant de tester l'effet l'éloignement au centre sur le prix des biens en isolant les effets de "prestige des arrondissements"**
+
 ![](image/Capture%20d'%C3%A9cran%202023-10-10%20181340.png)
 
 # 3. Modélisation statistique en données de panel : analyse des déterminants des salaires aux Etats-Unis
@@ -92,12 +100,15 @@ Le code qui a été produit pour ce projet d'analyse de données et de modélisa
 **Voici quelques statistiques descriptives ainsi qu'un des modèles spécifiés tirés du projet**
 
 **Distribution des salaires disponibles dans la base**
+
 ![](image/Capture%20d'%C3%A9cran%202023-10-10%20184528.png)
 
 **Box Plots des moyennes des salaires sur la période étudiée en fonction des catégories de métiers des individus présents dans la base**
+
 ![](image/Capture%20d'%C3%A9cran%202023-10-10%20184533.png)
 
 **Evolution des salaires moyens par secteurs d'activités sur la période étudiée**
+
 ![](image/Capture%20d'%C3%A9cran%202023-10-10%20184548.png)
 
 **Tableau des résultats de la spécification d'un modèle Haussmann Taylor permettant d'attester des effets de régresseurs constant dans le temps dans le cadre d'une estimation within à effet fixe**
