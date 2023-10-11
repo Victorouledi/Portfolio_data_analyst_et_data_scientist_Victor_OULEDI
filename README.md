@@ -29,7 +29,7 @@ Le document complet de l'analyse qui contient plus de 100 indicateurs est retrou
 **Voici quelques indicateurs extraits de l'analyse :**
 
 **Analyse de la variation moyenne du nombre d'actions souscrites entre chaque rang de souscriptions prises**
-![](https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20125047.png) 
+![](image/Capture d'écran 2023-10-10 125047.png) 
 
 **Distribution des types de variations du nombre d'actions prises entre la septième et sixième  et entre la huitième et septième souscription**
 ![](https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/blob/fe1335462faf97cd26af4c2f2847227b83d1d6f4/image/Capture%20d'%C3%A9cran%202023-10-10%20125115.png)
