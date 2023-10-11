@@ -99,4 +99,5 @@ Le code qui a été produit pour ce projet d'analyse de données et de modélisa
 ![](https://github.com/Victorouledi/Portfolio-data-analyst-et-data-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20184548.png)
 
 **Tableau des résultats de la spécification d'un modèle Haussmann Taylor permettant d'attester des effets de régresseurs constant dans le temps dans le cadre d'une estimation within à effet fixe**
+
 ![](https://github.com/Victorouledi/Portfolio-data-analyst-et-data-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20184700.png)
