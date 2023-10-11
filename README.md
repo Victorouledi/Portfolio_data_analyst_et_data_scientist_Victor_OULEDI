@@ -91,7 +91,7 @@ Le travail de modélisation statistique s’est fait à partir de la base de don
 
 Ainsi il s’agissait de savoir s’il était préférable de spécifier un modèle considérant des effets individuels ou non (à savoir si les variables explicatives ont les mêmes effets pour chaque individu), si les caractéristiques individuelles inobservées étaient à considérer de manières fixe ou aléatoire ( à savoir si les caractéristiques intrinsèques de chaque individu étaient corrélées aux variables explicatives, ex : motivation et poursuite de longues études). Après la spécification d’un modèle à effets individuels fixes donc grâce à un estimateur within, l’enjeu était de déterminer les effets des caractéristiques constantes dans le temps (effet de la couleur de peau sur les salaires) qui sont par nature neutralisés par l’estimation within. La solution préconisée face à ce problème aura été de spécifier un modèle dynamique qu’est celui d'Haussmann-Taylor.
 
-Les résultats de cette analyse statistique auront permis de quantifier l’impact de différentes caractéristiques de personnes qu’elles soient constantes ou non dans le temps (origine ethnique, années d‘éducation vs expérience) sur la détermination des salaires d’états-unis. Les résultats sont à retrouver dans le [document présent](https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/blob/226eb72438cfe9a102b06dbfa27a073cc399dca5/doc%20complet/2.Rapport%20final%20de%20la%20mod%C3%A9lisation%20statistique%20(1).pdf)
+Les résultats de cette analyse statistique auront permis de quantifier l’impact de différentes caractéristiques de personnes qu’elles soient constantes ou non dans le temps (origine ethnique, années d‘éducation vs expérience) sur la détermination des salaires d’Etats-uniens. Les résultats sont à retrouver dans le [document présent](https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/blob/226eb72438cfe9a102b06dbfa27a073cc399dca5/doc%20complet/2.Rapport%20final%20de%20la%20mod%C3%A9lisation%20statistique%20(1).pdf)
 
 ## Code et quelques éléments de data vizualisation
 
@@ -111,6 +111,6 @@ Le code qui a été produit pour ce projet d'analyse de données et de modélisa
 
 ![](image/Capture%20d'%C3%A9cran%202023-10-10%20184548.png)
 
-**Tableau des résultats de la spécification d'un modèle Haussmann Taylor permettant d'attester des effets de régresseurs constant dans le temps dans le cadre d'une estimation within à effet fixe**
+**Tableau des résultats de la spécification d'un modèle Haussmann Taylor permettant d'attester des effets de régresseurs constants dans le temps dans le cadre d'une estimation within à effet fixe**
 
 ![](image/Capture%20d'%C3%A9cran%202023-10-10%20184700.png)
