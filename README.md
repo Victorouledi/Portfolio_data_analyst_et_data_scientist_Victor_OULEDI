@@ -44,6 +44,7 @@ Le document complet de l'analyse qui contient plus de 100 indicateurs est retrou
 ![](https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/blob/fe1335462faf97cd26af4c2f2847227b83d1d6f4/image/Capture%20d'%C3%A9cran%202023-10-10%20125255.png)
 
 **Test Chi-2 et test post ANOVA pour définir la relation entre l'affectation des différentes souscriptions et le nombre moyens d'actions par souscription**
+
 ![](https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/blob/fe1335462faf97cd26af4c2f2847227b83d1d6f4/image/Capture%20d'%C3%A9cran%202023-10-10%20125319.png)
 
 # 2.Modélisation statistique en données de panel : application de la méthode des prix hédoniques au marché immobilier Lyonnais 
