@@ -32,6 +32,7 @@ Le document complet de l'analyse qui contient plus de 100 indicateurs est retrou
 ![](https://github.com/Victorouledi/Portfolio-data-analyst-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20125047.png) 
 
 **Distribution des types de variations du nombre d'actions prises entre la septième et sixième  et entre la huitième et septième souscription**
+
 ![](https://github.com/Victorouledi/Portfolio-data-analyst-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20125115.png)
 
 **Box plot des durée entre reprises de souscription en fonction des différents types d'actionnaires**
@@ -63,6 +64,7 @@ Le code qui aura permis de réaliser l'analyse de données et ensuite de spécif
  
 **Statisitiques descrives portant sur les valeurs d'intérets de la base de données utilisée**
 ![](https://github.com/Victorouledi/Portfolio-data-analyst-et-data-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20181154.png)
+
 **Box plot des valeurs foncières dépendant des catégories de biens regroupés par nombre de pièces dont ils disposent**
 ![](https://github.com/Victorouledi/Portfolio-data-analyst-et-data-scientist/blob/main/image/Capture%20d'%C3%A9cran%202023-10-10%20181211.png)
 
