@@ -1,13 +1,13 @@
 # Plan du portfolio
  
-**1.Projet  analyse de données : système d'actionnariat chez Terre de Liens**
+**1.Projet  analyse de données en Python: système d'actionnariat chez Terre de Liens**
  
-**2.Modélisation statistique en données de panel : application de la méthode des prix hédoniques au marché immobilier Lyonnais**
+**2.Modélisation statistique en données de panel en R : application de la méthode des prix hédoniques au marché immobilier Lyonnais**
 
-**3.Modélisation statistique en données de panel : analyse des déterminants des salaires aux Etats-Unis**
+**3.Modélisation statistique en données de panel en R : analyse des déterminants des salaires aux Etats-Unis**
 
 
-# 1.Projet  analyse de données : système d'actionnariat chez Terre de Liens
+# 1.Projet  analyse de données en Ptyhon: système d'actionnariat chez Terre de Liens
 
 ## Présentation du contexte de l'analyse de données
 Lors d'un stage effectué chez Terre de Liens, j'ai été missionné pour la réalisation d'une analyse de données sur le système d'actionnariat mis en place par la structure. Resituons dans un premier temps le système d’actionnariat mis en place par Terre de Liens. Ce dernier permet à tout individu d’acheter des actions auprès de sa société foncière afin d’augmenter le capital lui permettant d’acheter des terres agricoles et d’y installer des personnes ayant des projets d’installation agricole.
@@ -52,7 +52,7 @@ Le document complet de l'analyse qui contient plus de 100 indicateurs est retrou
 
 ![](image/Capture%20d'%C3%A9cran%202023-10-10%20125319.png)
 
-# 2.Modélisation statistique en données de panel : application de la méthode des prix hédoniques au marché immobilier Lyonnais 
+# 2.Modélisation statistique en données de panel en R : application de la méthode des prix hédoniques au marché immobilier Lyonnais 
 
 ## Présentation du contexte de la modélisation statistique portant sur l’application de la méthode des prix hédoniques au marché immobilier lyonnaise
 
@@ -83,7 +83,7 @@ Le code qui aura permis de réaliser l'analyse de données et ensuite de spécif
 
 ![](image/Capture%20d'%C3%A9cran%202023-10-10%20181340.png)
 
-# 3. Modélisation statistique en données de panel : analyse des déterminants des salaires aux Etats-Unis
+# 3. Modélisation statistique en données de panel en R : analyse des déterminants des salaires aux Etats-Unis
 
 ## Présentation du contexte de la modélisation statistique
 
