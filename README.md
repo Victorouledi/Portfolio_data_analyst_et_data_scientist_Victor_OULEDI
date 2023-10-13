@@ -44,7 +44,7 @@ Le document complet de l'analyse qui contient plus de 100 indicateurs est retrou
 
 ![](image/Capture%20d'%C3%A9cran%202023-10-10%20125214.png)
 
-**Régression linéaire du temps moyens pour reprises de souscription en fonction du moyen d'actions par souscriptions prises par personnes**
+**Régression linéaire du temps moyens pour reprises de souscription en fonction du nombre moyen d'actions par souscriptions prises par personnes**
 
 ![](image/Capture%20d'%C3%A9cran%202023-10-10%20125255.png)
 
