@@ -122,6 +122,6 @@ Le code qui a été produit pour ce projet d'analyse de données et de modélisa
 
 ## Certification SQL 
 
-** Thèmes abordés par la certification :** joining data, data manipulation, PostgreSQL summary stats and window functions, functions for manipuation data in PostgreSQL, data analysis in SQL
+**Thèmes abordés par la certification :** joining data, data manipulation, PostgreSQL summary stats and window functions, functions for manipuation data in PostgreSQL, data analysis in SQL
 
 ![](image/certificat%20SQL%20fundamentals_page-0001%20(1).jpg)
