@@ -118,7 +118,7 @@ Le code qui a été produit pour ce projet d'analyse de données et de modélisa
 
 
 
-# 4.Certification data
+# 4.Certifications data
 
 ## Certification SQL 
 
