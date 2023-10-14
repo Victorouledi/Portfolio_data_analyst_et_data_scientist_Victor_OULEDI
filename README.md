@@ -6,6 +6,7 @@
 
 **3.Modélisation statistique en données de panel en R : analyse des déterminants des salaires aux Etats-Unis**
 
+**4.Certifications data**
 
 # 1.Projet  analyse de données en Ptyhon: système d'actionnariat chez Terre de Liens
 
@@ -114,3 +115,13 @@ Le code qui a été produit pour ce projet d'analyse de données et de modélisa
 **Tableau des résultats de la spécification d'un modèle Haussmann Taylor permettant d'attester des effets de régresseurs constants dans le temps dans le cadre d'une estimation within à effet fixe**
 
 ![](image/Capture%20d'%C3%A9cran%202023-10-10%20184700.png)
+
+
+
+# 4.Certification data
+
+## Certification SQL 
+
+** Thèmes abordés par la certification :** joining data, data manipulation, PostgreSQL summary stats and window functions, functions for manipuation data in PostgreSQL, data analysis in SQL
+
+![](image/certificat%20SQL%20fundamentals_page-0001%20(1).jpg)
