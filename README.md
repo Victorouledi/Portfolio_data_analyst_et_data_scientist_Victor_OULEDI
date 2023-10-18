@@ -8,7 +8,7 @@
 
 **4.Certifications data**
 
-# 1.Projet  analyse de données en Ptyhon: système d'actionnariat chez Terre de Liens
+# 1.Projet  analyse de données en Python: système d'actionnariat chez Terre de Liens
 
 ## Présentation du contexte de l'analyse de données
 Lors d'un stage effectué chez Terre de Liens, j'ai été missionné pour la réalisation d'une analyse de données sur le système d'actionnariat mis en place par la structure. Resituons dans un premier temps le système d’actionnariat mis en place par Terre de Liens. Ce dernier permet à tout individu d’acheter des actions auprès de sa société foncière afin d’augmenter le capital lui permettant d’acheter des terres agricoles et d’y installer des personnes ayant des projets d’installation agricole.
