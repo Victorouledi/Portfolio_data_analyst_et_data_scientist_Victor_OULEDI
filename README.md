@@ -125,3 +125,8 @@ Le code qui a été produit pour ce projet d'analyse de données et de modélisa
 **Thèmes abordés par la certification :** joining data, data manipulation, PostgreSQL summary stats and window functions, functions for manipuation data in PostgreSQL, data analysis in SQL
 
 ![](image/certificat%20SQL%20fundamentals_page-0001%20(1).jpg)
+
+
+## Certification Machine Learning with Python: supervised learning with scikit-learn
+
+**Thèmes abordés par la certification :** using supervised techniques to build predictive models (for regression and classification problems), cross-validation, best parameters searching (Gridseach), model performance evaluation, hyper-parameter tuning, using pipelines.
