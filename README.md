@@ -130,3 +130,5 @@ Le code qui a été produit pour ce projet d'analyse de données et de modélisa
 ## Certification Machine Learning with Python: supervised learning with scikit-learn
 
 **Thèmes abordés par la certification :** using supervised techniques to build predictive models (for regression and classification problems), cross-validation, best parameters searching (Gridseach), model performance evaluation, hyper-parameter tuning, using pipelines.
+
+![]([image/Supervised%20Learning%20with%20sickit%20learn_page-0001.jpg)
