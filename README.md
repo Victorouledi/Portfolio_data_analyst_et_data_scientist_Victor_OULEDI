@@ -131,6 +131,5 @@ Le code qui a été produit pour ce projet d'analyse de données et de modélisa
 
 **Thèmes abordés par la certification :** using supervised techniques to build predictive models (for regression and classification problems), cross-validation, best parameters searching (Gridseach), model performance evaluation, hyper-parameter tuning, using pipelines.
 
-![]([image/Supervised%20Learning%20with%20sickit%20learn_page-0001.jpg)
-
+![](image/Supervised%20Learning%20with%20sickit%20learn_page-0001.jpg)
 
