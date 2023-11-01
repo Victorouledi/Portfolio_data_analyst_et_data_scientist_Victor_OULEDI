@@ -7,6 +7,9 @@
 **3.Modélisation statistique en données de panel en R : analyse des déterminants des salaires aux Etats-Unis**
 
 **4.Certifications data**
+- SQL fundamentals
+- Supervised Learning with Python
+- Unsupervised Learning with Python
 
 # 1.Projet  analyse de données en Python: système d'actionnariat chez Terre de Liens
 
@@ -132,4 +135,10 @@ Le code qui a été produit pour ce projet d'analyse de données et de modélisa
 **Thèmes abordés par la certification :** using supervised techniques to build predictive models (for regression and classification problems), cross-validation, best parameters searching (Gridseach), model performance evaluation, hyper-parameter tuning, using pipelines.
 
 ![](image/Supervised%20Learning%20with%20sickit%20learn_page-0001.jpg)
+
+## Certification Machine Learning with Python: unsupervised learning with scikit-learn
+
+**Thèmes abordés par la certification :** clustering with K-means algorithm, data viz  with hierarchical clustering and t-SNE, dimension reducition regarding principal component analysis (PCA), non-negative matrix factorization (NMF), building recommender systems with NMF
+
+![](image/unsupervised%20learning.pdf)
 
