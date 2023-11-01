@@ -138,7 +138,7 @@ Le code qui a été produit pour ce projet d'analyse de données et de modélisa
 
 ## Certification Machine Learning with Python: unsupervised learning with scikit-learn
 
-**Thèmes abordés par la certification :** clustering with K-means algorithm, data viz  with hierarchical clustering and t-SNE, dimension reducition regarding principal component analysis (PCA), non-negative matrix factorization (NMF), building recommender systems with NMF
+**Thèmes abordés par la certification :** clustering with K-means algorithm, data viz  with hierarchical clustering and t-SNE, dimensions reducition regarding principal component analysis (PCA), non-negative matrix factorization (NMF), building recommender systems with NMF
 
 ![](image/unsupervised%20learning_page-0001.jpg)
 
