@@ -86,7 +86,7 @@ La base de données est à retrouver [ici](https://github.com/Victorouledi/Portf
 
 ![](image/de%CC%81termination%20du%20nombre%20de%20cluster.png)
 
-Ici on voit que le gain d'inertie ne devient plus significatif une fois atteint 4 cluster.
+Ici on voit que le gain d'inertie ne devient plus significatif une fois atteint 4 clusters.
 
 **Première visualisation des clusters sur différents plans relatifs à différentes combinaisons de 2 variables**
 
