@@ -97,6 +97,7 @@ Ici on voit que le gain d'inertie ne devient plus significatif une fois atteint 
 On observe qu'en conservant 2 composantes qui sont une combinaison linéaire des différents variables, on captures déjà près de 87 % de la variabilité des données. 
 
 **Visualisation des individus et clusters suite à la réduction de dimension suposée au cercle de corrélation de l'ACP**
+
 **![](image/cercle%20de%20corre%CC%81lation.png)
 
 Grâce à cette réduction de dimension il est ainsi possible de voir comment rapprocher ou distinguer les états et sur quels critères ces comparaisons peuvent être effectuées. 
