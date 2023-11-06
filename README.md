@@ -84,6 +84,8 @@ La base de données est à retrouver [ici](https://github.com/Victorouledi/Portf
 
 ![](image/de%CC%81termination%20du%20nombre%20de%20cluster.png)
 
+Ici on voit que le gain d'inertie ne devient plus significatif une fois atteint 4 cluster.
+
 **Première visualisation des clusters sur différents plans relatifs à différentes combinaisons de 2 variables**
 
 ![](image/Premie%CC%80re%20visualisation%20des%20cluster%20sur%20des%20plans%20relatifs%20a%CC%80%202%20variables.png)
@@ -99,7 +101,7 @@ On observe qu'en conservant 2 composantes qui sont une combinaison linéaire des
 
 Grâce à cette réduction de dimension il est ainsi possible de voir comment rapprocher ou distinguer les états et sur quels critères ces comparaisons peuvent être effectuées. 
 
-Ici on voit que le gain d'inertie ne devient plus significatif une fois atteint 4 cluster.
+
 # 3.Modélisation statistique en données de panel en R : application de la méthode des prix hédoniques au marché immobilier Lyonnais 
 
 ## Présentation du contexte de la modélisation statistique portant sur l’application de la méthode des prix hédoniques au marché immobilier lyonnaise
