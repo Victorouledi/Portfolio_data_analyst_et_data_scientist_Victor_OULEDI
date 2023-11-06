@@ -56,7 +56,49 @@ Le document complet de l'analyse qui contient plus de 100 indicateurs est retrou
 
 ![](image/Capture%20d'%C3%A9cran%202023-10-10%20125319.png)
 
-# 2.Modélisation statistique en données de panel en R : application de la méthode des prix hédoniques au marché immobilier Lyonnais 
+# 2. Clustering, et Analyse en Composantes Principales en Python : sur la criminalité aux Etats-Unis
+
+## Présentation du contexte de l'analyse de données
+Ce travail a été effectué dans le cadre d'une auto formation grace aux supports de Formasys.La base de données étudiée comporte des observations pour les 50 états des USA concernant 4 variables d'intéret.
+
+"Murder" représente le taux de meurtre pour 100 000 habitants dans chaque État.
+"Assault" correspond au nombre d'agressions pour 100 000 habitants.
+"UrbanPop" indique le pourcentage de la population résidant dans des zones urbaines.
+"Rape" représente le taux de viols pour 100 000 habitants.
+
+L'enjeux du travail consistait dans un premier temps à utiliser l'agorithme kmeans dans le but de regrouper les états au sein d'un nombre de cluster optimal ou le plus pertinent possible. Le nombre de clusters optimal a été déterminer à hauteur de 4.
+
+Une fois le clustering effectué, il s'agissait d'effectuer une réduction de dimensions des données grâce à une ACP afin de pouvoir visualiser la répartition relative des états entre eux. Autrement dit il s'agissait de savoir sur quelles caractéristiques il était possible de rapprocher ou distinguer les états et de savoir sur quels critères les clusters avaient été établis.
+
+
+## Code et quelques éléments de data vizualisation
+La base de données est à retrouver [ici](https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/blob/main/BD%20crime%20USA/dataset-90380.csv). Le code qui a permi la réalisation du travail est à retrouver sous forme de jupyter notebook via ce [lien](https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/blob/main/crime_usa.ipynb).  
+
+**Analyse des variables**
+
+![](image/analyse%20variable.png)
+
+**Détermination du nombre de cluster**
+
+![](image/de%CC%81termination%20du%20nombre%20de%20cluster.png)
+
+**Première visualisation des clusters sur différents plans relatifs à différentes combinaisons de 2 variables**
+
+![](image/Premie%CC%80re%20visualisation%20des%20cluster%20sur%20des%20plans%20relatifs%20a%CC%80%202%20variables.png)
+
+**Nombre de composantes principales à garder pour la réduction de dimensions des données en fonction de la variabilités qu'elles expliquent pour ces-dernières**
+
+![](image/De%CC%81termination%20du%20nombre%20de%20composantes%20principales%20a%CC%80%20conserver.png)
+
+On observe qu'en conservant 2 composantes qui sont une combinaison linéaire des différents variables, on captures déjà près de 87 % de la variabilité des données. 
+
+**Visualisation des individus et clusters suite à la réduction de dimension suposée au cercle de corrélation de l'ACP**
+**![](image/cercle%20de%20corre%CC%81lation.png)
+
+Grâce à cette réduction de dimension il est ainsi possible de voir comment rapprocher ou distinguer les états et sur quels critères ces comparaisons peuvent être effectuées. 
+
+Ici on voit que le gain d'inertie ne devient plus significatif une fois atteint 4 cluster.
+# 3.Modélisation statistique en données de panel en R : application de la méthode des prix hédoniques au marché immobilier Lyonnais 
 
 ## Présentation du contexte de la modélisation statistique portant sur l’application de la méthode des prix hédoniques au marché immobilier lyonnaise
 
@@ -87,7 +129,7 @@ Le code qui aura permis de réaliser l'analyse de données et ensuite de spécif
 
 ![](image/Capture%20d'%C3%A9cran%202023-10-10%20181340.png)
 
-# 3. Modélisation statistique en données de panel en R : analyse des déterminants des salaires aux Etats-Unis
+# 4. Modélisation statistique en données de panel en R : analyse des déterminants des salaires aux Etats-Unis
 
 ## Présentation du contexte de la modélisation statistique
 
@@ -119,9 +161,7 @@ Le code qui a été produit pour ce projet d'analyse de données et de modélisa
 
 ![](image/Capture%20d'%C3%A9cran%202023-10-10%20184700.png)
 
-
-
-# 4.Certifications data
+# 5.Certifications data
 
 ## Certification SQL 
 
