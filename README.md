@@ -108,7 +108,7 @@ Grâce à cette réduction de dimension il est ainsi possible de voir comment ra
 
 Ce travail a été effectué dans le cadre d'une auto-formation grâce aux supports de cours de LeCoinstat. Grâce à des données retraçant le nombre de votes pour les différents candidats en liste pour les élections présidentielles de 2022 au seins des différents départements d'Ile de France, il s'agissait de mettre en place une analyse factorielle des correspondances entre différents candidats et différents départements. Il s'agissait ici d'effectuer également une réduction de dimensions des données, faisant face à des variables catégorielles (candidats et départements), une AFC s'imposait plutôt qu'une ACP. 
 
-L'objectif de ce travail était alors de pouvoir rapprocher des candidats et des départements entre euc en fonction de la typologie des votes. 
+L'objectif de ce travail était alors de pouvoir rapprocher des candidats et des départements entre eux en fonction de la typologie des votes. 
 
 ## Code et quelques éléments de data vizualisation
 La base de données est à retrouver [ici](https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/blob/main/BD%20AFC%20elections%202022/election_2022_FR.xlsx). Le code qui a permi la réalisation du travail est à retrouver sous forme de jupyter notebook via ce [lien](https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/blob/main/AFC_With_Python%20Election%20pre%CC%81sidentielle%20.ipynb). 
