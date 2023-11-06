@@ -82,7 +82,7 @@ La base de données est à retrouver [ici](https://github.com/Victorouledi/Portf
 
 ![](image/analyse%20variable.png)
 
-**Détermination du nombre de cluster**
+**Détermination du nombre de clusters optimal**
 
 ![](image/de%CC%81termination%20du%20nombre%20de%20cluster.png)
 
