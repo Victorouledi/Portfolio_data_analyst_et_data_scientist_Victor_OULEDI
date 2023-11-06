@@ -2,9 +2,9 @@
  
 **1.Projet  analyse de données en Python: système d'actionnariat chez Terre de Liens**
 
-**2. Clustering, et Analyse en Composantes Principales en Python : sur la criminalité aux Etats-Unis**
+**2. Clustering, et Analyse en Composantes Principales (ACP) en Python sur la criminalité aux Etats-Unis**
 
-**3. Analyse factorielle des correspondances (AFC): elections présidentielles 2022 focus sur l'Ile de France**
+**3. Analyse factorielle des correspondances (AFC) en Python: elections présidentielles 2022, focus sur l'Ile de France**
 
 **4.Modélisation statistique en données de panel en R : application de la méthode des prix hédoniques au marché immobilier Lyonnais**
 
@@ -60,7 +60,7 @@ Le document complet de l'analyse qui contient plus de 100 indicateurs est retrou
 
 ![](image/Capture%20d'%C3%A9cran%202023-10-10%20125319.png)
 
-# 2. Clustering, et Analyse en Composantes Principales en Python : sur la criminalité aux Etats-Unis
+# 2. Clustering, et Analyse en Composantes Principales en Python  sur la criminalité aux Etats-Unis
 
 ## Présentation du contexte de l'analyse de données
 Ce travail a été effectué dans le cadre d'une auto formation grace aux supports de Formasys.La base de données étudiée comporte des observations pour les 50 états des USA concernant 4 variables d'intéret.
@@ -104,7 +104,7 @@ On observe qu'en conservant 2 composantes qui sont une combinaison linéaire des
 
 Grâce à cette réduction de dimension il est ainsi possible de voir comment rapprocher ou distinguer les états et sur quels critères ces comparaisons peuvent être effectuées. 
 
-# 3. Analyse factorielle des correspondances (AFC): elections présidentielles 2022 focus sur l'Ile de France. 
+# 3. Analyse factorielle des correspondances (AFC): elections présidentielles 2022, focus sur l'Ile de France. 
 
 Ce travail a été effectué dans le cadre d'une auto-formation grâce aux supports de cours de LeCoinstat. Grâce à des données retraçant le nombre de votes pour les différents candidats en liste pour les élections présidentielles de 2022 au seins des différents départements d'Ile de France, il s'agissait de mettre en place une analyse factorielle des correspondances entre différents candidats et différents départements. Il s'agissait ici d'effectuer également une réduction de dimensions des données, faisant face à des variables catégorielles (candidats et départements), une AFC s'imposait plutôt qu'une ACP. 
 
