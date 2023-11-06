@@ -112,9 +112,11 @@ L'objectif de ce travail était alors de pouvoir rapprocher des candidats et des
 La base de données est à retrouver [ici](https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/blob/main/BD%20AFC%20elections%202022/election_2022_FR.xlsx). Le code qui a permi la réalisation du travail est à retrouver sous forme de jupyter notebook via ce [lien](https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/blob/main/AFC_With_Python%20Election%20pre%CC%81sidentielle%20.ipynb). 
 
 **Tableau de contingence entre les différentes variables**
-![](main/image/TB%20contingence.png)
+
+![](image/TB%20contingence.png)
 
 **Classements des candidats par nombre de votes**
+
 ![](image/classement%20e%CC%81lecteur.png)
 
 **Qualité de la représentativité des variables parmi les composants**
