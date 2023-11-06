@@ -100,7 +100,7 @@ On observe qu'en conservant 2 composantes qui sont une combinaison linéaire des
 
 **Visualisation des individus et clusters suite à la réduction de dimension superposée au cercle de corrélation de l'ACP**
 
-**![](image/cercle%20de%20corre%CC%81lation.png)
+![](image/cercle%20de%20corre%CC%81lation.png)
 
 Grâce à cette réduction de dimension il est ainsi possible de voir comment rapprocher ou distinguer les états et sur quels critères ces comparaisons peuvent être effectuées. 
 
