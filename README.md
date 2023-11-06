@@ -1,12 +1,14 @@
 # Plan du portfolio
  
 **1.Projet  analyse de données en Python: système d'actionnariat chez Terre de Liens**
+
+**2. Clustering, et Analyse en Composantes Principales en Python : sur la criminalité aux Etats-Unis**
  
-**2.Modélisation statistique en données de panel en R : application de la méthode des prix hédoniques au marché immobilier Lyonnais**
+**3.Modélisation statistique en données de panel en R : application de la méthode des prix hédoniques au marché immobilier Lyonnais**
 
-**3.Modélisation statistique en données de panel en R : analyse des déterminants des salaires aux Etats-Unis**
+**4.Modélisation statistique en données de panel en R : analyse des déterminants des salaires aux Etats-Unis**
 
-**4.Certifications data**
+**5.Certifications data**
 - SQL fundamentals
 - Supervised Learning with Python
 - Unsupervised Learning with Python
