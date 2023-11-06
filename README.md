@@ -102,7 +102,7 @@ On observe qu'en conservant 2 composantes qui sont une combinaison linéaire des
 
 Grâce à cette réduction de dimension il est ainsi possible de voir comment rapprocher ou distinguer les états et sur quels critères ces comparaisons peuvent être effectuées. 
 
-# 5. Analyse factorielle des correspondances (AFC): elections présidentielles 2022 en île de France. 
+# 3. Analyse factorielle des correspondances (AFC): elections présidentielles 2022 en île de France. 
 
 Ce travail a été effectué dans le cadre d'une auto-formation grâce aux supports de cours de LeCoinstat. Grâce à des données retraçant le nombre de votes pour les différents candidats en liste pour les élections présidentielles de 2022 au seins des différents départements d'Ile de France, il s'agissait de mettre en place une analyse factorielle des correspondances entre différents candidats et différents départements. Il s'agissait ici d'effectuer également une réduction de dimensions des données, faisant face à des variables catégorielles (candidats et départements), une AFC s'imposait plutôt qu'une ACP. 
 
