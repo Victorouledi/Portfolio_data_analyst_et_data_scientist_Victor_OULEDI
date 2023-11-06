@@ -92,7 +92,7 @@ Ici on voit que le gain d'inertie ne devient plus significatif une fois atteint 
 
 ![](image/Premie%CC%80re%20visualisation%20des%20cluster%20sur%20des%20plans%20relatifs%20a%CC%80%202%20variables.png)
 
-**Nombre de composantes principales à garder pour la réduction de dimensions des données en fonction de la variabilités qu'elles expliquent pour ces-dernières**
+**Nombre de composantes principales à garder pour la réduction de dimensions des données en fonction de la variabilité qu'elles expliquent pour ces-dernières**
 
 ![](image/De%CC%81termination%20du%20nombre%20de%20composantes%20principales%20a%CC%80%20conserver.png)
 
