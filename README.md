@@ -14,6 +14,8 @@
 - SQL fundamentals
 - Supervised Learning with Python
 - Unsupervised Learning with Python
+- Data preparation with Excel
+- Data analytics with Excel
 
 # 1.Projet  analyse de données en Python: système d'actionnariat chez Terre de Liens
 
@@ -217,3 +219,14 @@ Le code qui a été produit pour ce projet d'analyse de données et de modélisa
 
 ![](image/unsupervised%20learning_page-0001.jpg)
 
+## Certification Data preparation with Excel 
+
+**Thèmes abordés par la certification :** Functions for Data Preparation, conditional formulas, Lookups and data transformation.
+
+![](image/Data%20prep%20with%20excel%20certificate_page-0001.jpg)
+
+## Certification Data analytics with Excel 
+
+**Thèmes abordés par la certification :** PivotTables, Logical functions, What-if analysis, Forcasting.
+
+![](image/Data%20anlysis%20with%20excel_page-0001.jpg)
