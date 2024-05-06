@@ -54,10 +54,6 @@ Le document complet de l'analyse qui contient plus de 100 indicateurs est retrou
 
 ![](image/Capture%20d'%C3%A9cran%202023-10-10%20125214.png)
 
-**Régression linéaire du temps moyens pour reprises de souscription en fonction du nombre moyen d'actions par souscriptions prises par personnes**
-
-![](image/Capture%20d'%C3%A9cran%202023-10-10%20125255.png)
-
 **Test Chi-2 et test post ANOVA pour définir la relation entre l'affectation des différentes souscriptions et le nombre moyens d'actions par souscription**
 
 ![](image/Capture%20d'%C3%A9cran%202023-10-10%20125319.png)
@@ -158,9 +154,6 @@ Le code qui aura permis de réaliser l'analyse de données et ensuite de spécif
 
 ![](image/Capture%20d'%C3%A9cran%202023-10-10%20181211.png)
 
-**Scatter plot de la valeur foncières des biens en fonction de leur éloignement au centre**
-
-![](image/Capture%20d'%C3%A9cran%202023-10-10%20181233.png)
 
 **Modèle statististique permettant de tester l'effet l'éloignement au centre sur le prix des biens en isolant les effets de "prestige des arrondissements"**
 
