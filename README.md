@@ -1,14 +1,14 @@
 # Plan du portfolio
  
-**1.Projet  analyse de données en Python: système d'actionnariat chez Terre de Liens**
+**1. Projet  analyse de données en Python: système d'actionnariat chez Terre de Liens**
 
 **2. Clustering, et Analyse en Composantes Principales (ACP) en Python :** Criminalité aux Etats-Unis
 
 **3. Analyse factorielle des correspondances (AFC) en Python:** Elections présidentielles 2022, focus sur l'Ile de France
 
-**4.Modélisation statistique en données de panel en R :** Application de la méthode des prix hédoniques au marché immobilier Lyonnais
+**4. Modélisation statistique en données de panel en R :** Application de la méthode des prix hédoniques au marché immobilier Lyonnais
 
-**5.Modélisation statistique en données de panel en R :** Analyse des déterminants des salaires aux Etats-Unis
+**5. Modélisation statistique en données de panel en R :** Analyse des déterminants des salaires aux Etats-Unis
 
 **6.Certifications data**
 - SQL fundamentals
