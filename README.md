@@ -47,7 +47,8 @@ La réseaux de neuronnes a été consrtuit selon les paramètres suivants :
 
 Il se résume alors de la sorte :  
 
-
+![](image/perf1_CNN.png)
+![](image/perf2_CNN.png)
 
 
 
