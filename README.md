@@ -1,6 +1,6 @@
 # Plan du portfolio
  
-**1. Application web de computer vision : Réseau de neuronnes convultif et classification d'imageries médicales**
+**1. Application web streamlit de computer vision : Réseau de neuronnes convultif et classification d'imageries médicales**
 
 **2. Projet  analyse de données en Python: système d'actionnariat chez Terre de Liens**
 
@@ -19,7 +19,41 @@
 - Data preparation with Excel
 - Data analytics with Excel
 
-# 1.Projet  analyse de données en Python: système d'actionnariat chez Terre de Liens
+
+
+# 1. Application web de computer vision : Réseau de neuronnes convultif et classification d'imageries médicales
+
+## Présentation de l'application streamlit et strucutre du modèle CNN
+
+L'enjeu de ce projet était de créer une application web streamlit qui permet d'insérer une image, le modèle prédit ensuite s'il s'agit d'une imagerie médicale du cerveau, des poumons ou la classe autres qui signifie qu'il ne s'agit d'aucune de ces classes précédentes. L'application est accessible ici[lien](https://classifierimageriesmedicales.streamlit.app/).
+
+Les prédictions se basent sur un modèle de neuronnes convultif simple. Il aura été entrainé sur 18 777 images représentant des imageries médicales de cerveaux, de poumons et d'autres photos random (visages, paysages, animaux, monuments, figures abstraites) en libre accès sur des base de données Kaggle. La validation a été faite sur 4 217 iamge par la suite. 
+
+La réseaux de neuronnes a été consrtuit selon les paramètres suivants : 
+
+- Normalisation de la taille des images 
+
+- Différentes couches de convolution 2D avec 128, 64, 32, et 16 filtres de taile 4X4 
+
+- Rajout de couche de maxpooling à chaque fois pour résumer les features maps obtenue par les couches de concolutions
+
+- Rajout d'une couche  Flatten qui réduit la dimension des features maps en un vecteur pour simplification d'apprentissage
+
+- Rajout de couche dense avec 64 neuronnes pour apprentissage des informations tirées des couhces de convultion, de pooling et de la couche Flatten.
+
+- Dernière couche à 2 neuronnes retournant la probabilité qu'une image appartienne à une classe ou l'autre. 
+
+- Entrainement du modèe sur 3 époques
+
+Il se résume alors de la sorte. 
+
+## Limites du modèle
+
+Ce modèle est un modèle simple, le set d'apprentissage est tout de même réduit et la diversité des images y étant inclus reste à relativiser. En effet face à des contraintes d'accès à des images assez diversifiées et face à une capacité de gestion de données réduite, le modèle peut avoir du mal a reconnaitre une image qui contiendrait tout de même une imagerie médicale de cerveau ou de poumons mais étant peu "conventionnel".
+
+
+
+# 2.Projet  analyse de données en Python: système d'actionnariat chez Terre de Liens
 
 ## Présentation du contexte de l'analyse de données
 Lors d'un stage effectué chez Terre de Liens, j'ai été missionné pour la réalisation d'une analyse de données sur le système d'actionnariat mis en place par la structure. Resituons dans un premier temps le système d’actionnariat mis en place par Terre de Liens. Ce dernier permet à tout individu d’acheter des actions auprès de sa société foncière afin d’augmenter le capital lui permettant d’acheter des terres agricoles et d’y installer des personnes ayant des projets d’installation agricole.
