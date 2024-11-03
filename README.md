@@ -60,6 +60,12 @@ Les performances du modèle sont très élevées, ce qui pourrait laisser penser
 
 Ce modèle est un modèle simple, le set d'apprentissage est tout de même réduit et la diversité des images y étant inclus reste à relativiser. En effet face à des contraintes d'accès à des images assez diversifiées et face à une capacité de gestion de données réduite, le modèle peut avoir du mal a reconnaitre une image qui contiendrait tout de même une imagerie médicale de cerveau ou de poumons mais étant peu "conventionnel".
 
+## Retour du modèle via l'application streamlit
+
+![](image/retour_model1.png)
+![](image/retour_model2.png)
+![](image/retour_model3.png)
+
 
 
 # 2.Projet  analyse de données en Python: système d'actionnariat chez Terre de Liens
