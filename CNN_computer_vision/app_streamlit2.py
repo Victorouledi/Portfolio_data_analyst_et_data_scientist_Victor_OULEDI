@@ -17,7 +17,7 @@ def load_model_from_github(url):
     return model
 
 # URL du modèle sur GitHub
-model_url = 'https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/blob/7ba8d8bf9839912975636c8618b02578a3f7c259/CNN_computer_vision/CNN_imageries_medicales2.h5'
+model_url = 'https://raw.githubusercontent.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/main/CNN_computer_vision/CNN_imageries_medicales2.h5'
 
 # Charger le modèle depuis GitHub
 model = load_model_from_github(model_url)
