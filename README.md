@@ -27,7 +27,7 @@
 
 L'enjeu de ce projet était de créer une application web streamlit qui permet d'insérer une image, le modèle prédit ensuite s'il s'agit d'une imagerie médicale du cerveau, des poumons ou la classe autres qui signifie qu'il ne s'agit d'aucune de ces classes précédentes. L'application est accessible [ici](https://classifierimageriesmedicales.streamlit.app/).
 
-Les prédictions se basent sur un modèle de neuronnes convultif simple. Il aura été entrainé sur 18 777 images représentant des imageries médicales de cerveaux, de poumons et d'autres photos random (visages, paysages, animaux, monuments, figures abstraites) en libre accès sur des base de données Kaggle. La validation a été faite sur 4 217 iamge par la suite. 
+Les prédictions se basent sur un modèle de neuronnes convultif simple. Il aura été entrainé sur 18 777 images représentant des imageries médicales de cerveaux, de poumons et d'autres photos random (visages, paysages, animaux, monuments, figures abstraites) en libre accès sur des base de données Kaggle. La validation a été faite sur 4 217 images par la suite. Le notebook qui a permis de réaliser ce modèle est accessible ici.
 
 La réseaux de neuronnes a été consrtuit selon les paramètres suivants : 
 
@@ -45,7 +45,15 @@ La réseaux de neuronnes a été consrtuit selon les paramètres suivants :
 
 - Entrainement du modèe sur 3 époques
 
-Il se résume alors de la sorte. 
+Il se résume alors de la sorte :  
+
+
+
+
+
+
+
+Les performances du modèle sont très élevées, ce qui pourrait laisser penser qu'il y a eu du sur apprentissage. En réalité ceci est du au manque de diversité entre les images du set d'apprentissage et du set d'entraînement. En effet même si les images n'étaient pas les mêmes elles se ressemblait tout de même (Les IRM du cerveau se ressemblants toutes par exemple). 
 
 ## Limites du modèle
 
