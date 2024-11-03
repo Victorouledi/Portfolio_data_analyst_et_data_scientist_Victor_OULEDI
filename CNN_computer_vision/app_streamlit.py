@@ -44,7 +44,7 @@ st.markdown(
 st.write("Cette interface permet de prédire la classe d'une image comme étant soit une imagerie du cerveau, des poumons ou aucune de ces classes précédentes")
 
 # Afficher le résumé du modèle
-st.write("Les prédictions se basent sur un modèle simple de réseau de neurones convolutionnel dont voici les paramètres :")
+st.write("Les prédictions se basent sur un modèle simple de réseau de neurones convolutif dont voici les paramètres :")
 model_summary = StringIO()  # Créer un objet StringIO pour capturer la sortie
 model.summary(print_fn=lambda x: model_summary.write(x + '\n'))  # Capturer le résumé du modèle
 st.text(model_summary.getvalue())  # Afficher le résumé dans l'application
