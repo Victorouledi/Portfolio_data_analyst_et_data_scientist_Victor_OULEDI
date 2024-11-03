@@ -62,9 +62,9 @@ Ce modèle est un modèle simple, le set d'apprentissage est tout de même rédu
 
 ## Retour du modèle via l'application streamlit
 
-![](image/retour_model1.png)
-![](image/retour_model2.png)
-![](image/retour_model3.png)
+![](image/retour_modele1.png)
+![](image/retour_modele2.png)
+![](image/retour_modele3.png)
 
 
 
