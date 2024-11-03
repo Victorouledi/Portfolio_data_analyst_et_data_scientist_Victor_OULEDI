@@ -41,7 +41,7 @@ La réseaux de neuronnes a été consrtuit selon les paramètres suivants :
 
 - Rajout de couche dense avec 64 neuronnes pour apprentissage des informations tirées des couhces de convultion, de pooling et de la couche Flatten.
 
-- Dernière couche à 2 neuronnes retournant la probabilité qu'une image appartienne à une classe ou l'autre. 
+- Dernière couche à 3 neuronnes retournant la probabilité qu'une image appartienne à une classe ou aux autres. 
 
 - Entrainement du modèe sur 3 époques
 
