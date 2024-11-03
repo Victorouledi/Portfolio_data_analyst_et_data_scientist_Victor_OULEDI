@@ -63,10 +63,6 @@ Ce modèle est un modèle simple, le set d'apprentissage est tout de même rédu
 ## Retour du modèle via l'application streamlit
 
 ![](image/retour_modele1.png)
-![](image/retour_modele2.png)
-![](image/retour_modele3.png)
-
-
 
 # 2.Projet  analyse de données en Python: système d'actionnariat chez Terre de Liens
 
