@@ -41,7 +41,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.write("Cette interface permet de prédire la classe d'une image comme étant soit une imagerie du cerveau des poumons ou aucune de ces classes précédentes")
+st.write("Cette interface permet de prédire la classe d'une image comme étant soit une imagerie du cerveau, des poumons ou aucune de ces classes précédentes")
 
 # Afficher le résumé du modèle
 st.write("Les prédictions se basent sur un modèle simple de réseau de neurones convolutionnel dont voici les paramètres :")
