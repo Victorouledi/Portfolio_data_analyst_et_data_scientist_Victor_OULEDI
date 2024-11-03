@@ -1,6 +1,6 @@
 # Plan du portfolio
  
-**1. Application web streamlit de computer vision : Réseau de neuronnes convultif et classification d'imageries médicales**
+**1. Application web streamlit de computer vision :** Réseau de neuronnes convultif et classification d'imageries médicales
 
 **2. Projet  analyse de données en Python: système d'actionnariat chez Terre de Liens**
 
