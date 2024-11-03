@@ -1,6 +1,8 @@
 # Plan du portfolio
  
-**1. Projet  analyse de données en Python: système d'actionnariat chez Terre de Liens**
+**1. Application web de computer vision : Réseau de neuronnes convultif et classification d'imageries médicales**
+
+**2. Projet  analyse de données en Python: système d'actionnariat chez Terre de Liens**
 
 **2. Clustering, et Analyse en Composantes Principales (ACP) en Python :** Criminalité aux Etats-Unis
 
