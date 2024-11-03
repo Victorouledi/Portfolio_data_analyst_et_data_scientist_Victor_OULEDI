@@ -58,7 +58,7 @@ Les performances du modèle sont très élevées, ce qui pourrait laisser penser
 
 ## Limites du modèle
 
-Ce modèle est un modèle simple, le set d'apprentissage est tout de même réduit et la diversité des images y étant inclus reste à relativiser. En effet face à des contraintes d'accès à des images assez diversifiées et face à une capacité de gestion de données réduite, le modèle peut avoir du mal a reconnaitre une image qui contiendrait tout de même une imagerie médicale de cerveau ou de poumons mais étant peu "conventionnel".
+Ce modèle est un modèle simple, le set d'apprentissage est tout de même réduit et la diversité des images y étant inclues reste à relativiser. En effet face à des contraintes d'accès à des images assez diversifiées et face à une capacité de gestion de données réduite, le modèle peut avoir du mal a reconnaitre une image qui contiendrait tout de même une imagerie médicale de cerveau ou de poumons mais étant peu "conventionnel".
 
 ## Retour du modèle via l'application streamlit
 
