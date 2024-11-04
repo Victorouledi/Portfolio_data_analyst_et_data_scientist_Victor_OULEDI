@@ -54,7 +54,7 @@ Il se résume alors de la sorte :
 
 
 
-Les performances du modèle sont très élevées, ce qui pourrait laisser penser qu'il y a eu du sur apprentissage. En réalité ceci est du au manque de diversité entre les images du set d'apprentissage et du set d'entraînement. En effet même si les images n'étaient pas les mêmes elles se ressemblait tout de même (Les IRM du cerveau se ressemblants toutes par exemple). 
+Les performances du modèle sont très élevées, ce qui pourrait laisser penser qu'il y a eu du sur apprentissage. En réalité ceci est du au manque de diversité entre les images du set d'apprentissage et du set d'entraînement. En effet même si les images n'étaient pas les mêmes elles se ressemblaient tout de même (Les IRM du cerveau se ressemblant toutes par exemple). 
 
 ## Limites du modèle
 
