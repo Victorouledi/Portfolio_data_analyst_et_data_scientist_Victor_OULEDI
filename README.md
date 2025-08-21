@@ -1,6 +1,8 @@
 # Plan du portfolio
+
+**1. IA & NLP :**  Model LSTM pour  la prédiction du type de sujet conernant les réclamations et pleintes à l'encontre de services financiers
  
-**1. Application web streamlit de computer vision :** Réseau de neuronnes convultif et classification d'imageries médicales
+**2. Application web streamlit de computer vision :** Réseau de neuronnes convultif et classification d'imageries médicales
 
 **2. Projet  analyse de données en Python: système d'actionnariat chez Terre de Liens**
 
@@ -20,8 +22,44 @@
 - Data analytics with Excel
 
 
+# 1. IA & NLP :  Model LSTM pour  la prédiction du type de sujet conernant les réclamations et pleintes à l'encontre de services financiers
 
-# 1. Application web de computer vision : Réseau de neuronnes convultif et classification d'imageries médicales
+## Présentation du problème : 
+
+Dans ce projet de traitement automatique du langage naturel (NLP), j’ai développé un modèle basé sur une architecture Bidirectional LSTM (Long Short-Term Memory) afin de classer des plaintes clients issues du secteur des services financiers. La base de données comprenait 66 699 plaintes textuelles, chacune décrivant un problème rencontré par un client avec sa banque , ici : Recouvrement de dettes, Rapports de crédit, Prêt étudiant, Prêt sur salaire.
+
+## Modèle LSTM 
+
+Un LSTM (Long Short-Term Memory) est une variante des réseaux de neurones récurrents (RNN) conçue pour mieux gérer les dépendances à long terme dans des séquences.
+Il est composé de cellules qui utilisent trois types de portes :
+
+- Porte d’entrée (input gate) : contrôle quelles nouvelles informations sont ajoutées à la mémoire.
+- Porte d’oubli (forget gate) : décide quelles informations passées sont conservées ou supprimées.
+- Porte de sortie (output gate) : détermine quelles informations de la mémoire sont utilisées pour produire la sortie actuelle.
+- Cette structure permet au LSTM de retenir le contexte pertinent sur de longues séquences, évitant le problème du vanishing gradient que rencontrent les RNN classiques.
+
+Cette architecture rend le LSTM particulièrement adapté pour l’interprétation des séquences verbales complexes issues de ce type de données clients.
+
+## Enjeux du travail
+
+- Un point crucial de ce projet a été la préparation des données, notamment la tokenisation et le padding des séquences textuelles pour normaliser leur longueur avant l’apprentissage : Ainsi il aura fallu pré-traiter permis de nettoyer et homogénéiser les textes. Après suppression des URLs, nombres et ponctuation, puis tokenisation, lemmatisation et suppression des stopwords, le nombre de tokens par plainte a nettement diminué et les séquences sont devenues plus compactes. Ce travail prépare efficacement les données pour l’apprentissage du modèle LSTM. Voila l'évolution du format d'input avec le prétraitement : 
+
+- Un autre défi a résidé dans la gestion des classes déséquilibrées (class imbalance), qui a nécessité des ajustements tels que la pondération des classes et des techniques de sur/sous-échantillonnage pour éviter un biais du modèle vers les classes majoritaires.
+
+## Architecture et résultats : 
+
+Après avoir tester la sensibilité des performances du modèle avec différentes architectures, l'architecture suivante aura été sélectionnée : 
+
+- Une couche d’embedding transforme chaque mot en un vecteur de 300 dimensions pour représenter son sens.
+- Deux couches LSTM bidirectionnelles analysent le texte dans les deux sens pour mieux comprendre le contexte des phrases.
+- Une couche dense affine les informations extraites avant la prédiction.
+- Une couche de sortie prédit la catégorie de plainte parmi les quatre disponibles.
+- Des techniques de régularisation comme le dropout sont utilisées pour éviter le surapprentissage et améliorer les performances du modèle. Egalement de la pondération de classe pour gérer les class inbalance.
+
+  **Les performances du modèle optimal retenu ont été les suivantes :** 
+ 
+
+# 2. Application web de computer vision : Réseau de neuronnes convultif et classification d'imageries médicales
 
 ## Présentation de l'application streamlit et strucutre du modèle CNN
 
