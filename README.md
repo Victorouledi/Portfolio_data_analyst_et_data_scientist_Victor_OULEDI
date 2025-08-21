@@ -52,7 +52,7 @@ Cette architecture rend le LSTM particulièrement adapté pour l’interprétati
 
 ![](image/DB_LSTM.png)
 
-## Architecture et résultats : 
+## Architecture retenue : 
 
 Après avoir tester la sensibilité des performances du modèle avec différentes architectures, l'architecture suivante aura été sélectionnée : 
 
@@ -64,6 +64,7 @@ Après avoir tester la sensibilité des performances du modèle avec différente
 
 ![](image/Model_LSTM.png)
 
+## Résultats :
 
 **Les performances du modèle optimal retenu ont été les suivantes :** 
 
