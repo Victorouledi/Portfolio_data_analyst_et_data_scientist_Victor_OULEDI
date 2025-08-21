@@ -8,21 +8,21 @@ Data Scientist/ Data Analyst/ Machine Learning & AI Engineer (NLP, Computer Visi
 > 👉 Parcourez mes projets ci-dessous ou via l’onglet **Projets**.
 
 
-**1. IA & NLP :**  Model LSTM pour  la prédiction du type de sujet conernant les réclamations et pleintes à l'encontre de services financiers
+- **IA & NLP :**  Model LSTM pour  la prédiction du type de sujet conernant les réclamations et pleintes à l'encontre de services financiers
  
-**2. Application web streamlit de computer vision :** Réseau de neuronnes convultif et classification d'imageries médicales
+- **Application web streamlit de computer vision :** Réseau de neuronnes convultif et classification d'imageries médicales
 
-**2. Projet  analyse de données en Python: système d'actionnariat chez Terre de Liens**
+- **Projet  analyse de données en Python: système d'actionnariat chez Terre de Liens**
 
-**2. Clustering, et Analyse en Composantes Principales (ACP) en Python :** Criminalité aux Etats-Unis
+- **Clustering, et Analyse en Composantes Principales (ACP) en Python :** Criminalité aux Etats-Unis
 
-**3. Analyse factorielle des correspondances (AFC) en Python:** Elections présidentielles 2022, focus sur l'Ile de France
+- **Analyse factorielle des correspondances (AFC) en Python:** Elections présidentielles 2022, focus sur l'Ile de France
 
-**4. Modélisation statistique en données de panel en R :** Application de la méthode des prix hédoniques au marché immobilier Lyonnais
+- **Modélisation statistique en données de panel en R :** Application de la méthode des prix hédoniques au marché immobilier Lyonnais
 
-**5. Modélisation statistique en données de panel en R :** Analyse des déterminants des salaires aux Etats-Unis
+- **Modélisation statistique en données de panel en R :** Analyse des déterminants des salaires aux Etats-Unis
 
-**6.Certifications data**
+**Certifications data**
 - SQL fundamentals
 - Supervised Learning with Python
 - Unsupervised Learning with Python
