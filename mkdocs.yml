@@ -1,1 +1,50 @@
+site_name: "Portfolio — Victor Ouledi"
+site_url: "https://victorouledi.github.io/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/"
+repo_url: "https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI"
+repo_name: "Repo GitHub"
+use_directory_urls: true
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.instant
+    - content.code.copy
+    - search.highlight
+    - search.suggest
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/brightness-6
+        name: Mode sombre
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Mode clair
+
+plugins:
+  - search
+  - mkdocs-jupyter    # rend les .ipynb si tu en publies
+markdown_extensions:
+  - admonition
+  - footnotes
+  - attr_list
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight
+
+# Dossier des pages (par défaut: docs/). Laisse tel quel si tes .md sont dans docs/
+# docs_dir: docs
+
+nav:
+  - Accueil: index.md
+  - Projets:
+      - Aperçu: projets/index.md
+      - NLP — Classification de plaintes: projets/nlp-lstm.md
+      - Vision — Imagerie médicale: projets/imagerie-medicale.md
+      # Ajoute ici tes autres pages projet quand tu les créeras :
+      # - Titre de ton projet: projets/mon-autre-projet.md
+  - À propos: apropos.md
+  - Contact: contacts.md
 
