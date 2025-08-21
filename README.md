@@ -26,7 +26,7 @@
 
 ## Présentation du problème : 
 
-Dans ce projet de traitement automatique du langage naturel (NLP), j’ai développé un modèle basé sur une architecture Bidirectional LSTM (Long Short-Term Memory) afin de classer des plaintes clients issues du secteur des services financiers. La base de données comprenait 66 699 plaintes textuelles, chacune décrivant un problème rencontré par un client avec sa banque , ici : Recouvrement de dettes, Rapports de crédit, Prêt étudiant, Prêt sur salaire.
+Dans ce projet de traitement automatique du langage naturel (NLP), j’ai développé un modèle basé sur une architecture Bidirectional LSTM (Long Short-Term Memory) afin de classer des plaintes clients issues du secteur des services financiers. La base de données comprenait 66 699 plaintes textuelles, chacune décrivant un problème rencontré par un client avec sa banque , ici : Recouvrement de dettes, Rapports de crédit, Prêt étudiant, Prêt sur salaire. Le notebook du travail est disponible [ici](https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/blob/8182b7efd1b9dcd0901c14696bd9ca14576b906f/NLP_and_LSTM/finance_complaints_NLP.ipynb). La base de données sur laquelle le travail a été fait [ici](https://www.kaggle.com/datasets/selener/consumer-complaint-database) : 
 
 ## Modèle LSTM 
 
@@ -40,11 +40,17 @@ Il est composé de cellules qui utilisent trois types de portes :
 
 Cette architecture rend le LSTM particulièrement adapté pour l’interprétation des séquences verbales complexes issues de ce type de données clients.
 
+ ![](image/LSTM_archi.png)
+
 ## Enjeux du travail
 
-- Un point crucial de ce projet a été la préparation des données, notamment la tokenisation et le padding des séquences textuelles pour normaliser leur longueur avant l’apprentissage : Ainsi il aura fallu pré-traiter permis de nettoyer et homogénéiser les textes. Après suppression des URLs, nombres et ponctuation, puis tokenisation, lemmatisation et suppression des stopwords, le nombre de tokens par plainte a nettement diminué et les séquences sont devenues plus compactes. Ce travail prépare efficacement les données pour l’apprentissage du modèle LSTM. Voila l'évolution du format d'input avec le prétraitement : 
+- Un point crucial de ce projet a été la préparation des données, notamment la tokenisation et le padding des séquences textuelles pour normaliser leur longueur avant l’apprentissage : Ainsi il aura fallu pré-traiter permis de nettoyer et homogénéiser les textes. Après suppression des URLs, nombres et ponctuation, puis tokenisation, lemmatisation et suppression des stopwords, le nombre de tokens par plainte a nettement diminué et les séquences sont devenues plus compactes. Ce travail prépare efficacement les données pour l’apprentissage du modèle LSTM. Voila l'évolution du format d'input avec le prétraitement :
+
+![](image/Tokenisation.png)
 
 - Un autre défi a résidé dans la gestion des classes déséquilibrées (class imbalance), qui a nécessité des ajustements tels que la pondération des classes et des techniques de sur/sous-échantillonnage pour éviter un biais du modèle vers les classes majoritaires.
+
+![](image/DB_LSTM.png)
 
 ## Architecture et résultats : 
 
@@ -56,8 +62,14 @@ Après avoir tester la sensibilité des performances du modèle avec différente
 - Une couche de sortie prédit la catégorie de plainte parmi les quatre disponibles.
 - Des techniques de régularisation comme le dropout sont utilisées pour éviter le surapprentissage et améliorer les performances du modèle. Egalement de la pondération de classe pour gérer les class inbalance.
 
-  **Les performances du modèle optimal retenu ont été les suivantes :** 
- 
+![](image/Model_LSTM.png)
+
+
+**Les performances du modèle optimal retenu ont été les suivantes :** 
+
+![](image/ROC-Curve_LSTM.png)
+ ![](image/_LSTM.png)
+
 
 # 2. Application web de computer vision : Réseau de neuronnes convultif et classification d'imageries médicales
 
