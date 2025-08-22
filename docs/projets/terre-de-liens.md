@@ -1,3 +1,10 @@
+---
+title: "Projet  analyse de données en Python: système d'actionnariat chez Terre de Liens"
+permalink: /projets/terre-de-liens/
+layout: single
+---
+
+
 # Projet  analyse de données en Python: système d'actionnariat chez Terre de Liens
 
 
