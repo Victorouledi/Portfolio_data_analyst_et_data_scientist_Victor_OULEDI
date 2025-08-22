@@ -43,13 +43,13 @@ nav:
   - Accueil: index.md
   - Projets:
       - Aperçu: projets/index.md
-      - NLP — Classification de plaintes: projets/nlp-lstm.md
+      - IA & NLP — Classification de plaintes: projets/nlp-lstm.md
       - Computer Vision — Imagerie médicale: projets/imagerie-medicale.md
       - Clustering & ACP — Criminalité aux États-Unis: projets/crime-usa.md
       - AFC — Élections 2022 (IDF): projets/elections-afc.md
-      - R — Prix hédoniques (Lyon): projets/prix-hedoniques-lyon.md
-      - R — Salaires (panel US): projets/salaires-panel-us.md
-      - Analyse — Terre de Liens: projets/terre-de-liens.md
+      - Data Analysis in R — Prix hédoniques (Lyon): projets/prix-hedoniques-lyon.md
+      - Data Analysis in R — Salaires (panel US): projets/salaires-panel-us.md
+      - Data Analysis in Python — Terre de Liens: projets/terre-de-liens.md
       - Certifications: projets/certifications.md
   - À propos: apropos.md
   - Contact: contacts.md
