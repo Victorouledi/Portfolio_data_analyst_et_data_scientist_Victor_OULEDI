@@ -15,7 +15,12 @@ Objectifs :
 
 - Notebook / Rmd : [code](../asset/Panel_analysis_educ_USA/notebooks/3.Code%20en%20R%20pour%20la%20re%CC%81alisation%20de%20la%20mode%CC%81lisation%20statistique.rmd)
 
-## Données & variables (exemples)
+## Stack & outillage
+- **R** : tidyverse, `plm` / `fixest` (FE/RE), `lmtest` (Hausman, BP), `sandwich` (HC/cluster), `car` (VIF)
+- **Viz & tables** : ggplot2, `stargazer` / `modelsummary`
+
+
+## Données & variables
 Variables usuelles : `wage`, `educ`, `exper`, `tenure`, `union`, `married`, variables démographiques (invariantes), **année**.  
 Cible recommandée : **`ln(wage)`** (stabilise la variance ; élasticités interprétables).
 
