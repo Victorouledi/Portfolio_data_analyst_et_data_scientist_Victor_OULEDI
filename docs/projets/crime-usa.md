@@ -1,3 +1,11 @@
+---
+title: "Clustering, et Analyse en Composantes Principales en Python  sur la criminalité aux Etats-Unis"
+permalink: /projets/crime-usa
+layout: single
+---
+
+
+
 # 2. Clustering, et Analyse en Composantes Principales en Python  sur la criminalité aux Etats-Unis
 
 ## Présentation du contexte de l'analyse de données
