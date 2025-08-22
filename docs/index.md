@@ -38,9 +38,8 @@ feature_row_home:
      alt="Victor Ouledi"
      style="float:right;width:clamp(140px,22vw,240px);border-radius:16px;margin:-64px 0 0.75rem 1rem;box-shadow:0 8px 24px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.15);" />
 
-**Data Scientist / Data Analyst / ML & AI Engineer** (NLP, Computer Vision).  
-~2 ans d’expérience. Passionné par la statistique, l’IA et la mise en production
-de solutions data utiles. Curiosité, rigueur, et sens produit.  
+**Data Scientist / Data Analyst / ML & AI Engineer (NLP, Computer Vision)**.  
+~2 ans d’expérience. Passionné par la statistique, l’IA et la mise en production de solutions data utiles. Curiosité, rigueur, et sens produit.  
 👉 Parcourez un aperçu ci-dessous.
 
 <!-- On “déroule” les cartes projets -->
