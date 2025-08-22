@@ -1,3 +1,11 @@
+---
+title: "Analyse de données et économétrie : méthode des prix hénodoniques sur les logements lyonais"
+permalink: /projets/prix-hedoniques-lyon/
+layout: single
+---
+
+
+
 # 4.Modélisation statistique en données de panel en R : application de la méthode des prix hédoniques au marché immobilier Lyonnais 
 
 ## Présentation du contexte de la modélisation statistique portant sur l’application de la méthode des prix hédoniques au marché immobilier lyonnaise
