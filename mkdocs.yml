@@ -25,18 +25,19 @@ theme:
 
 plugins:
   - search
-  - mkdocs-jupyter   # utile si tu publies des notebooks .ipynb
+  - mkdocs-jupyter    # utile si tu publies des notebooks .ipynb
 
 markdown_extensions:
+  - attr_list
+  - md_in_html               # <div class="grid cards" markdown> rend bien les cartes
   - admonition
   - footnotes
-  - attr_list
   - pymdownx.details
   - pymdownx.superfences
   - pymdownx.highlight
-  - pymdownx.emoji:
-       emoji_index: !!python/name:materialx.emoji.twemoji
-       emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.emoji:          # nouvelle API (ne pas utiliser materialx.*)
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 nav:
   - Accueil: index.md
