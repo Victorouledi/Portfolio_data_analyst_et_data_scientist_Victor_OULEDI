@@ -4,7 +4,6 @@ permalink: /projets/
 layout: splash
 classes: wide
 
-# Rangée 1
 feature_row:
   - title: "NLP — Classification de plaintes"
     excerpt: "66 699 textes · BiLSTM · pipeline NLP complet."
@@ -22,7 +21,6 @@ feature_row:
     btn_label: "Détails"
     btn_class: "btn--primary"
 
-# Rangée 2
 feature_row2:
   - title: "Clustering & ACP — Criminalité (USA)"
     excerpt: "KMeans · PCA · critères coude/silhouette."
@@ -40,7 +38,6 @@ feature_row2:
     btn_label: "Voir"
     btn_class: "btn--primary"
 
-# Rangée 3
 feature_row3:
   - title: "R (panel) — Prix hédoniques (Lyon)"
     excerpt: "DVF · modèles panel (plm) · tidyverse · ggplot2."
@@ -58,6 +55,3 @@ feature_row3:
 {% include feature_row id="feature_row2" %}
 {% include feature_row id="feature_row3" %}
 
-{% include feature_row id="feature_row" type="left" %}
-{% include feature_row id="feature_row2" type="left" %}
-{% include feature_row id="feature_row3" type="left" %}
