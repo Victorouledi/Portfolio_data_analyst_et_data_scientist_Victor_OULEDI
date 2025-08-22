@@ -15,30 +15,25 @@ Fort de près de **2 ans d’expérience** dans les métiers de la data, je suis
 
 ## Domaines d’expertise
 
-### 1) Ingénierie & MLOps léger
-- **CI/CD** pour la data science : GitHub Actions / GitLab CI, build & déploiement automatiques (apps Streamlit/Docs/Packages).
-- **Tests & qualité** : tests unitaires/intégration (pytest, unittest), linting, reproductibilité (environnements verrouillés).
-- **Intégration de modèles** : packaging, endpoints simples (FastAPI/Flask), suivi d’expériences et monitoring basiques.
-- **Data pipeline** : ingestion, nettoyage, features, orchestration simple (scripts & cron/CI).
 
-### 2) NLP (Traitement automatique du langage)
+### 1) NLP (Traitement automatique du langage)
 - **Objectifs** : classification de textes, analyse de thèmes, nettoyage & normalisation.
 - **Prétraitement** : tokenisation, lemmatisation, gestion des stopwords, padding, pondération de classes.
 - **Modèles** : RNN **LSTM/BiLSTM/GRU** (Keras/TensorFlow, PyTorch), embeddings (GloVe/Word2Vec), métriques `scikit-learn`.
 - **Librairies** : spaCy / NLTK, TensorFlow/Keras, PyTorch, scikit-learn.
 
-### 3) Computer Vision
+### 2) Computer Vision
 - **Objectifs** : classification/segmentation, mesures et métriques par objet.
 - **Outils** : **scikit-image**, OpenCV, TensorFlow/Keras, PyTorch.
 - **Cas d’usage** : WSIs / imagerie médicale, démos interactives (Streamlit).
 
-### 4) Statistiques & Machine Learning
+### 3) Statistiques & Machine Learning
 - **Supervisé** : régressions (linéaires & non linéaires), **KNN**, **Random Forest**, **XGBoost**, réseaux de neurones.
 - **Non supervisé** : **K-means**, **classification hiérarchique (CAH)**, **ACP**, **AFC**, **NMF**.
 - **Séries temporelles & Panel** : données transversales, séries, **modélisation panel** (effets fixes/hasard).
 - **Évaluation** : validation croisée, courbes ROC/PR, F1/Recall/Precision, interprétation locale simple.
 
-### 5) Analyse de données & Dataviz
+### 4) Analyse de données & Dataviz
 - **Python** : **pandas**, **NumPy**, SciPy, statsmodels ; **Matplotlib**, **Seaborn**, **Plotly**.
 - **R** : **tidyverse** (`dplyr`, `readr`, `tidyr`), **ggplot2**, `plotly`, modélisation (`plm`, `broom`, `lmtest`, `sandwich`).
 - **Excel** : préparation, analyses et automatisations (VBA/DAX lorsque pertinent).
