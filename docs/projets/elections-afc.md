@@ -26,7 +26,7 @@ Objectifs :
 ## Tableau de contingence
 Reconstitution des effectifs *département × candidat* (1ᵉʳ tour). Cette base sert d’entrée à l’AFC.
 
-![Tableau de contingence](../asset/ACF_elections_presidentielles/images/TB_contigence.png)
+![Tableau de contingence](../asset/ACF_elections_presidentielles/images/TB_contingence.png)
 
 ## Classement des candidats par nombre de votes
 Vue globale des volumes pour apprécier les ordres de grandeur avant l’AFC.
