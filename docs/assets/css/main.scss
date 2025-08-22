@@ -146,25 +146,26 @@ a:hover{ color:var(--brand-2-hover); }
 
 
 /* --- Portrait dans le hero, aligné à droite du titre --- */
-.hero-photo{
+/* Portrait à droite du titre (écrase la règle globale width:100%) */
+.page__content .hero-photo{
   float: right;
-  /* largeur responsive */
-  width: clamp(140px, 22vw, 240px);
-  /* on remonte l'image pour qu'elle soit au niveau du nom */
-  margin: clamp(-220px, -18vw, -150px) 0 .75rem 1rem;
-  border-radius: 16px;
+  width: clamp(120px, 18vw, 220px) !important; /* plus petit */
+  max-width: 220px;
+  margin: -48px 0 .75rem 1rem;                 /* remonte un peu l’image */
+  border-radius: 14px;
   box-shadow: 0 8px 24px rgba(0,0,0,.35);
   border: 1px solid rgba(255,255,255,.15);
 }
 
-/* Sur petits écrans : on repasse sous le titre, centré */
-@media (max-width: 820px){
-  .hero-photo{
+/* Mobile : on recentre et on enlève le float */
+@media (max-width: 880px){
+  .page__content .hero-photo{
     float: none;
     display: block;
-    margin: .75rem auto 1rem auto;
-    width: clamp(140px, 40vw, 220px);
+    margin: .5rem auto 1rem;
+    width: clamp(120px, 40vw, 200px) !important;
   }
 }
+
 
 
