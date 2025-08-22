@@ -38,7 +38,7 @@ Après avoir tester la sensibilité des performances du modèle avec différente
 - Une couche de sortie prédit la catégorie de plainte parmi les quatre disponibles.
 - Des techniques de régularisation comme le dropout sont utilisées pour éviter le surapprentissage et améliorer les performances du modèle. Egalement de la pondération de classe pour gérer les class inbalance.
 
-![](image/Model_LSTM.png)
+![](https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/blob/b8359024717a385f84caf7fdb843ce60a8ae8480/docs/asset/NLP_LSTM/images/Model_LSTM.png)
 
 ## Résultats :
 
