@@ -43,7 +43,7 @@ nav:
   - Projets:
       - Aperçu: projets/index.md
       - NLP — Classification de plaintes: projets/nlp-lstm.md
-      - Vision — Imagerie médicale: projets/imagerie-medicale.md
+      - Computer Vision — Imagerie médicale: projets/imagerie-medicale.md
       - Clustering & ACP — Criminalité aux États-Unis: projets/crime-usa.md
       - AFC — Élections 2022 (IDF): projets/elections-afc.md
       - R — Prix hédoniques (Lyon): projets/prix-hedoniques-lyon.md
