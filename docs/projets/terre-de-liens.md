@@ -25,7 +25,7 @@ Analyse du **système d’actionnariat** de la foncière Terre de Liens pour mie
 - **Dataviz** : Matplotlib, Seaborn, Plotly (interactif)
 
 
-## Quelques indicateurs extraits de l'analyse :**
+## Quelques indicateurs extraits de l'analyse :
 
 ### Analyse de la variation moyenne du nombre d'actions souscrites entre chaque rang de souscriptions prises
 
