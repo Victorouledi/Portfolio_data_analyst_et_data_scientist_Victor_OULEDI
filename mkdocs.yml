@@ -25,7 +25,8 @@ theme:
 
 plugins:
   - search
-  - mkdocs-jupyter    # rend les .ipynb si tu en publies
+  - mkdocs-jupyter   # utile si tu publies des notebooks .ipynb
+
 markdown_extensions:
   - admonition
   - footnotes
@@ -33,9 +34,9 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.superfences
   - pymdownx.highlight
-
-# Dossier des pages (par défaut: docs/). Laisse tel quel si tes .md sont dans docs/
-# docs_dir: docs
+  - pymdownx.emoji:
+       emoji_index: !!python/name:materialx.emoji.twemoji
+       emoji_generator: !!python/name:materialx.emoji.to_svg
 
 nav:
   - Accueil: index.md
@@ -43,8 +44,12 @@ nav:
       - Aperçu: projets/index.md
       - NLP — Classification de plaintes: projets/nlp-lstm.md
       - Vision — Imagerie médicale: projets/imagerie-medicale.md
-      # Ajoute ici tes autres pages projet quand tu les créeras :
-      # - Titre de ton projet: projets/mon-autre-projet.md
+      - Clustering & ACP — Criminalité aux États-Unis: projets/crime-usa.md
+      - AFC — Élections 2022 (IDF): projets/elections-afc.md
+      - R — Prix hédoniques (Lyon): projets/prix-hedoniques-lyon.md
+      - R — Salaires (panel US): projets/salaires-panel-us.md
+      - Analyse — Terre de Liens: projets/terre-de-liens.md
+      - Certifications: projets/certifications.md
   - À propos: apropos.md
   - Contact: contacts.md
 
