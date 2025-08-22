@@ -38,7 +38,9 @@ feature_row_home:
 
 
 **Data Scientist / Data Analyst / ML & AI Engineer (NLP, Computer Vision)**.  
-~2 ans d’expérience. Passionné par la statistique, l’IA et la mise en production de solutions data utiles. Curiosité, rigueur, et sens produit.  
+~2 ans d’expérience. 
+Passionné par la statistique, l’IA et la mise en production de solutions data utiles. 
+Curiosité, rigueur, et sens produit.  
 👉 Parcourez un aperçu ci-dessous.
 
 <!-- On “déroule” les cartes projets -->
