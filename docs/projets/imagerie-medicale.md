@@ -1,4 +1,4 @@
-# 2. Application web de computer vision : Réseau de neuronnes convultif et classification d'imageries médicales
+# Application web de computer vision : Réseau de neuronnes convultif et classification d'imageries médicales
 
 ## Présentation de l'application streamlit et strucutre du modèle CNN
 
