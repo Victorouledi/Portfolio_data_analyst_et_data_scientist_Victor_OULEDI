@@ -1,3 +1,11 @@
+---
+title: "Contacts"
+permalink: /contacts/
+layout: single
+---
+
+
+
 # Contacts
 
 
