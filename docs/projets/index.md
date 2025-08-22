@@ -1,69 +1,59 @@
-# Projets
+---
+title: "Projets"
+permalink: /projets/
+layout: single
+classes: wide
 
-<div class="grid cards" markdown>
+# Rangée 1
+feature_row:
+  - title: "NLP — Classification de plaintes"
+    excerpt: "66 699 textes · BiLSTM · pipeline NLP complet."
+    url: "{{ site.baseurl }}/projets/nlp-lstm/"
+    btn_label: "Détails"
+    btn_class: "btn--primary"
+  - title: "Computer Vision — Imagerie médicale"
+    excerpt: "Classification/segmentation · scikit-image · Keras/PyTorch."
+    url: "{{ site.baseurl }}/projets/imagerie-medicale/"
+    btn_label: "Détails"
+    btn_class: "btn--primary"
+  - title: "Analyse — Terre de Liens"
+    excerpt: "Pandas/NumPy/Statsmodels · comportements d’investissement."
+    url: "{{ site.baseurl }}/projets/terre-de-liens/"
+    btn_label: "Détails"
+    btn_class: "btn--primary"
 
-- :material-text-box-multiple: **NLP — Classification de plaintes financières**
-  
-  **Objectif** : catégoriser **66 699 plaintes** clients par type de service bancaire (recouvrement, rapports de crédit, prêt étudiant, prêt sur salaire).
-  
-  **Stack** : Python (PyTorch, `torch.nn`, `torchtext`), prétraitement (spaCy/NTLK, tokenisation, lemmatisation, stopwords), LSTM bi-directionnel, gestion du déséquilibre (class weights), évaluation (`scikit-learn`: métriques/ROC).
-  
-  [Détails →](nlp-lstm.md)
+# Rangée 2
+feature_row2:
+  - title: "Clustering & ACP — Criminalité (USA)"
+    excerpt: "KMeans · PCA · critères coude/silhouette."
+    url: "{{ site.baseurl }}/projets/crime-usa/"
+    btn_label: "Détails"
+    btn_class: "btn--primary"
+  - title: "AFC — Élections 2022 (IDF)"
+    excerpt: "Correspondence Analysis · tableaux de contingence."
+    url: "{{ site.baseurl }}/projets/elections-afc/"
+    btn_label: "Détails"
+    btn_class: "btn--primary"
+  - title: "Certifications"
+    excerpt: "SQL · ML supervisé/non supervisé · Excel."
+    url: "{{ site.baseurl }}/projets/certifications/"
+    btn_label: "Voir"
+    btn_class: "btn--primary"
 
-- :material-microscope: **Vision — Application Streamlit d’imagerie médicale**
-  
-  **Objectif** : classifier des images (cerveau, poumon, autre) via un **CNN** et proposer une **démo web** (Streamlit) d'outil de classification.
-  
-  **Stack** : Python (scikit-image, TensorFlow/Keras, éventuellement OpenCV), data viz (Matplotlib/Seaborn/Plotly), déploiement Streamlit.
-  
-  [Détails →](imagerie-medicale.md)
+# Rangée 3
+feature_row3:
+  - title: "R (panel) — Prix hédoniques (Lyon)"
+    excerpt: "DVF · modèles panel (plm) · tidyverse · ggplot2."
+    url: "{{ site.baseurl }}/projets/prix-hedoniques-lyon/"
+    btn_label: "Détails"
+    btn_class: "btn--primary"
+  - title: "R (panel) — Salaires (US)"
+    excerpt: "Within/Between · Hausman-Taylor · diagnostics."
+    url: "{{ site.baseurl }}/projets/salaires-panel-us/"
+    btn_label: "Détails"
+    btn_class: "btn--primary"
+---
 
-- :material-account-cash: **Analyse — Système d’actionnariat (Terre de Liens)**
-  
-  **Objectif** : profiler les actionnaires, suivre souscriptions/rachats, analyser la stabilité et les comportements d’investissement.
-  
-  **Stack** : Python (Pandas, NumPy, SciPy, Statsmodels), data viz (Matplotlib, Seaborn, Plotly), tests/statistiques descriptives, export rapport.
-  
-  [Détails →](terre-de-liens.md)
-
-- :material-chart-bell-curve: **Clustering & ACP — Criminalité aux États-Unis**
-  
-  **Objectif** : regrouper les 50 États par profils de criminalité et **réduire la dimension** (ACP) pour interprétation.
-  
-  **Stack** : `scikit-learn` (KMeans, PCA), Pandas/NumPy, data viz (Seaborn, Matplotlib), critères d’aide au choix (coude/inertie, silhouette si besoin).
-  
-  [Détails →](crime-usa.md)
-
-- :material-vote: **AFC — Élections présidentielles 2022 (Île-de-France)**
-  
-  **Objectif** : analyser les correspondances **départements × candidats** et visualiser proximités/contrastes.
-  
-  **Stack** : Python (Pandas, NumPy), **Correspondence Analysis** avec `prince` (ou `mca`), data viz (Matplotlib/Seaborn/Plotly), tableaux de contingence.
-  
-  [Détails →](elections-afc.md)
-
-- :material-home-city: **R (panel) — Prix hédoniques, immobilier lyonnais**
-  
-  **Objectif** : estimer l’impact de la **localisation et des attributs** des biens sur les prix (données DVF).
-  
-  **Stack** : R (**tidyverse** : `dplyr`, `readr`, `tidyr`, **dataviz** : `ggplot2`/Plotly), modèles panel avec `plm`, `broom`, `car`, reporting (`stargazer`/`texreg`).
-  
-  [Détails →](prix-hedoniques-lyon.md)
-
-- :material-cash: **R (panel) — Déterminants des salaires aux États-Unis**
-  
-  **Objectif** : identifier les effets (éducation, expérience, caractéristiques individuelles) via modèles panel (Within/Between, Hausman-Taylor).
-  
-  **Stack** : R (**tidyverse**, `plm`), diagnostics (`lmtest`, `sandwich`), **dataviz** (`ggplot2`/Plotly), mise en forme (`broom`, `stargazer`).
-  
-  [Détails →](salaires-panel-us.md)
-
-- :material-certificate: **Certifications**
-  
-  **Objectif** : présenter les certificats clés (SQL, ML supervisé/non supervisé, Excel).
-  
-  **Stack** : pages statiques (Markdown) + scans/exports PDF/PNG.
-  
-  [Détails →](certifications.md)
-
-</div>
+{% include feature_row id="feature_row" type="left" %}
+{% include feature_row id="feature_row2" type="left" %}
+{% include feature_row id="feature_row3" type="left" %}
