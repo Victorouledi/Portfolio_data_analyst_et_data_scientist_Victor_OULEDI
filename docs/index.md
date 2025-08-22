@@ -1,6 +1,18 @@
-# Bonjour, je suis Victor Ouledi
-
-
+---
+layout: splash
+title: "Bonjour, je suis Victor Ouledi"
+subtitle: "Data Scientist/ Data Analyst/ Machine Learning & AI Engineer (NLP, Computer Vision)"
+header:
+  overlay_color: "#0b0f19"
+  overlay_filter: "0.35"
+  # overlay_image: /asset/hero.jpg   # (optionnel) image de fond
+  actions:
+    - label: "Voir les projets"
+      url: "{{ site.baseurl }}/projets/"
+      class: "btn--primary"
+    - label: "À propos"
+      url: "{{ site.baseurl }}/apropos/"
+---
 Data Scientist/ Data Analyst/ Machine Learning & AI Engineer (NLP, Computer Vision). Fort de près de 2 ans d’expérience dans les métiers de la data et passionné par cet univers et celui de la statistique et de l’IA, je suis stimulé par la curiosité et la rigueur que ces disciplines impliquent. En effet, je suis convaincu de la plus value de l'exploitation de données et de l'utilisation de méthodes statistiques avancées dans l'objectif de répondre le mieux possible à différents enjeux. Ainsi je suis prêt à m’engager à 100 % dans des missions qui vont dans ce sens.
  
  
