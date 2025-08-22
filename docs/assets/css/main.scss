@@ -3,139 +3,147 @@
 @import "minimal-mistakes/skins/dark";
 @import "minimal-mistakes";
 
-/* ==========
-   Variables simples (couleurs d'accent)
-   ========== */
-:root {
-  --brand: #22c55e;   /* vert */
-  --brand-2: #38bdf8; /* cyan */
+/* ================================
+   Couleurs de marque (variables)
+   ================================ */
+:root{
+  --brand:   #22c55e;   /* vert */
+  --brand-2: #38bdf8;   /* cyan principal */
+  --brand-2-hover: #5bd0ff; /* cyan un peu plus clair pour :hover */
 }
 
-/* Liens & boutons */
-.page__content a { text-decoration: none; }
-.page__content a:hover { text-decoration: underline; }
-a, .page__content a { color: var(--brand-2); }
-a:hover { color: lighten(#38bdf8, 10%); }
+/* ================================
+   Liens & Boutons
+   ================================ */
+.page__content a{ text-decoration:none; color:var(--brand-2); }
+.page__content a:hover{ text-decoration:underline; color:var(--brand-2-hover); }
+a{ color:var(--brand-2); }
+a:hover{ color:var(--brand-2-hover); }
 
-.btn { border-radius: 10px; }
-.btn--primary {
-  background: var(--brand-2);
-  border-color: var(--brand-2);
-  color: #0b1220;
+.btn{
+  display:inline-block;
+  border-radius:10px;
+  font-size:.95rem;
+  line-height:1.1;
 }
-.btn--primary:hover {
-  filter: brightness(1.08);
-  color: #091018;
+.btn--primary{
+  background:var(--brand-2);
+  border-color:var(--brand-2);
+  color:#0b1220 !important;
+  padding:.45rem .9rem;
+}
+.btn--primary:hover{
+  background:var(--brand-2-hover);
+  border-color:var(--brand-2-hover);
+  filter:none;
+  color:#091018 !important;
 }
 
-/* ==========
-   Largeur & lisibilité
-   ========== */
+/* ================================
+   Largeur & lisibilité globale
+   ================================ */
 .layout--single .page,
-.layout--splash .page {
-  max-width: 1180px; /* plus large pour respirer */
+.layout--splash .page{
+  max-width:1180px;         /* plus large pour respirer */
 }
 
-.page__content {
-  font-size: 1.04rem;
-  line-height: 1.75;
+.page__content{
+  font-size:1.06rem;
+  line-height:1.75;
 }
 
-/* Titres plus compacts */
-.page__content h1 { margin-top: .2rem; margin-bottom: 1rem; }
-.page__content h2, .page__content h3 { margin-top: 1.2rem; }
+/* Titres un peu plus compacts */
+.page__content h1{ margin-top:.2rem; margin-bottom:1rem; }
+.page__content h2,.page__content h3{ margin-top:1.2rem; }
 
-/* Images responsives + style */
+/* ================================
+   Images & Tableaux
+   ================================ */
 .page__content img,
-.figure img {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 6px 24px rgba(0,0,0,.25);
-  border: 1px solid rgba(255,255,255,.06);
+.figure img{
+  width:100%;
+  height:auto;
+  border-radius:12px;
+  box-shadow:0 6px 24px rgba(0,0,0,.25);
+  border:1px solid rgba(255,255,255,.06);
 }
 
-/* Tableaux lisibles */
-.page__content table {
-  border-radius: 10px;
-  overflow: hidden;
+.page__content table{
+  border-radius:10px;
+  overflow:hidden;
 }
-.page__content th {
-  background: rgba(255,255,255,.04);
-}
-
-/* ==========
-   Grille des "feature_row" (page Projets)
-   ========== */
-/* Splash */
-.layout--splash .feature__wrapper {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.1rem;
+.page__content th{
+  background:rgba(255,255,255,.04);
 }
 
-/* Single (au cas où tu gardes layout: single) */
-.layout--single .feature__wrapper {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.1rem;
+/* ================================
+   Grille des feature_row (cartes)
+   ================================ */
+/* Home (splash) */
+.layout--splash .feature__wrapper{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(260px, 1fr)); /* largeur mini confortable */
+  gap:1.1rem;
+}
+/* Page Projets (single, si utilisée) */
+.layout--single .feature__wrapper{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(260px, 1fr));
+  gap:1.1rem;
 }
 
-/* Carte */
-.feature__item {
-  background: rgba(255,255,255,.03);
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 16px;
-  padding: 1rem 1.1rem;
-  box-shadow: 0 8px 30px rgba(0,0,0,.25);
-  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
-  min-height: 160px;
+.feature__item{
+  min-width:260px;                  /* évite les cartes trop étroites */
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;
+  padding:1rem 1.1rem;
+  box-shadow:0 8px 30px rgba(0,0,0,.25);
+  transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  min-height:160px;
 }
-.feature__item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 36px rgba(0,0,0,.33);
-  border-color: rgba(56,189,248,.35); /* accent */
+.feature__item:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 36px rgba(0,0,0,.33);
+  border-color:rgba(56,189,248,.35); /* accent */
 }
 
 /* Titre & extrait dans la carte */
-.feature__item .archive__item-title {
-  font-size: 1.05rem;
-  line-height: 1.35;
-  margin-bottom: .2rem;
+.feature__item .archive__item-title{
+  font-size:1.05rem;
+  line-height:1.35;
+  margin-bottom:.2rem;
 }
-.feature__item .archive__item-excerpt {
-  opacity: .9;
-  font-size: .92rem;
-}
-
-/* Bouton dans carte */
-.feature__item .btn {
-  margin-top: .6rem;
-  padding: .4rem .7rem;
+.feature__item .archive__item-excerpt{
+  opacity:.9;
+  font-size:.92rem;
 }
 
-/* ==========
+/* Bouton dans la carte */
+.feature__item .btn{
+  margin-top:.6rem;
+  padding:.4rem .75rem;
+}
+
+/* ================================
    Responsive
-   ========== */
-@media (max-width: 1024px) {
+   ================================ */
+@media (max-width:1024px){
   .layout--splash .feature__wrapper,
-  .layout--single .feature__wrapper {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .layout--single .feature__wrapper{
+    grid-template-columns:repeat(2, minmax(260px, 1fr));
   }
 }
-@media (max-width: 680px) {
+@media (max-width:680px){
   .layout--splash .feature__wrapper,
-  .layout--single .feature__wrapper {
-    grid-template-columns: 1fr;
+  .layout--single .feature__wrapper{
+    grid-template-columns:1fr;
   }
 }
 
-/* ==========
-   Détails visuels légers
-   ========== */
-.masthead, .site-nav {
-  box-shadow: 0 6px 20px rgba(0,0,0,.25);
-}
-.footer {
-  border-top: 1px solid rgba(255,255,255,.08);
-}
+/* ================================
+   Détails visuels
+   ================================ */
+.masthead,.site-nav{ box-shadow:0 6px 20px rgba(0,0,0,.25); }
+.footer{ border-top:1px solid rgba(255,255,255,.08); }
+
