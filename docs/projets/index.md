@@ -15,7 +15,7 @@ feature_row:
     url: "{{ site.baseurl }}/projets/imagerie-medicale/"
     btn_label: "Détails"
     btn_class: "btn--primary"
-  - title: "Analyse — Terre de Liens"
+  - title: "Data Analyse — Profils actionnaires Terre de Liens"
     excerpt: "Pandas/NumPy/Statsmodels · comportements d’investissement."
     url: "{{ site.baseurl }}/projets/terre-de-liens/"
     btn_label: "Détails"
