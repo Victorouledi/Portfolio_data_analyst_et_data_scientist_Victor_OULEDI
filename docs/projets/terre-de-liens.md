@@ -5,7 +5,7 @@ layout: single
 classes: wide
 toc: true
 ---
-
+ 
 ## Contexte & objectif
 Analyse du **système d’actionnariat** de la foncière Terre de Liens pour mieux comprendre :
 - **qui** sont les actionnaires (profils, montants, affectations),
