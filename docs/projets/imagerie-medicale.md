@@ -1,3 +1,11 @@
+---
+title: "Computer Vision - CNN classification d'imageries médicales"
+permalink: /projets/imagerie-medicale/
+layout: single
+---
+
+
+
 # Application web de computer vision : Réseau de neuronnes convultif et classification d'imageries médicales
 
 ## Présentation de l'application streamlit et strucutre du modèle CNN
