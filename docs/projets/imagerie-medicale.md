@@ -4,7 +4,7 @@
 
 L'enjeu de ce projet était de créer une application web streamlit qui permet d'insérer une image, le modèle prédit ensuite s'il s'agit d'une imagerie médicale du cerveau, des poumons ou la classe autres qui signifie qu'il ne s'agit d'aucune de ces classes précédentes. L'application est accessible [ici](https://cnnimageriesmedicales.streamlit.app/).
 
-Les prédictions se basent sur un modèle de neuronnes convultif simple. Il aura été entrainé sur 18 777 images représentant des imageries médicales de cerveaux, de poumons et d'autres photos random (visages, paysages, animaux, monuments, figures abstraites) en libre accès sur des base de données Kaggle. La validation a été faite sur 4 217 images par la suite. Le notebook qui a permis de réaliser ce modèle est accessible [ici](https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/blob/eb7925a00a465b67dad03e2e66dd56f574562025/docs/asset/Computer_vision/notebooks/Pre%CC%81diction%20imagerie%20me%CC%81dicale.ipynb).
+Les prédictions se basent sur un modèle de neuronnes convultif simple. Il aura été entrainé sur 18 777 images représentant des imageries médicales de cerveaux, de poumons et d'autres photos random (visages, paysages, animaux, monuments, figures abstraites) en libre accès sur des base de données Kaggle. La validation a été faite sur 4 217 images par la suite. Le notebook qui a permis de réaliser ce modèle est accessible [ici](../asset/Computer_vision/notebooks/Pre%CC%81diction%20imagerie%20me%CC%81dicale.ipynb).
 
 La réseaux de neuronnes a été consrtuit selon les paramètres suivants : 
 
@@ -24,8 +24,8 @@ La réseaux de neuronnes a été consrtuit selon les paramètres suivants :
 
 Il se résume alors de la sorte :  
 
-![](https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/blob/59befe64823ff0e53c9c5f540ce118e9c84a7fc7/docs/asset/Computer_vision/images/perf1_CNN.png)
-![](https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/blob/59befe64823ff0e53c9c5f540ce118e9c84a7fc7/docs/asset/Computer_vision/images/perf2_CNN.png)
+![](../asset/Computer_vision/images/perf1_CNN.png)
+![](../asset/Computer_vision/images/perf2_CNN.png)
 
 
 
