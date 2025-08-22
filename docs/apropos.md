@@ -4,10 +4,7 @@ permalink: /apropos/
 layout: single
 ---
 
-
-
-
-# À propos
+# Je suis Victor OULEDI : Data Scientist/ Data Analyst/ Machine Learnin & AI Engineer
 
 Fort de près de **2 ans d’expérience** dans les métiers de la data, je suis motivé par la curiosité et la rigueur que nécessitent la **statistique** et l’**IA**. Je crois à la valeur de l’exploitation raisonnée des données et des méthodes quantitatives pour répondre à des enjeux concrets — de la compréhension métier jusqu’au déploiement.
 
