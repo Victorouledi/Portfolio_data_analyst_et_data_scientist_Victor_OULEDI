@@ -18,7 +18,7 @@ header:
 feature_row_home:
   - title: "NLP — Classification de plaintes"
     excerpt: "66 699 textes • BiLSTM • pipeline NLP complet."
-    url: "{{ site.baseurl }}/projets/nlp-lstm/"
+    url: "/projets/nlp-lstm/"
     btn_label: "Détails"
     btn_class: "btn--primary"
   - title: "Computer Vision — Imagerie médicale"
