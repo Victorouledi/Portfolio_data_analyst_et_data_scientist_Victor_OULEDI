@@ -10,7 +10,7 @@ toc: true
 Application web permettant d’uploader une image et de prédire **cerveau / poumon / autre**.  
 👉 [Ouvrir l’app](https://cnnimageriesmedicales.streamlit.app/)
 
-![](https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/blob/59befe64823ff0e53c9c5f540ce118e9c84a7fc7/docs/asset/Computer_vision/images/app.png)
+![](..https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/blob/59befe64823ff0e53c9c5f540ce118e9c84a7fc7/docs/asset/Computer_vision/images/app.png)
 
 ## Données
 - **18 777 images** pour l’entraînement, **4 217** pour la validation.  
