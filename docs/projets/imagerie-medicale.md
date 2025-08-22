@@ -28,6 +28,13 @@ Application web permettant d’uploader une image et de prédire **cerveau / pou
 
 > Notebook : [Prédiction imagerie médicale (CNN)](../asset/Computer_vision/notebooks/Pre%CC%81diction%20imagerie%20me%CC%81dicale.ipynb)
 
+## Stack & outillage
+- **Python** : TensorFlow/Keras (CNN), scikit-image (prétraitements), OpenCV (I/O, transforms), (option) PyTorch
+- **App** : **Streamlit** (démo web)
+- **Viz** : Matplotlib/Seaborn ; (option) Grad-CAM pour interprétabilité
+- **CI/CD** : GitHub Actions (build app/test), gestion d’artefacts (modèle)
+
+
 ## Performances (validation)
 ![](../asset/Computer_vision/images/perf1_CNN.png)
 ![](../asset/Computer_vision/images/perf2_CNN.png)
