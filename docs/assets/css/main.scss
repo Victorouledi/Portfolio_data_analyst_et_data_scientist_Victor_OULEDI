@@ -1,9 +1,8 @@
 ---
 ---
 
-@import "minimal-mistakes/skins/dark"; // change le skin si tu veux
+@import "minimal-mistakes/skins/dark";
 @import "minimal-mistakes";
 
-// Tweaks légers
 .page__content a { text-decoration: none; }
 .btn { border-radius: 10px; }
