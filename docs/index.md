@@ -10,9 +10,9 @@ header:
   overlay_filter: "0.6"
   actions:
     - label: "🚀 Voir les projets"
-      url: "{{ site.baseurl }}/projets/"
+      url: "/projets/"
     - label: "✉️ Me contacter"
-      url: "{{ site.baseurl }}/contacts/"
+      url: "/contacts/"
 
 # 1 rangée d'aperçu sur la home
 feature_row_home:
@@ -47,7 +47,6 @@ de solutions data utiles. Curiosité, rigueur, et sens produit.
      target="_blank" rel="noopener" download>
      📄 Télécharger mon CV (PDF)
   </a>
-</p>
 </p>
 
 
