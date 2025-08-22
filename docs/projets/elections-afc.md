@@ -18,6 +18,11 @@ Objectifs :
 - Notebook : [AFC_With_Python_Election_presidentielle.ipynb](../asset/ACF_elections_presidentielles/notebooks/AFC_With_Python%20Election%20pre%CC%81sidentielle%20.ipynb)  
 - Stack : **pandas**, **numpy**, **prince** (ou `mca`), **matplotlib** / **seaborn** / **plotly**
 
+## Stack & outillage
+- **Python** : pandas/NumPy, **prince** (AFC) ou `mca`
+- **Viz** : Matplotlib/Seaborn/Plotly (maps/factor maps)
+
+
 ## Tableau de contingence
 Reconstitution des effectifs *département × candidat* (1ᵉʳ tour). Cette base sert d’entrée à l’AFC.
 
