@@ -29,7 +29,7 @@ Analyse du **système d’actionnariat** de la foncière Terre de Liens pour mie
 
 ### Analyse de la variation moyenne du nombre d'actions souscrites entre chaque rang de souscriptions prises
 
-![](../asset/data_analysis_TDL/images/Analyse%20de%20la%20variation%20moyenne%20du%20nombre%20d%E2%80%99actions%20souscrites%20entre%20chaque%20rang%20de%20souscriptions%20prises.png)
+![](../asset/data_analysis_TDL/images/Analyse de la variation moyenne du nombre d’actions souscrites entre chaque rang de souscriptions prises.png)
 
 
 ### Distribution des types de variations du nombre d'actions prises entre la septième et sixième  et entre la huitième et septième souscription
