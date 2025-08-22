@@ -36,8 +36,11 @@ Nettoyage et normalisation des textes pour alimenter le modèle séquentiel :
 
 ![LSTM_model](../asset/NLP_LSTM/images/Model_LSTM.png)
 
-**Stack** : Python, TensorFlow/Keras (BiLSTM), spaCy/NLTK (prétraitement), scikit-learn (métriques/rapport).
-
+## Stack & outillage
+- **Python** : TensorFlow/Keras (BiLSTM), scikit-learn (métriques), **spaCy / NLTK** (tokenisation/lemmatisation), imbalanced-learn (pondération/échantillonnage)
+- **Pipeline** : nettoyage → tokenisation → padding → class weights
+- **Viz** : Matplotlib, Seaborn, Plotly
+  
 ## Entraînement
 - **Split** train/validation dédié.  
 - **Early stopping** sur `val_loss` pour éviter le sur-apprentissage.  
