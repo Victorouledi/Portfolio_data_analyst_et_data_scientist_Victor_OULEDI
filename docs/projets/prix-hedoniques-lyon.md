@@ -14,9 +14,11 @@ Objectif : estimer l’impact des **caractéristiques du bien** (surface, pièce
 - Dossier projet : [ressources](../asset/data_analysis_DVF/data)  
 - Script RMarkdown : [COTT_cv.Rmd](../asset/data_analysis_DVF/notebooks/COTT%20cv.rmd)
 
-## Stack R utilisée
-**tidyverse**, **fixest**/**plm**, **lmtest**, **sandwich**, **car**, **splines**, **sf**, **ggplot2**, **stargazer**/**modelsummary**, **broom**.  
-Exports : tableaux (`stargazer/modelsummary`), cartes (`sf + ggplot2/leaflet`), rapport RMarkdown.
+## Stack & outillage
+- **R** : tidyverse (`dplyr`, `readr`, `tidyr`), **ggplot2**
+- **Éco/Panel** : `fixest` / `plm`, `lmtest`, `sandwich`, `car`, `splines`
+- **Tables** : `stargazer` / `modelsummary`, `broom`
+
 
 ## Données & variables
 Plusieurs jeux combinés (DVF + enrichissements) : biens vendus, caractéristiques (surface, nb pièces/chambres, type), **localisation** (arrondissement/quartier), et **distance au centre**.  
