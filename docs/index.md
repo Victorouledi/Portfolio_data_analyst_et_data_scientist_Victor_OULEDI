@@ -1,38 +1,92 @@
 ---
 layout: splash
 title: "Victor Ouledi"
-subtitle: "Portfolio "
+subtitle: "Data Scientist/ Data Analyst/ Machine Learnin & AI Engineer"
+classes: wide
+author_profile: false
+
+# Bandeau (hero)
+header:
+  overlay_color: "#0b1220"
+  overlay_filter: "0.6"
+  # Mets une image si tu en as une (sinon, laisse commenté)
+  # overlay_image: "../asset/hero/hero-grid.jpg"
+  actions:
+    - label: "🚀 Voir les projets"
+      url: "/projets/"
+    - label: "✉️ Me contacter"
+      url: "/contacts/"
+
+# Bloc intro centré
+intro:
+  - excerpt: >
+      **Data Scientist / Data Analyst / ML & AI Engineer** (NLP, Computer Vision).  
+      Près de 2 ans d’expérience. Passionné par la statistique, l’IA, et la mise en production
+      de solutions data utiles. Curiosité, rigueur, et sens produit.  
+      👉 Parcourez quelques réalisations ci-dessous.
+
+# Rangée 1
+feature_row:
+  - image_path: "/asset/tiles/nlp.png"
+    alt: "NLP"
+    title: "NLP — Classification de plaintes"
+    excerpt: "66 699 textes • BiLSTM • pipeline NLP complet."
+    url: "/projets/nlp-lstm/"
+    btn_label: "Détails"
+    btn_class: "btn--primary"
+  - image_path: "/asset/tiles/cv.png"
+    alt: "Computer Vision"
+    title: "Computer Vision — Imagerie médicale"
+    excerpt: "CNN • scikit-image • Keras/PyTorch • démo Streamlit."
+    url: "/projets/imagerie-medicale/"
+    btn_label: "Détails"
+    btn_class: "btn--primary"
+  - image_path: "/asset/tiles/analytics.png"
+    alt: "Analytics"
+    title: "Analyse — Terre de Liens"
+    excerpt: "Profilage actionnaires • comportements d’investissement."
+    url: "/projets/terre-de-liens/"
+    btn_label: "Détails"
+    btn_class: "btn--primary"
+
+# Rangée 2
+feature_row2:
+  - title: "Clustering & ACP — Criminalité (USA)"
+    excerpt: "KMeans • PCA • visualisations et critères (coude/silhouette)."
+    url: "/projets/crime-usa/"
+    btn_label: "Détails"
+    btn_class: "btn--primary"
+  - title: "AFC — Élections 2022 (IDF)"
+    excerpt: "Correspondence Analysis • tableaux de contingence."
+    url: "/projets/elections-afc/"
+    btn_label: "Détails"
+    btn_class: "btn--primary"
+  - title: "Certifications"
+    excerpt: "SQL • ML supervisé / non supervisé • Excel."
+    url: "/projets/certifications/"
+    btn_label: "Voir"
+    btn_class: "btn--primary"
+
+# Rangée 3
+feature_row3:
+  - title: "R (panel) — Prix hédoniques (Lyon)"
+    excerpt: "DVF • modèles panel (plm/fixest) • tidyverse • ggplot2."
+    url: "/projets/prix-hedoniques-lyon/"
+    btn_label: "Détails"
+    btn_class: "btn--primary"
+  - title: "R (panel) — Salaires (US)"
+    excerpt: "Within/Between • Hausman-Taylor • diagnostics robustes."
+    url: "/projets/salaires-panel-us/"
+    btn_label: "Détails"
+    btn_class: "btn--primary"
+  - title: "Télécharger mon CV"
+    excerpt: "CV 1 page (PDF)."
+    url: "/asset/CV/Victor_OULEDI_CV.pdf"
+    btn_label: "Télécharger"
+    btn_class: "btn--inverse"
 ---
 
-# Je suis Victor OULEDI : Data Scientist/ Data Analyst/ Machine Learnin & AI Engineer
-
-Data Scientist/ Data Analyst/ Machine Learning & AI Engineer (NLP, Computer Vision). Fort de près de 2 ans d’expérience dans les métiers de la data et passionné par cet univers et celui de la statistique et de l’IA, je suis stimulé par la curiosité et la rigueur que ces disciplines impliquent. En effet, je suis convaincu de la plus value de l'exploitation de données et de l'utilisation de méthodes statistiques avancées dans l'objectif de répondre le mieux possible à différents enjeux. Ainsi je suis prêt à m’engager à 100 % dans des missions qui vont dans ce sens.
- 
- 
-
-> 👉 Parcourez mes projets ci-dessous ou via l’onglet **Projets**.
-
-
-- **IA & NLP :**  Model LSTM pour  la prédiction du type de sujet conernant les réclamations et pleintes à l'encontre de services financiers
- 
-- **Application web streamlit de computer vision :** Réseau de neuronnes convultif et classification d'imageries médicales
-
-- **Projet  analyse de données en Python: système d'actionnariat chez Terre de Liens**
-
-- **Clustering, et Analyse en Composantes Principales (ACP) en Python :** Criminalité aux Etats-Unis
-
-- **Analyse factorielle des correspondances (AFC) en Python:** Elections présidentielles 2022, focus sur l'Ile de France
-
-- **Modélisation statistique en données de panel en R :** Application de la méthode des prix hédoniques au marché immobilier Lyonnais
-
-- **Modélisation statistique en données de panel en R :** Analyse des déterminants des salaires aux Etats-Unis
-
-**Certifications data**
-- SQL fundamentals
-- Supervised Learning with Python
-- Unsupervised Learning with Python
-- Data preparation with Excel
-- Data analytics with Excel
-
-
-[Voir tous les projets →](projets/index.md)
+{% include feature_row id="intro" type="center" %}
+{% include feature_row %}
+{% include feature_row id="feature_row2" %}
+{% include feature_row id="feature_row3" %}
