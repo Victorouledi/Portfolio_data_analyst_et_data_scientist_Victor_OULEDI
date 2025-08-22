@@ -1,0 +1,9 @@
+main:
+  - title: "Accueil"
+    url: {{ site.baseurl }}/
+  - title: "Projets"
+    url: {{ site.baseurl }}/projets/
+  - title: "À propos"
+    url: {{ site.baseurl }}/apropos/
+  - title: "Contact"
+    url: {{ site.baseurl }}/contacts/
