@@ -1,4 +1,9 @@
-# Certifications data
+---
+title: "Certifications data"
+permalink: /projets/certifications/
+layout: single
+---
+
 
 ## Certification SQL 
 
