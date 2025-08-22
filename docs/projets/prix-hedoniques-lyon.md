@@ -29,16 +29,16 @@ Comparaison de zones : deux arrondissements (quartiers proches/éloignés) et de
  
 ### Statisitiques descrives portant sur les valeurs d'intérets de la base de données utilisée
 
-![](../asset/data_analysis_DVF/images/Statisitiques%20descrives%20portant%20sur%20les%20valeurs%20d%E2%80%99inte%CC%81rets%20de%20la%20base%20de%20donne%CC%81es%20utilise%CC%81e%20%20.png)
+![](../asset/data_analysis_DVF/images/stat_desc.png)
 
 ### Box plot des valeurs foncières dépendant des catégories de biens regroupés par nombre de pièces dont ils disposent
 
-![](../asset/data_analysis_DVF/images/Box%20plot%20des%20valeurs%20foncie%CC%80res%20de%CC%81pendant%20des%20cate%CC%81gories%20de%20biens%20regroupe%CC%81s%20par%20nombre%20de%20pie%CC%80ces%20dont%20ils%20disposent%20%20.png)
+![](../asset/data_analysis_DVF/images/bpx_plot_prices.png)
 
 
 ### Modèle statististique permettant de tester l'effet l'éloignement au centre sur le prix des biens en isolant les effets de "prestige des arrondissements"
 
-![](../asset/data_analysis_DVF/images/Mode%CC%80le%20statististique%20permettant%20de%20tester%20l%E2%80%99effet%20l%E2%80%99e%CC%81loignement%20au%20centre%20sur%20le%20prix%20des%20biens%20en%20isolant%20les%20effets%20de%20%E2%80%9Cprestige%20des%20arrondissements%E2%80%9D%20%20.png)
+![](../asset/data_analysis_DVF/images/result_model.png)
 
 
 
