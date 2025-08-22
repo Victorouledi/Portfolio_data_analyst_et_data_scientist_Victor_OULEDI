@@ -46,5 +46,5 @@ Analyse du **système d’actionnariat** de la foncière Terre de Liens pour mie
 
 ### Test Chi-2 et test post ANOVA pour définir la relation entre l'affectation des différentes souscriptions et le nombre moyens d'actions par souscription
 
-![](../asset/data_analysis_TDL/images/chi_2.png)
+![](../asset/data_analysis_TDL/data/chi_2.png)
 
