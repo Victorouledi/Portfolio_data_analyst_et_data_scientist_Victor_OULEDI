@@ -1,7 +1,7 @@
 ---
 layout: splash
 title: "Victor Ouledi"
-subtitle: "Data Scientist/ Data Analyst/ Machine Learnin & AI Engineer"
+subtitle: "Data Scientist & Analyst — NLP · Computer Vision · Économétrie"
 classes: wide
 author_profile: false
 
@@ -9,7 +9,6 @@ author_profile: false
 header:
   overlay_color: "#0b1220"
   overlay_filter: "0.6"
-
   actions:
     - label: "🚀 Voir les projets"
       url: "/projets/"
@@ -20,26 +19,23 @@ header:
 intro:
   - excerpt: >
       **Data Scientist / Data Analyst / ML & AI Engineer** (NLP, Computer Vision).  
-      Près de 2 ans d’expérience. Passionné par la statistique, l’IA, et la mise en production
-      de solutions data utiles. Curiosité, rigueur, et sens produit.  
+      ~2 ans d’expérience. Passionné par la statistique, l’IA, et la mise en production
+      de solutions data utiles. Curiosité, rigueur, sens produit.  
       👉 Parcourez quelques réalisations ci-dessous.
 
-# Rangée 1
+# Rangée 1 (⚠️ chaque carte commence par un tiret '-')
 feature_row:
-    alt: "NLP"
-    title: "NLP — Classification de plaintes"
+  - title: "NLP — Classification de plaintes"
     excerpt: "66 699 textes • BiLSTM • pipeline NLP complet."
     url: "/projets/nlp-lstm/"
     btn_label: "Détails"
     btn_class: "btn--primary"
-    alt: "Computer Vision"
-    title: "Computer Vision — Imagerie médicale"
+  - title: "Computer Vision — Imagerie médicale"
     excerpt: "CNN • scikit-image • Keras/PyTorch • démo Streamlit."
     url: "/projets/imagerie-medicale/"
     btn_label: "Détails"
     btn_class: "btn--primary"
-    alt: "Analytics"
-    title: "Analyse — Terre de Liens"
+  - title: "Analyse — Terre de Liens"
     excerpt: "Profilage actionnaires • comportements d’investissement."
     url: "/projets/terre-de-liens/"
     btn_label: "Détails"
@@ -48,7 +44,7 @@ feature_row:
 # Rangée 2
 feature_row2:
   - title: "Clustering & ACP — Criminalité (USA)"
-    excerpt: "KMeans • PCA • visualisations et critères (coude/silhouette)."
+    excerpt: "KMeans • PCA • critères coude/silhouette."
     url: "/projets/crime-usa/"
     btn_label: "Détails"
     btn_class: "btn--primary"
@@ -86,3 +82,4 @@ feature_row3:
 {% include feature_row %}
 {% include feature_row id="feature_row2" %}
 {% include feature_row id="feature_row3" %}
+
