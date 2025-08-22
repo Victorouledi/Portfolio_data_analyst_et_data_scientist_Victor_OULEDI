@@ -1,0 +1,1286 @@
+---
+title: "Application de la méthode des prix hédonique sur le marché de l'immobilier à Lyon"
+author: "Adrien Casse - Victor Ouledi - Robin Tordjeman - Yoann Tregouet"
+date: "2022-11-04"
+output:
+  pdf_document: default
+editor_options: 
+  markdown: 
+    wrap: 72
+fontsize: 12pt
+extra_dependencies: ["setspace"]
+header-includes:
+- \usepackage{setspace}
+- \doublespacing
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, comment=" ", warning = FALSE, results = "hold")
+
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(summarytools)
+library(fastDummies)
+library(rmarkdown)
+library(knitr)
+library(gridExtra)
+```
+
+## English abstract :
+
+Hedonic pricing is a widely used technique for estimating the prices of housing attributes or characteristics. This technique is based on the idea that the price of a dwelling is determined by its characteristics, such as its location, size, and amenities. 
+
+In this study, we applied the hedonic pricing method to the housing market in Lyon in order to understand how housing prices are set and how they evolve.
+
+We used several regression models that allow us to show that the number of rooms, the distance to the city center and the distance to Bellecour are the main factors that determine housing prices in Lyon.
+
+We found that the number of rooms has a positive and significant effect on housing prices, indicating that larger homes are more expensive than smaller ones. The distance to the city center also has a positive and significant effect on housing prices, indicating that housing located closer to the city center is more expensive than housing located further away. The results obtained are therefore consistent with our initial intuition. 
+
+This study provides valuable information about the housing market in Lyon. It can be used by policy makers, developers, and real estate agents to understand the factors that determine housing prices in the city and to make informed decisions.
+\newpage
+
+## Abstract en Français :
+La méthode des prix hédoniques est une technique largement utilisée pour estimer les prix des attributs ou caractéristiques du logement. Cette technique repose sur l'idée que le prix d'un logement est déterminé par les caractéristiques de ce logement, telles que son emplacement, sa taille et ses équipements. 
+
+Dans cette étude, nous avons appliqué la méthode des prix hédoniques au marché du logement à Lyon afin de comprendre comment les prix des logements sont fixés et comment ils évoluent.
+
+Nous avons utilisés plusieurs modèles de regression qui nous permettent de mettre en évidence que le nombre de pièces, la distance au centre-ville et la distance à Bellecour sont les principaux facteurs qui déterminent les prix des logements à Lyon.
+
+Nous avons constaté que le nombre de pièces a un effet positif et significatif sur les prix des logements, indiquant que les grands logements sont plus chers que les petits. La distance au centre ville a également un effet positif et significatif sur les prix des logements, indiquant que les logements situés plus près du centre ville sont plus chers que les logements situés plus loin. Les résultats obtenus sont donc conforme à notre intuition de départ. 
+
+Cette étude fournit des informations précieuses sur le marché du logement à Lyon. Ils peuvent être utilisés par les décideurs politiques, les promoteurs et les agents immobiliers pour comprendre les facteurs qui déterminent les prix des logements dans la ville et pour prendre des décisions éclairées.
+
+\newpage
+
+
+
+
+# Problématique :
+
+**En quoi la méthode des prix hédoniques nous permet-elle d'attester de
+l'impact des caractéristiques des logements sur leur valeur immobilière
+?**
+
+## PLAN :
+
+I.Comment situer la problématique ? Quel intérêt au travail
+économétrique ?
+
+II.Présentation de la littérature et modèle économétrique pris pour
+référence
+
+III.Appropriation de la base dans le cadre de l'étude
+
+IV.Conclusion
+
+V.Bibliographie complète
+
+## I.COMMENT SITUER LA PROBLÉMATIQUE ? QUEL INTÉRÊT AU TRAVAIL ÉCONOMÉTRIQUE ?
+
+### 1) Introduction :\newline
+Lyon est une ville en croissance continue qui attire de plus en plus de nouveaux habitants chaque année.  Les biens les plus recherchés sont les appartements anciens dans le centre-ville, ainsi que les maisons individuelles dans les quartiers périphériques. Cependant, cette croissance démographique a eu un impact sur le marché immobilier local, qui est devenu de plus en plus tendu. Les prix de l'immobilier à Lyon ont considérablement augmenté ces dernières années, en particulier dans les quartiers les plus prisés de la ville.
+ Les logements sont de plus en plus rares et les acheteurs doivent faire face à une forte concurrence pour trouver un logement qui correspond à leurs besoins et à leur budget. Les prix élevés et la pénurie de logements ont également rendu l'accès à la propriété plus difficile pour les ménages à revenus modestes. Cependant, malgré ces défis, le marché immobilier à Lyon reste attractif pour les investisseurs et les acheteurs
+
+L'étude du marché de l'immobilier à Lyon permet de comprendre les tendances et les dynamiques de l'offre et de la demande de logements dans cette ville. Elle permet également d'identifier les facteurs qui influencent les prix de l'immobilier, les types de biens les plus recherchés et les tendances en matière de location et d'achat.
+
+### 2) Enjeux du travail :\newline
+
+Notre travail qui concerne avant tout l'études des prix de l'immoblier à
+Lyon peut avoir plusieur enjeux :
+
+-   Comprendre comment les prix des logements sont fixés.
+-   Comment les prix des logements évoluent.
+-   Comment la distance au centre ville (Bellecour) influence le prix des logements
+-   Orienter les décideurs publics et privés dans leurs politiques de
+    gestion des logements
+
+### 3) Situation de la problématique par rapport à la littérature :
+
+Afin de mieux appréhender le sujet nous avons eu recours à la
+littérature scientifique déjà existente.Les différents articles que nous
+avons alors choisi d'utiliser sont caractérisés par une approche commune
+d'analyse spatiale du processus de valorisation immobilière. En effet le
+lien entre les caractéristiques spatiales des biens et leur prix nous
+intéressant principalement tout au long de l'étude. Ainsi de la
+littérature scientique nous avons tirer plusieurs choses.
+
+**Hypothèses :**
+
+-   Les caractéristiques des logements n'ont pas les mêmes effets sur
+    leur immobilière en fonction de leur situation spatiale
+
+-   La situation spatiale d'un logement est le critère qui joue le plus
+    sur sa valeur immobilière
+
+**Méthodologie employée :**
+
+-   Les différents articles utilisent la méthodes des prix hédoniques
+
+*Notre problématique nous permet donc d'interroger les hypothèses de
+valorisation immobilière en fonction de différents quartiers de Lyon
+grâce à la méthode des prix hédoniques*
+
+## II.PRÉSENTATION DE LA LITTÉRATURE ET MODÈLE ÉCONOMÉTRIQUE PRIS POUR RÉFÉRENCE
+
+### 1) Le Modèle hédonique
+
+Notre étude se sera intéressée avant tout à la dynamique des prix des
+logements au sein de l'agglomération Lyonnaise. Dans le cadre de
+nombreuses études similaires à la notre, il est monnaie courante d'avoir
+recours à la méthode des prix hédoniques pour mieux comprendre
+ces-dernières dynamiques concernant les prix des logements. Ainsi, comme
+notre problématique l'indique, nous avons-nous aussi eu recours à cette
+méthode. Il est donc intéressant d'entrée de jeu de savoir à quoi elle
+consiste. Celle-ci repose sur l'analyse de la relation entre le prix
+d'un bien ou d'un service et les caractéristiques qui le composent. Elle
+permet de décomposer le prix d'un bien en associant à chacune des
+caractéristique un prix, que l'on nomme « prix hédonique».
+
+Cette méthode aura été démocratisée et aura pris forme grâce au cadre
+théorique mis en place par 3 auteurs ayant réalisé des travaux majeurs
+sur la dynamique des prix prix de l'immobilier.
+
+On peut déjà citer Kevin J. Lancaster (1966) qui adopte quant à lui une
+approche plus traditionnelle de la théorie du consommateur, où l'utilité
+perçu pour un bien immobilier est dérivée des caractéristiques des
+biens. Sachant qu'un bien est une combinaison de plusieurs
+caractéristiques. Son approche peut être récapitulée en trois points :
+
+-   L'utilité du consommateur n'est pas liée au bien en soi, ce sont ses
+    caractéristiques qui donnent lieu à cette utilité\newline
+
+-   Un bien possède en général plusieurs caractéristiques, de même ces
+    caractéristiques sont communes à plusieurs biens.\newline
+
+-   Les biens combinés peuvent avoir des attributs qui diffèrent des
+    biens pris séparément.\newline 
+
+Le cadre théorique mis en place par Rosen (1974)aura lui aussi participé
+au développement du modèle hédonique. Il combine l'approche de Lancaster
+et la théorie de l'utilité de la concurrence appliquée au marché des
+biens immobiliers hétérogènes. Dans la fonction hédonique de Rosen, les
+consommateurs cherchent à maximiser leur utilité et les producteurs
+quant à eux cherchent à maximiser leur profit, de ce fait, le prix
+d'achat du bien est la somme des prix implicites des caractéristiques du
+logement.
+
+Le dernier auteur que nous pouvons citer est d'Alonso (1964). Son modèle
+théorique se concentre sur le marché foncier en supposant que l'unité de
+logement est un produit homogène. En considérant que les variations de
+prix des logements étaient dues principalement à la distance au
+centre-ville, selon lui, la concurrence pour l'emplacement central
+ferait grimper le prix des logements situés plus près des Central
+Business District (CBD). La théorie des prix hédoniques d'Alonso est une
+théorie de l'économie spatiale qui décrit comment les prix des biens
+immobiliers varient en fonction de leur emplacement. Dans ce cadre, le
+ménage est considéré comme un individu disposant d'un certain revenu
+qu'il peut dépenser entre des terrains et d'autres biens. C'est sur le
+cadre théorique d'Alonso que nous nous sommes le plus appuyé durant
+notre étude.
+
+En effet grâce aux hypothèses émises par l'auteur, il nous aura été
+possible d'introduire les deux concepts que sont le monocentrisme et le
+polycentrisme au sein d'une ville. Le monocentrisme impliquant qu'il
+existe un unique centre d'emplois et d'activités comme noyau autour du
+quel la population se répartie et pour lequel les prix de l'immobilier
+sont déterminés en fonction de leur plus ou moins proximité ou
+éloignement autour de ce noyau. Le polycentrisme implique lui alors
+l'existence de plusieurs noyaux au sein du même ville autour duquel se
+produisent les effets précédemment décrits. Pour une ville
+polycentrique, on pourrait alors retrouvait les biens les plus chers
+concentré autours des 2 centres névralgiques de la ville, et les biens
+les moins chers étant à la fois éloignés d'un noyau et de l'autre au
+sein de la même agglomération.
+
+Il nous sera alors possible de vérifier si Lyon présente les
+caractéristiques d'une ville poly ou monocentrique.
+
+### Les hypothèses de base retenues pour le modèle des prix hédonique \newline
+
+Grâce aux travaux des 3 auteurs précédemment cités, nous pouvons à
+présent définir un cadre théorique commun pour l'application de la
+méthode des prix hédoniques. Rappelons que le modèle prévoit qu'un bien
+se caractérise par la somme de ses composantes individuelles, il est
+alors dérivé de la valeur des caractéristiques connexes (nombre de
+chambres, balcons, etc) ou des services accessibles grâce à la
+possession de celui-ci (accès au transport en commun, centres
+commerciaux). La valeur de ces caractéristiques ne pouvant pas toujours
+être observées directement, mais ayant une grande influence sur le prix
+du marché d'un bien.
+
+Pour que ce modèle soit cohérent il faut ainsi considérer plusieurs
+hypothèses\newline
+
+-   Les biens doivent nécessairement être hétérogènes, ce qui signifie
+    que leurs caractéristiques doivent différer.\newline
+
+-   Le marché fonctionne dans un cadre de la concurrence parfaite,
+    l'impact d'un individu peut être ignoré, car le nombre d'acheteurs &
+    de vendeurs est trop important.\newline
+
+- Les acheteurs et les vendeurs disposent d'une information parfaite sur
+les biens.\newline
+
+- Le marché est en équilibre, il ne doit pas y avoir d'intercorrélation
+entre chacune des caractéristiques.\newline
+
+### 2) Presentation de la Littérature :
+
+Afin de mener à bien notre application de la méthode des prix hédoniques
+à Lyon,cette dernière centrée sur l'intéret particulier porté aux
+caractéristiques spaciales des biens, il nous a fallu nous intéresser à
+des applications abordant la même approche mais sur d'autres villes.
+Nous repasserons ici en revue les articles sur lesquels nous nous sommes
+appuyés majoritairement et relèverons les éléments de méthodes apportés
+par ces derniers qui nous ont permis de mener à bien notre application à
+la ville de Lyon.
+
+#### a) 1er article \newline
+
+**Arslanlı, K. Y. (2020). Analysis of house prices : a hedonic model
+proposal for Istanbul metropolitan area. Journal of Design for
+Resilience in Architecture and Planning,1(1), 57-68**\newline
+
+Ce document, par son étude sur le marché des biens immobiliers à
+Istanbul, nous a permis de porter attention au problème de
+l'autocorrélation spatiale dans le cadre de l'application de la méthode
+hédonique. La compréhension de la distribution des logements étant
+nécessaire à l'élaboration de leurs prix ; à Istanbul, les mêmes
+caractéristiques de colonies se construisent autour des mêmes, zones
+cela signifie que les propriétés des maisons sont similaires aux
+caractéristiques environnantes. Ces logements sont ainsi vendus en
+fonction des commodités entourées, les prix des maisons à Istanbul sont
+de ce fait auto-corrélés. Le fait qu'il y ait de l'autocorrélation
+spatiale est contraignant, car cela peut entraîner des erreurs dans
+l'estimation des coefficients du modèle ainsi que dans les résultats de
+la modélisation.
+
+Il y a de plus des facteurs externes tels que des contraintes physiques,
+les revenus, et les variables démographiques qui peuvent affecter les
+prix des logements sur le marché, et de ce fait être source de biais
+puis peuvent en outre apporter une inefficacité des prix ou du marché.
+
+Nous rendre compte de ces potentiels problèmes nous permettent d'être
+conscient des potentielles limites de notre application.
+
+Concernant la spécification du prix hédonique des maisons, dans ce
+document, le prix des maisons est déterminé sur le marché par ses
+caractéristiques peut être représenté de la manière suivante :
+
+$$P=f(H,N,t)$$ \newline 
+
+Où :\newline P = Le prix de vente\newline H = Les variables décrivant
+les caractéristiques de l'unité en m\^2.\newline N = La distance par
+rapport à un point de références.\newline T = La période pendant
+laquelle le bien est vendu.\newline
+
+Puis une forme fonctionnelle semi-logarithmique est utilisé pour la
+modélisation :\newline
+
+$$V = e^{x\beta+u}$$\newline Où :\newline V = La valeur de la
+propriété\newline X = Le vecteur de caractéristiques du logement\newline
+$\beta$ = Le vecteur de coefficients hédoniques inconnus \newline u = Le
+résidu\newline
+
+Les formes de spécifiaction du modèles nous auront aidé dans la
+spécification du modèle mais adapté à lyon cette fois-ci. \newline
+
+#### b) 2eme article \newline
+
+**Xiaochen Hu, Luechai Chulasai & Sasipen Phuangsaichai. (2011). Hedonic
+Pricing Model for Housing Market in City of Kunming, the People's
+Republic of China. (*Journal of Economics Chiang Mai University*),
+15(1), 144-165**
+
+Cette revue traite de nombreuses études utilisant la méthode des prix
+hédoniques dans plusieurs villes chinoise. Pour la sélection des
+variables expliquant les différents prix, il a ainsi été recensé
+plusieurs catégories :\newline
+
+L'accessibilité au CBD est déterminée par la mesure de la distance entre
+le logement et le CBD. Plus les commodités de circulation sont
+nombreuses et proches d'une unité de logement, plus elle a de valeur.
+L'emplacement est considéré comme un attribut essentiel du logement, il
+détermine l'accessibilité au CBD et les conditions de circulation de
+l'unité de logement.\newline
+
+Les attributs structurels faisant référence aux caractéristiques propres
+au logement, tels que la surface de plancher, d'un garage, d'une
+cheminée, l'âge du bâtiment. \newline Les attributs de voisinage
+concernent la proximité à des installations de divertissement, à des
+lieux de culte, à des services éducatifs... La proximité des
+établissements de vie (supermarché, restaurant, banque...), de lieux de
+divertissements (parc, cinéma...) a une influence directe sur la
+commodité de la vie quotidienne des ménages.\newline
+
+L'externalité de la qualité environnementale fait référence au bruit, à
+la pollution, la sécurité, la propreté. \newline
+
+Pour cette étude, les 3 formes fonctionnelles ont été utilisées pour
+estimer le modèle hédonique soit :\newline 
+
+-   La forme linéaire qui représente le fait qu'une variation d'une
+    unité de chaque caractéristique entraîne la variation du prix du
+    logement par cette caractéristique. \newline
+
+$$p = \beta_0 + \sum_{i=1}^{n=12} \beta_i z_i + \varepsilon  \quad (i=1,2,3 \dots n)$$\newline
+
+- La forme logarithme, qui a toutes les variables de la fonction sous
+forme logarithmique, le coefficient de régression correspond à
+l'élasticité du prix de la caractéristique.
+
+$$\ln P = \beta_0 + \sum_{i=1}^{n=12} \ln \beta_i z_i + \varepsilon \quad (i=1,2,3 \dots n)$$\newline
+
+-   La forme fonctionnelle semi-logarithme est une variante de
+    l'équation double-log, où certaines variables, dépendantes ainsi que
+    indépendantes, sont exprimées en termes de leur logarithme
+    naturel.\newline
+
+$$\ln P = \beta_0 + \sum_{i=1}^{n=12} \beta_i z_i + \varepsilon  \quad (i=1,2,3 \dots n)$$\newline
+Ainsi, grâce à l'article, on se rend compte des différentes manières de
+pouvoir exprimer notre modèle pour ensuite pour estimer des paramètres
+avec des interprétations différentes selon la spécification du modèle
+choisie.
+
+\newpage
+
+## III. APPROPRIATION DE LA BASE DANS LE CADRE DE L'ÉTUDE
+
+Nous arrivons à présent sur l'application du modèle des prix hédoniques
+à Lyon. Nous avons pour cela importé 6 bases de données retraçant les
+transactions financières pour différents biens immobiliers ainsi que
+leurs caractéristiques pour différents quartiers de la métropole de
+Lyon.(2 quartiers par arrondissement avec un quartier proche et un
+quartier loin du centre par arrondissement) Nous nous sommes assurés que
+les variables d'intéret soient considérées sous la bonne forme. Exmple :
+la latitude et longitude sous forme numérique
+
+### 1) Méthodologie et traitement de la base
+
+Nous avons importé 6 bases de données retraçant les transactions
+financières pour différents biens immobiliers ainsi que leurs
+caractéristiques pour différents quartiers de la métropole de Lyon.(2
+quartiers par arrondissement avec un quartier proche et un quartier loin
+du centre par arrondissement) Nous nous sommes assurés que les variables
+d'intéret soient considérées sous la bonne forme. Exmple : la latitude
+et longitude sous forme numérique
+
+Nous avons ensuite fusionné toutes les bases pour les 6 quartiers de
+Lyon sur lesquels nous avons choisis de travailler. Puis nous supprimons ensuite les variables du dataframe qui ne nous
+intéressent pas.Ensuite il s'agit de nous débarrasser des valeurs abérantes à première
+vue et d'une catégorie de bien immobilier dont la distribution des
+valeurs foncières ne semblait pas être expliquée par les varibales à
+notre dispositions.Puis suprimons les lignes avec des valeurs manquantes pour les variables
+nous intéressant car les NA étant distribués aléatoirement en fonction
+des différents types de biens, de surffaces et de nombre de pièces +
+nous avons assez de valeurs à notre disposition + corriger les valeurs
+en vue de la nature des vairiables n'a pas de sens.
+
+Nous avons ensuite créé une nouvelle variable distance par rapport à
+Part-Dieu et distance par rapport à Bellecourt ainsi que transformé les
+variables catégorielles en dummy variables. A savoir si les valeurs sont
+dans tel ou tel arrondissement (0 ou 1) et si les valeurs font parti du
+quartier loin ou non de centre pour chaque arrondissement concerné (0 ou
+1). Nous avons pu également créer une variable prix au metre carré et
+log prix au metre carré
+
+Une fois la base bien construite, dans un premier temps nous pouvons
+nous intéresser aux outliers plus en détail. Nous supprimons ceux nous paraissant être des biens immobiliers particuliers et dont les variables à notre disposition ne semblent pas
+expliquer intuitivement la valeur foncière
+
+```{r include=FALSE}
+
+library(readr)
+X7ème_loin_de_PD <- read_delim("7ème-loin-de-PD.csv", 
+    delim = ";", escape_double = FALSE, col_types = cols(id_mutation = col_character(), 
+        date_mutation = col_date(format = "%Y-%m-%d"), 
+        nature_mutation = col_number(), longitude = col_number(), 
+        latitude = col_number()), trim_ws = TRUE)
+
+
+library(readr)
+X5ème_loin_de_PD <- read_delim("5ème-loins-de-PD.csv", 
+    delim = ";", escape_double = FALSE, col_types = cols(id_mutation = col_character(), 
+        date_mutation = col_date(format = "%Y-%m-%d"), 
+        nature_mutation = col_number(), longitude = col_number(), 
+        latitude = col_number()), trim_ws = TRUE)
+
+library(readr)
+X5ème_près_de_PD <- read_delim("5ème-près-de-PD.csv", 
+    delim = ";", escape_double = FALSE, col_types = cols(id_mutation = col_character(), 
+        date_mutation = col_date(format = "%Y-%m-%d"), 
+        nature_mutation = col_number(), longitude = col_number(), 
+        latitude = col_number()), trim_ws = TRUE)
+
+library(readr)
+XVilleurbane_loin_de_PD <- read_delim("Villeubane-loin-de-PD.csv", 
+    delim = ";", escape_double = FALSE, col_types = cols(id_mutation = col_character(), 
+        date_mutation = col_date(format = "%Y-%m-%d"), 
+        nature_mutation = col_number(), longitude = col_number(), 
+        latitude = col_number()), trim_ws = TRUE)
+
+library(readr)
+X7ème_près_de_PD <- read_delim("7eme-pres-de-PD.csv", 
+    delim = ";", escape_double = FALSE,col_types = cols(id_mutation = col_character(), 
+        date_mutation = col_date(format = "%Y-%m-%d"), 
+        nature_mutation = col_number(), longitude = col_number(), 
+        latitude = col_number()), trim_ws = TRUE)
+library(readr)
+XVilleurbane_près_de_PD <- read_delim("Villeurbane-près-de-PD.csv", 
+    delim = ";", escape_double = FALSE, col_types = cols(id_mutation = col_character(), 
+        date_mutation = col_date(format = "%Y-%m-%d"), 
+        nature_mutation = col_number(), longitude = col_number(), 
+        latitude = col_number()), trim_ws = TRUE)
+```
+
+
+```{r include=FALSE}
+septarrondissementpresPD <-X7ème_près_de_PD
+septarrondissementloiPD <-X7ème_loin_de_PD
+septarrondissement<-rbind(septarrondissementloiPD,septarrondissementpresPD )
+cinqarrondissementpresPD <-X5ème_près_de_PD
+cinqarrondissementloiPD <-X5ème_loin_de_PD
+VilleurbanepresPD<-XVilleurbane_près_de_PD
+VilleurbaneloinPD<-XVilleurbane_loin_de_PD
+rbind(septarrondissementloiPD,septarrondissementpresPD,cinqarrondissementloiPD,cinqarrondissementpresPD,VilleurbaneloinPD,VilleurbanepresPD )
+Basetousarrondissements <-rbind(septarrondissementloiPD,septarrondissementpresPD,cinqarrondissementloiPD,cinqarrondissementpresPD,VilleurbaneloinPD,VilleurbanepresPD )
+```
+
+
+```{r include=FALSE}
+names(Basetousarrondissements)
+library(dplyr)
+print(select(Basetousarrondissements,-1,-2,-3,-6,-7,-8,-9,-10,-11,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-2,-27,-28,-29,-30,-34,-35,-36,-37,-38,-41))
+Basetousarrondissements<-print(select(Basetousarrondissements,-1,-2,-3,-6,-7,-8,-9,-10,-11,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-2,-27,-28,-29,-30,-34,-35,-36,-37,-38,-41))
+names(Basetousarrondissements)
+print(select(Basetousarrondissements,-4))
+Basetousarrondissements<-print(select(Basetousarrondissements,-4))
+Basetousarrondissements<-print(select(Basetousarrondissements,-1))
+```
+
+
+```{r include=FALSE}
+which(Basetousarrondissements$valeur_fonciere %in% "NaN")
+which(Basetousarrondissements$surface_reelle_bati %in% "NaN")
+which(Basetousarrondissements$nombre_pieces_principales %in% "NaN")
+NAvf<-which(Basetousarrondissements$valeur_fonciere %in% "NaN")
+NAsf<-which(Basetousarrondissements$surface_reelle_bati %in% "NaN")
+NApp<-which(Basetousarrondissements$nombre_pieces_principales %in% "NaN")
+NAVE<-c(NAvf,NAsf,NApp)
+
+Basetousarrondissements <-Basetousarrondissements[-NAVE,]
+Basetousarrondissements2<-na.omit(Basetousarrondissements)
+Basetousarrondissements<-Basetousarrondissements2
+```
+
+```{r include=FALSE}
+summary.data.frame(Basetousarrondissements)
+```
+
+
+```{r include=FALSE}
+VA<-which(Basetousarrondissements$valeur_fonciere<10000)
+Basetousarrondissements <-Basetousarrondissements[-VA,]
+LI<-which(Basetousarrondissements$type_local %in% "Local industriel. commercial ou assimilé")
+Basetousarrondissements <-Basetousarrondissements[-LI,]
+```
+
+
+```{r include=FALSE}
+DVF_LYON<-Basetousarrondissements
+DVF_LYON$longitudePD<-4.853769
+DVF_LYON$latitudePD<-45.761075
+DVF_LYON$distancePD<- sqrt((DVF_LYON$latitudePD - DVF_LYON$latitude)^2+(DVF_LYON$longitudePD- DVF_LYON$longitude)^2)*111.12
+DVF_LYON$VF_au_m2<-(DVF_LYON$valeur_fonciere/DVF_LYON$surface_reelle_bati)
+DVF_LYON$logVF_au_m2<-log(DVF_LYON$VF_au_m2)
+DVF_LYON$logVF<- log(DVF_LYON$valeur_fonciere)
+DVF_LYON$nombre_pieces_principales<-as.factor(DVF_LYON$nombre_pieces_principales)
+DVF_LYON<- dummy_cols(DVF_LYON,
+                      select_columns = "type_local")
+DVF_LYON<- dummy_cols(DVF_LYON,
+                      select_columns = "nom_commune")
+
+DVF_LYON$Cinq_arr_loinPD<-DVF_LYON$distancePD
+DVF_LYON$sept_arr_loinPD<-DVF_LYON$distancePD
+DVF_LYON$villeurbanne_loinPD<-DVF_LYON$distancePD
+
+
+DVF_LYON$Cinq_arr_loinPD[which(DVF_LYON$nom_commune=="Lyon 5e Arrondissement" & DVF_LYON$Cinq_arr_loinPD<4)]<- 0
+DVF_LYON$Cinq_arr_loinPD[which(DVF_LYON$nom_commune=="Lyon 5e Arrondissement" & DVF_LYON$Cinq_arr_loinPD>4)]<- 1
+DVF_LYON$Cinq_arr_loinPD[which(DVF_LYON$nom_commune!="Lyon 5e Arrondissement")]<-0
+
+DVF_LYON$sept_arr_loinPD[which(DVF_LYON$nom_commune=="Lyon 7e Arrondissement" & DVF_LYON$sept_arr_loinPD<2)]<- 0
+DVF_LYON$sept_arr_loinPD[which(DVF_LYON$nom_commune=="Lyon 7e Arrondissement" & DVF_LYON$sept_arr_loinPD>2)]<- 1
+DVF_LYON$sept_arr_loinPD[which(DVF_LYON$nom_commune!="Lyon 7e Arrondissement")]<-0
+
+DVF_LYON$villeurbanne_loinPD[which(DVF_LYON$nom_commune=="Villeurbanne" & DVF_LYON$villeurbanne_loinPD<4)]<- 0
+DVF_LYON$villeurbanne_loinPD[which(DVF_LYON$nom_commune=="Villeurbanne" & DVF_LYON$villeurbanne_loinPD>4)]<- 1
+DVF_LYON$villeurbanne_loinPD[which(DVF_LYON$nom_commune!="Villeurbanne")]<-0
+
+
+DVF_LYON$Cinq_arr_loinPD<- as.integer(DVF_LYON$Cinq_arr_loinPD)
+DVF_LYON$sept_arr_loinPD<- as.integer(DVF_LYON$sept_arr_loinPD)
+DVF_LYON$villeurbanne_loinPD<- as.integer(DVF_LYON$villeurbanne_loinPD)
+```
+
+```{r include=FALSE}
+DVF_LYON$longitudeBellecourt<-4.8312188
+DVF_LYON$latitudeBellecourt<-45.757198
+DVF_LYON$distanceBellecourt<- sqrt((DVF_LYON$latitudeBellecourt - DVF_LYON$latitude)^2+(DVF_LYON$longitudeBellecourt- DVF_LYON$longitude)^2)*111.12
+
+DVF_LYON$Cinq_arr_loinBellecourt<-DVF_LYON$distanceBellecourt
+DVF_LYON$sept_arr_loinBellecourt<-DVF_LYON$distanceBellecourt
+DVF_LYON$villeurbanne_loinBellecourt<-DVF_LYON$distanceBellecourt
+
+DVF_LYON$distanceB_Cat <- as.factor(ifelse(DVF_LYON$distanceBellecourt<2, '1',
+                          ifelse(DVF_LYON$distanceBellecourt < 4, '2', 
+                          ifelse(DVF_LYON$distanceBellecourt< 6, '3', 
+                          ifelse(DVF_LYON$distanceBellecourt < 8, '4')))))
+
+DVF_LYON$Cinq_arr_loinBellecourt[which(DVF_LYON$nom_commune=="Lyon 5e Arrondissement" & DVF_LYON$Cinq_arr_loinBellecourt<1)]<- 0
+DVF_LYON$Cinq_arr_loinBellecourt[which(DVF_LYON$nom_commune=="Lyon 5e Arrondissement" & DVF_LYON$Cinq_arr_loinBellecourt>1)]<- 1
+DVF_LYON$Cinq_arr_loinBellecourt[which(DVF_LYON$nom_commune!="Lyon 5e Arrondissement")]<-0
+
+DVF_LYON$sept_arr_loinBellecourt[which(DVF_LYON$nom_commune=="Lyon 7e Arrondissement" & DVF_LYON$sept_arr_loinBellecourt<2)]<- 0
+DVF_LYON$sept_arr_loinBellecourt[which(DVF_LYON$nom_commune=="Lyon 7e Arrondissement" & DVF_LYON$sept_arr_loinBellecourt>2)]<- 1
+DVF_LYON$sept_arr_loinBellecourt[which(DVF_LYON$nom_commune!="Lyon 7e Arrondissement")]<-0
+
+DVF_LYON$villeurbanne_loinBellecourt[which(DVF_LYON$nom_commune=="Villeurbanne" & DVF_LYON$villeurbanne_loinBellecourt<5,3)]<- 0
+DVF_LYON$villeurbanne_loinBellecourt[which(DVF_LYON$nom_commune=="Villeurbanne" & DVF_LYON$villeurbanne_loinBellecourt>5,3)]<- 1
+DVF_LYON$villeurbanne_loinBellecourt[which(DVF_LYON$nom_commune!="Villeurbanne")]<-0
+
+DVF_LYON$Cinq_arr_loinBellecourt<- as.integer(DVF_LYON$Cinq_arr_loinPD)
+DVF_LYON$sept_arr_loinBellecourt<- as.integer(DVF_LYON$sept_arr_loinPD)
+DVF_LYON$villeurbanne_loinBellecourt<- as.integer(DVF_LYON$villeurbanne_loinPD)
+```
+
+
+```{r include=FALSE}
+names(DVF_LYON)
+```
+
+
+
+```{r include=FALSE}
+outliers_val<-boxplot.stats(DVF_LYON$valeur_fonciere)$out
+outliers_val
+```
+
+
+```{r include=FALSE}
+VA2<-which(DVF_LYON$valeur_fonciere>600000)
+DVF_LYON<-DVF_LYON[-VA2,]
+```
+
+```{r include=FALSE}
+boxplot(DVF_LYON$surface_reelle_bati)
+```
+
+```{r include=FALSE}
+VA3<-which(DVF_LYON$surface_reelle_bati<100 & DVF_LYON$valeur_fonciere>500000)
+DVF_LYON<-DVF_LYON[-VA3,]
+```
+
+```{r include=FALSE}
+VA4<-which(DVF_LYON$surface_reelle_bati<75 & DVF_LYON$valeur_fonciere>400000)
+DVF_LYON<-DVF_LYON[-VA4,]
+
+```
+
+```{r include=FALSE}
+outliers_val2<- boxplot.stats(DVF_LYON$VF_au_m2)$out
+outliers_idx<-which(DVF_LYON$VF_au_m2 %in% c(outliers_val2))
+DVF_LYON<- DVF_LYON[-outliers_idx,]
+```
+
+```{r}
+DVF_LYON<-na.omit(DVF_LYON)
+```
+\newpage
+### 2) Statistiques descriptives de la base
+
+Nous nous intéressons de nouveaux cette fois ci aux statsitiques
+descriptives de la base pour en vérifier la cohérence
+
+```{r include=FALSE}
+summary(DVF_LYON)
+```
+
+```{r warning=FALSE, message=FALSE}
+library(stargazer)
+varmodel=subset(DVF_LYON, select=c('VF_au_m2', 'valeur_fonciere', 'surface_reelle_bati','distancePD','distanceBellecourt','nombre_pieces_principales'))
+stargazer(as.data.frame(varmodel), type = "text", min.max=TRUE, mean.sd = TRUE, nobs = TRUE, median = TRUE, omit.summary.stat = c("p25", "p75"), digits=1, title = "Summary Statistics")
+```
+
+```{r}
+library(ggplot2)
+ggplot(DVF_LYON, aes(x=VF_au_m2)) + geom_histogram(aes(y=..density..) ,bins=40, color="black",fill="white")+geom_density(color="darkred", lwd=1,alpha=0.5)+xlab(label="Prix au m2")
+```
+
+La distribution des prix au mêtre carré, on s'en rend compte, suit sensiblement une loi normale. En effet les valeurs sont concentrées autour de la moyenne et plus on s'en éloigne plus le nombre d'observations diminue. L'hypothèse de normalité est d'autant plus essentielle pour la suite de notre travail et la création de nos modèles.  
+\newpage
+### 3) Statistiques descriptives approfondies
+
+**Boxplot des valeurs foncières en fonction du nombre de pièces**
+
+```{r echo=FALSE}
+ggplot(DVF_LYON, aes( y=valeur_fonciere,x=as.factor(nombre_pieces_principales)))+
+geom_boxplot(fill="darkgrey")+ xlab(label = "nombre de pieces") + ylab(label = "valeur foncière")
+```
+*Pour ce boxplot ainsi que les suivants nous retrouvons des outliers que nous avons décider de garder et de considérer. En effet il ne s'agit pas de valeurs complétement aberrantes comme celle que nous avons pu déjà éliminer mais elles correspondent plutôt à des biens se distinguant un peu de la majorité mais pas de manière démesurée.Les soutliers déjà éliminés résultaient eux d'erreurs de frappe lors de la constitution des bases que nous avons utlisées pour notre étude (nous supposons)*
+
+**Calcul moyenne valeur foncière en fonction du nombre de pièces des biens** 
+
+```{r echo=FALSE}
+mean_table2 <- aggregate(valeur_fonciere ~ nombre_pieces_principales, data = DVF_LYON, mean)
+kable(mean_table2, caption = "Moyenne de Prix en fonction du nombre de pieces", digits = 2)
+```
+
+On remarque une correlation positive et cohérente entre le nombre de
+pièces et la valeur foncière. En effet plus il y a de pièces plus sa valeur foncière sera élevée. 
+
+\newpage
+**Graphique des valeurs foncières en fonction de a surffaces des biens immobiliers**
+
+```{r warning=FALSE, message=FALSE}
+ggplot(DVF_LYON, aes(x=surface_reelle_bati, y=valeur_fonciere)) + 
+  geom_point()+ xlab(label = "Aire en M^2")+ ylab(label = "Valeur fonciere")+
+  geom_smooth(method=lm,colour="darkred")
+```
+
+Ici nous retrouvons une corrélation intuitive et attendue : plus un bien
+est grand plus sa valeur foncière est grande. Nous retrouvons de
+l'hétéroscédasticité cependant du au manque de variables explicatives
+reliées à la détermination de la valeur foncière des biens comme la
+proximité au centre, aux transports, proximités d'endroits produisant
+des externalités négatives sur les logements.
+
+Cette corrélation reste d'autant plus statistiquement significative comme on le voit grâce au test suivant :
+```{r echo=FALSE}
+cor.test(DVF_LYON$valeur_fonciere,DVF_LYON$surface_reelle_bati)
+
+```
+
+\newpage
+**Boxplot des valeurs foncières en fonction des quartiers :**
+
+```{r echo=FALSE}
+ggplot(DVF_LYON, aes( y=VF_au_m2,x=nom_commune))+
+geom_boxplot(fill="lightgrey")+ xlab(label = "Arrondissement") + ylab(label = "valeur foncière")
+```
+
+**Calcul moyenne valeur foncière au m2 en fonction des différents quartiers :**
+
+```{r echo=FALSE}
+mean_table <- aggregate(VF_au_m2 ~ nom_commune, data = DVF_LYON, mean)
+kable(mean_table, caption = "Moyenne de Prix au m2 par Arrondissements", digits = 2)
+```
+
+Nous pouvons ici faire un classement hypothétique concernant le prestige et la qualité de vie des arrondissements. Ainsi le 5ème arrondissement serait légèrement plus prestigieux que le 7ème arrondissement  avec des prix au mètre carré du logement sensiblement plus élevés. En suivant ce raisonnement Villeurbanne serait beaucoup moins prestigieux que le 5ème et le 7ème arrondissement. 
+
+
+\newpage
+**Comparaison de la corrélation entre les valeurs foncières au m2 et
+leur distance par rapport à Part-dieu et Bellecour**
+
+Le but principale de notre étude étant d'attester de l'effet de
+l'éloignement des biens par rapport au centre sur leur prix, il faut
+dans un premier temps savoir quel point de lyon est à consider comme le
+centre. En effet selon la théorie d'Alonso sur laquelle nous nous
+appuyons, cette dernière prévoit une corrélation négative et
+significative entre le prix et l'éloignement au centre des affaires.
+
+Le résultat du test de cette hypothèse est le suivant :
+
+
+```{r echo=FALSE}
+cor.test(DVF_LYON$VF_au_m2,DVF_LYON$distancePD)
+```
+
+
+
+On se rend compte qu'il n'y a aucune significativé dans la corrélation
+entre valeurs foncières des biens et leur éloignement au quarier des
+affaires (ici considéré comme Part-Dieu)
+
+Nous avons alors décidé de tester de l'hypothèses d'Alonso en
+considérant le coeur historique de la ville (Bellecour). Les résultats
+sont les suivants
+
+```{r echo=FALSE}
+cor.test(DVF_LYON$VF_au_m2,DVF_LYON$distanceBellecourt)
+```
+
+On retrouve donc une plus forte corrélation entre le prix et
+l'éloignement des biens à Bellecourt plutôt qu'à Part-Dieu. La Théorie
+d'Alonso prévoit que les prix des biens soient négativement corrélés à
+leur proximité du centre ville ou centre d'affaires.Dans un premier
+temps nous pouvons donc émettre l'hypothèse que cette théorie est
+réalise à Lyon si nous considérons le centre historique comme le centre
+ville et non le centre d'affaire.
+ 
+\newpage
+**Calcul de l'écart de distance entre les biens du même quartier**
+
+On retrouve généralement moins de 1 km d'écart entre les biens du même
+quartier. Cela nous permet donc de créer des variables catégorielles
+avec différents seuils de proximité au centre en vue de la très grande
+proximité géographique des biens au sein d'un même quartier.
+
+Les boxplots suivants nous permettent d'atester de la forte proximité
+entre biens du même quartier :
+
+
+```{r echo=FALSE, out.width="70%",fig.align='center'}
+loinsBel5<- subset.data.frame(DVF_LYON, Cinq_arr_loinBellecourt=="1")
+prèsBel5<- subset.data.frame(DVF_LYON, Cinq_arr_loinBellecourt=="0" & nom_commune=="Lyon 5e Arrondissement" )
+loinsBel7<- subset.data.frame(DVF_LYON, sept_arr_loinBellecourt=="1")
+prèsBel7<- subset.data.frame(DVF_LYON, sept_arr_loinBellecourt=="0" & nom_commune=="Lyon 7e Arrondissement" )
+loinsBelvil<- subset.data.frame(DVF_LYON, villeurbanne_loinBellecourt=="1")
+prèsBelvil<- subset.data.frame(DVF_LYON, villeurbanne_loinBellecourt=="0" & nom_commune=="Villeurbanne" )
+```
+
+```{r echo=FALSE, out.width="70%",fig.align='center'}
+Box3<-ggplot(prèsBel5, aes( y=distanceBellecourt,x=nom_commune))+
+geom_boxplot(fill="darkgrey")+ xlab(label = "Quartier près du centre dans le 5eme") + ylab(label = "Distance par rapport au centre centre")
+Box4<-ggplot(loinsBel5, aes( y=distanceBellecourt,x=nom_commune))+
+geom_boxplot(fill="darkgrey")+ xlab(label = "Quartier loin du centre dans le 5eme") + ylab(label = "Distance par rapport au centre")
+grid.arrange(Box3,Box4,ncol=2)
+```
+
+```{r echo=FALSE, out.width="70%",fig.align='center'}
+library(gridExtra)
+
+Box1<-ggplot(prèsBel7, aes( y=distanceBellecourt,x=nom_commune))+
+geom_boxplot(fill="darkgrey")+ xlab(label = "Quartier près du centre dans le 7eme") + ylab(label = "Distance par rapport au centre centre")
+
+Box2<-ggplot(loinsBel7, aes( y=distanceBellecourt,x=nom_commune))+
+geom_boxplot(fill="darkgrey")+ xlab(label = "Quartier loin du centre dans le 7eme") + ylab(label = "Distance par rapport au centre")
+grid.arrange(Box1, Box2, ncol = 2)
+```
+
+```{r echo=FALSE, out.width="70%",fig.align='center'}
+
+Box5<-ggplot(prèsBelvil, aes( y=distanceBellecourt,x=nom_commune))+
+geom_boxplot(fill="darkgrey")+ xlab(label = "Quartier près du centre dans Villeurbanne") + ylab(label = "Distance par rapport au centre centre")
+Box6<-ggplot(loinsBelvil, aes( y=distanceBellecourt,x=nom_commune))+
+geom_boxplot(fill="darkgrey")+ xlab(label = "Quartier loin du centre dans le Villeurbanne") + ylab(label = "Distance par rapport au centre")
+grid.arrange(Box5,Box6, ncol=2)
+```
+
+\newpage
+**Boxplots des valeurs foncières au mètre carré en fonction de l'éloignement d'un quartier au sein du même arrondissement**
+
+A présent, nous voulons comparer dans un premier temps de manière
+superficielle l'effet de la distance sur des biens du même
+arrondissement mais ayant un éloignement au centre différent de par leur
+position au sein de deux différents quartiers.
+
+
+```{r echo=FALSE, out.width="70%",fig.align='center'}
+loinsBel5<- subset.data.frame(DVF_LYON, Cinq_arr_loinBellecourt=="1")
+prèsBel5<- subset.data.frame(DVF_LYON, Cinq_arr_loinBellecourt=="0" & nom_commune=="Lyon 5e Arrondissement" )
+
+Box7<-ggplot(prèsBel5, aes( y=VF_au_m2,x=nom_commune))+ 
+geom_boxplot(fill="lightgrey")+ xlab(label = "quartier près du centre dans le 5ème") + ylab(label = "valeur foncière au m2") 
+Box8<-ggplot(loinsBel5, aes( y=VF_au_m2,x=nom_commune))+
+geom_boxplot(fill="lightgrey")+ xlab(label = "quartier loin du centre dans le 5ème") + ylab(label = "valeur foncière au m2") 
+grid.arrange(Box7,Box8, ncol=2)
+```
+
+On voit que globalement les prix au m2 sont plus élevés pour un quartier
+du 5 ème arrondissement près du centre que loins du centre.
+
+```{r echo=FALSE, out.width="70%",fig.align='center'}
+loinsBel7<- subset.data.frame(DVF_LYON, sept_arr_loinBellecourt=="1")
+prèsBel7<- subset.data.frame(DVF_LYON, sept_arr_loinBellecourt=="0" & nom_commune=="Lyon 7e Arrondissement" )
+
+Box9<-ggplot(prèsBel7, aes( y=VF_au_m2,x=nom_commune))+
+geom_boxplot(fill="lightgrey")+ xlab(label = "Quartier près du centre dans le 7ème") + ylab(label = "Valeur foncière au m2")
+Box10<-ggplot(loinsBel7, aes( y=VF_au_m2,x=nom_commune))+
+geom_boxplot(fill="lightgrey")+ xlab(label = "Quartier loin du centre dans le 7ème") + ylab(label = "Valeur foncière au m2")
+grid.arrange(Box9,Box10, ncol=2)
+```
+
+Il en est de même pour le 7e arrondissement. Les prix au mètre carré
+semblent plus élevé pour les biens proches du centre que pour les biens
+loin du centre au sein du même arrondissement.
+
+```{r echo=FALSE, out.width="70%",fig.align='center'}
+loinsBelvil<- subset.data.frame(DVF_LYON, villeurbanne_loinBellecourt=="1")
+prèsBelvil<- subset.data.frame(DVF_LYON, villeurbanne_loinBellecourt=="0" & nom_commune=="Villeurbanne" )
+
+Box11<-ggplot(prèsBelvil, aes( y=VF_au_m2,x=nom_commune))+
+geom_boxplot(fill="lightgrey")+ xlab(label = "quartier près du centre dans Villeurbanne") + ylab(label = "valeur foncière au m2")
+Box12<-ggplot(loinsBelvil, aes( y=VF_au_m2,x=nom_commune))+
+geom_boxplot(fill="lightgrey")+ xlab(label = "quartier loin du centre dans le Villeurbanne") + ylab(label = "valeur foncière au m2")
+grid.arrange(Box11,Box12,ncol=2)
+```
+
+Pour la commune de Villeurbanne on remarque peu de différence dans la
+répartition des prix au mètre carré pour les biens proches et loin du
+centre.
+
+\newpage
+**Scatter plot des Valeurs foncières au m2 en fonction de la distance**
+
+```{r warning=FALSE, message=FALSE}
+ggplot(DVF_LYON, aes(x=distanceBellecourt, y=VF_au_m2)) + 
+  geom_point()+ xlab(label = "Distance Bellecour")+ ylab(label = "VF au m2")+
+  geom_smooth(method=lm, color = "darkred")
+```
+
+On remarque que 4 catégories de biens peuvent se créer en fonction de
+leur distance.
+
+**Etant donne le choix de nos lots , la variable distance n'est pas
+vraiment continu , il serait plus pertinent dans le cas de notre etude
+de la consideres comme une variable categorielle**
+
+Catégories observable :
+
+1-\> Tres pres: entre 0 et 2 km par rapport à Bellecour
+
+2-\> Pres : entre 2 et 4 km par rapport à Bellecour
+
+3-\> Loin : entre 4 et 6 km par rapport à Bellecour
+
+4-\> Tres Loin : plus de 6 km par rapport à Bellecour
+
+Nous pouvons ainsi produire de nouveau des statistiques descriptives en
+considérant ces catégories en les reliant au prix.
+
+**Boxplot des Valeurs foncières au m2 en fonction de la distance**
+
+```{r echo=FALSE}
+library(ggplot2)
+ggplot(DVF_LYON, aes( y=VF_au_m2,x=as.factor(distanceB_Cat)))+
+geom_boxplot(fill="darkgrey")+ xlab(label = "Distance") + ylab(label = "valeur foncière au m2")
+```
+
+Ainsi en considérant les 4 catégories de distances on se rend compte une
+fois de plus que l'éloignement est corrélé négativement au prix
+
+```{r include=FALSE}
+#On change de noms ---> plus simple
+names(DVF_LYON)[names(DVF_LYON) == "type_local_Appartement"] <- "Appartement"
+names(DVF_LYON)[names(DVF_LYON) == "type_local_Maison"] <- "Maison"
+
+names(DVF_LYON)[names(DVF_LYON) == "nom_commune_Lyon 5e Arrondissement"] <- "Lyon 5eme"
+names(DVF_LYON)[names(DVF_LYON) == "nom_commune_Lyon 7e Arrondissement"] <- "Lyon 7eme"
+names(DVF_LYON)[names(DVF_LYON) == "nom_commune_Villeurbanne"] <- "Villeurbanne"
+```
+
+
+
+
+\newpage
+
+## IV .REGRESSIONS ET RESULATS DE L'ETUDE
+
+### 1) Regression avec les MCO :
+
+Nous allons à présent établir des régressions pour tester les effets de
+la distance en abordant cette dernière de 2 manières différentes:
+
+1ere approche -la distance intra-arrondissement (être près ou loins dans
+un même arrondissement)
+
+2eme approche -la distance inter-arrondissement (4 catégories de
+distances)
+
+#### a) Effet de la distance intra-arrondissement (1ere approche)\newline
+
+Etablir une première regression en fonction de la distance relative
+intra arrondissement nous permet de nous poser la question suivante :
+l'écart de distance par rapport au centre entre 2 quartier d'un même
+arrondissement a-t-il un effet sur le prix ?
+
+Avec les box plot précedent on peut émettre les premières hypothèses que
+l'éloignement du centre au sein d'un même arrondissement peut plus ou
+moins significatif. Pour le 5ème et le 7ème il semble que l'écart de
+distance par rapport au centre entre quartiers du même arrondissement
+influe sur le prix alors qu'à villeurbanne non. Vérifions les hypothèses
+suvantes :
+
+```{r include=FALSE}
+Reg1<-lm(DVF_LYON$valeur_fonciere~ DVF_LYON$`Lyon 5eme`+DVF_LYON$`Lyon 7eme`+ DVF_LYON$Cinq_arr_loinBellecourt +DVF_LYON$sept_arr_loinBellecourt + DVF_LYON$surface_reelle_bati)
+summary(Reg1)
+```
+
+```{r include=FALSE}
+plot(Reg1$residuals,xlab = "fitted values", ylab = "Residuals")
+abline(0,0)
+```
+
+```{r include=FALSE}
+Reg2<-lm(DVF_LYON$logVF~ DVF_LYON$surface_reelle_bati+ DVF_LYON$`Lyon 5eme`+DVF_LYON$`Lyon 7eme`+ DVF_LYON$Cinq_arr_loinBellecourt +DVF_LYON$sept_arr_loinBellecourt)
+summary(Reg2)
+```
+
+```{r include=FALSE}
+plot(Reg2$residuals,xlab = "fitted values", ylab = "Residuals")
+abline(0,0)
+```
+
+```{r include=FALSE}
+Reg3<-lm(DVF_LYON$valeur_fonciere~ DVF_LYON$Villeurbanne+DVF_LYON$`Lyon 7eme`+ DVF_LYON$villeurbanne_loinBellecourt +DVF_LYON$sept_arr_loinBellecourt + DVF_LYON$surface_reelle_bati)
+summary(Reg3)
+```
+
+```{r include=FALSE}
+Reg4<-lm(DVF_LYON$logVF~ DVF_LYON$Villeurbanne+DVF_LYON$`Lyon 7eme`+ DVF_LYON$villeurbanne_loinBellecourt +DVF_LYON$sept_arr_loinBellecourt + DVF_LYON$surface_reelle_bati)
+summary(Reg4)
+```
+
+\newpage
+Premier modèle :
+$$VF=\beta_0(Villeurbanne)+\beta_1SurfaceRéelle+\beta_25arr+\beta_37arr+\beta_45arr*loinBellcour+\beta_57arr*loinBellcour$$\newline
+\scriptsize
+```{r echo=FALSE, out.width="100%",fig.align='center'}
+stargazer(Reg1,Reg2,Reg3,Reg4, type ="text",
+ dep.var.labels=c("VF (Villeurbanne comme référence)","logVF ","VF (5e arr comme référence)","logVF ",
+ covariate.labels=c("Lyon 5","Lyon 7","Lyon 5 Loin","Lyon 7 Loin"), out="model.txt"), title="Evalutation de l'effet de l'éloignement au centre en intra-arrondissement")
+```
+
+\normalsize
+
+En prenant Villeurbanne comme référence (2 colonnes de gauches du tableau), on voit que de passer d'un arrondissement à l'autre à un effet significatif sur les prix des biens en observant les *** , qui signifique la p-value est tres faible (<0,005) et rejette l'hypothèse nulle qu'il n'y a aucun impact.
+
+Ainsi on peut voir qu'un bien dansle 7eme arrondissement vaut en général 53 830 euros de plus qu'un bien à
+Villeurbanne significativement et pour un bien dans le 5ème c'est 66 567
+euros de plus.
+
+En s'intéressant à l'effet combiné d'une par des différents
+arrondissement et d'autre part de l'éloignement intra-arrondissemen,
+nous obtenons des résultats également intuitifs. En effet le fait qu'un
+bien soit situé loin du centre plutôt que près, ce au sein d'un même
+arrondissement, lui fait perdre de la valeur. Ainsi pour un bien dans le
+7ème et qui est loin du centre, on observe généralement une réduction de
+la valeur foncière de 47 000 euros environ et pour un bien dans le 5ème
+étant loin cette diminution est de 33 800 euros environ, ce par rapport
+à un bien moyen de villeurbanne.
+
+En s'interressant aux 2 colonnes de droite du tableau, il est alors
+possibles suivre le même raisonnement pour se rendre compte de la valeur
+relative des biens en moyenne ce par rapport au 5 ème arrondissement. Il
+est intéressant de voir que le fait de se situer loin du centre au sein
+même de Villeurbanne ne fait pas perdre autant de valeur à un bien que
+s'il avait été loin du centre au sein du 7ème ou 5ème arrondissement.
+
+De plus on s'aperçoit que les R-squared sont tous superieurs à 55% , ainsi la variance des variables explicatives explique 55% de la variance de la valeur foncière.
+
+Les test de significativité global (F-test) ont également tous une une P-value tres faibles , ce qui permet Ce qui signifie qu'il y a une différence statistiquement significative entre les coefficients de régression.
+
+\newpage
+
+#### b) Effet de la distance inter-arrondissement (2eme approche)\newline
+
+A présent les nouvelles regressions qui suivent nous permettent de
+tester l'effet de la distance absolue au centre (distance-inter
+arrondissement) soit nous poser la question : l'écart de distance
+absolue par rapport au centre entre chaque arrondissement a-t-il un
+effet sur le prix ? Pour cette approche nous considérons les 4
+catégories de distance établies (au-dessus : très près, près, loin, très
+loin)
+
+```{r include=FALSE}
+Reg5<-lm(DVF_LYON$VF_au_m2~ DVF_LYON$`Lyon 5eme`+DVF_LYON$`Lyon 7eme`+DVF_LYON$distanceBellecourt+ DVF_LYON$surface_reelle_bati)
+summary(Reg5)
+```
+
+```{r include=FALSE}
+Reg6<-lm(DVF_LYON$logVF_au_m2~ DVF_LYON$`Lyon 5eme`+DVF_LYON$`Lyon 7eme`+DVF_LYON$distanceBellecourt+ DVF_LYON$surface_reelle_bati)
+summary(Reg6)
+```
+
+```{r include=FALSE}
+Reg7<-lm(DVF_LYON$VF_au_m2~ DVF_LYON$distanceB_Cat+ DVF_LYON$surface_reelle_bati)
+summary(Reg7)
+```
+
+```{r include=FALSE}
+Reg8<-lm(DVF_LYON$logVF_au_m2~ DVF_LYON$distanceB_Cat+ DVF_LYON$surface_reelle_bati)
+summary(Reg8)
+```
+
+\scriptsize
+
+```{r echo=FALSE, out.width="100%",fig.align='center'}
+stargazer(Reg5,Reg6,Reg7,Reg8, type="text",
+ dep.var.labels=c("VF au m2(V comme référence)","logVF au m2 ","VF au m2 (5ème comme référence)","logVF au m2 ", out="model.txt"), title="Evalutation de l'effet de l'éloignement au centre en inter-arrondissement")
+```
+
+\normalsize
+
+
+\newpage
+**Modèle pour déterminer la Valeur foncière avec la distance considérée
+comme valeur continue**
+
+$$VF=\beta_0(Villeurbanne)+\beta_1SurfaceReelle+\beta_25Arr+\beta_37Arr+\beta_4DistanceBellecour$$
+
+
+
+```{r message=FALSE, warning=FALSE, include=TRUE}
+library(modelsummary)
+models <- list(
+    lm(VF_au_m2 ~ `Lyon 5eme` + `Lyon 7eme` + distanceBellecourt+surface_reelle_bati , data = DVF_LYON),
+    lm(logVF_au_m2 ~ `Lyon 5eme` + `Lyon 7eme` + distanceBellecourt+surface_reelle_bati,data = DVF_LYON))
+modelsummary(models)
+
+
+```
+*(1): Prix au m2 | (2): Log(prix au m2)*\newline
+
+Les résultats obtenus nous permettent d'attribuer une valeur moyenne du
+prix du mètre carré à Villeurbanne de 5458.279 euros et ainsi dire que
+le prix du mètre carré Dans le 5ème arrondissement et dans le 7ème
+arrondissement sont respectivement 582.879 et 232.060 plus cher. En
+considérant ensuite l'éloignement à Bellecour, on peut présumer que le
+prix moyen du mètre carré diminue de 103.078 euros quand on s'éloigne de 1km de Bellecour. cet effet est-il significatif ?
+
+**Dans le plus grand tableau de regression (au dessus) on s'aperçoit que cet effet d'éloignement à Bellecour d'1km, (-103,078 euros) est bien statistiquement significatif au seuil de 99% (P-value<0,01)**
+
+Le R-squared est quant à lui égale à 23,8% ainsi , la variance des variables explicatives explique 23,8% de la variance du prix des logements à Villeurbanne.
+
+Le F-test test de la nullité globale de tout les coefficients est lui aussi est statistiquement très significatif (p-value<0,01) les coefficients sont donc tous significativement différents.
+
+
+
+\newpage
+
+**Modèle pour déterminer la Valeur foncière avec la distance considérée
+comme variable ordinale**
+
+$$VF=\beta_0(TrèsPrès)+\beta_1SurfaceReelle+\beta_2Près+\beta_3Loin+\beta_4TrèsLoin$$
+
+
+```{r message=FALSE, warning=FALSE, include=TRUE}
+models1 <- list(
+    lm(VF_au_m2 ~ distanceB_Cat+surface_reelle_bati , data = DVF_LYON),
+    lm(logVF_au_m2 ~ distanceB_Cat+surface_reelle_bati,data = DVF_LYON))
+modelsummary(models1)
+```
+*(1): prix au m2 | (2): Log(prix au m2)*\newline
+
+En considérant l'éloignement inter-arrondissement comme une variable
+catégorielle (cat1,cat2,cat3,cat4) on peut fixer le prix moyen du mètre carré à 5949.921euros, pour
+tous les biens se trouvant "très près" (cat1) de Bellecour. En se déplaçant dans
+la catégorie d'éloignement suivante "pres" (cat2), le prix du mètre carré diminue de 804.025euros.\newline
+
+De plus, cette diminution est statistiquement significative (***). [Voir grand tableau]\newline
+
+**Le R-squared permet de dire que la variance des variables explicatives de cette regression (distance a bellecour & Surface du logement) explique 23,7% de la variables à expliquer (valeur fonciere des logements en cat1) **\newline
+
+La P-value du Test de significativté global est egalement tres faible , les coefficient ne sont pas donc pas tous egales et nulles. 
+
+Ici la variable arrondissement a été écartée car celle-ci biaisait les
+résultats. En effet du fait que les biens que nous avons sélectionné de
+Villeurbanne soient uniquement situés loin ou très loin de Bellecour ou
+que les biens du 7ème soient près ou loin, il nous a était impossible de
+spécifier un modèle avec la prise en compte de l'effet de
+l'arrondissment et des catégories. Ainsi en prenant comme référence les
+biens de Villeurbanne la régression ne produit pas de résultats pour
+l'effet de la catégorie près et très près. Il en est de même en
+consiédrant les autres arrondissement comme référence, la régression ne
+produit pas de résultat pour l'effet des catgories de distances
+n'incluant pas les biens des catégories d'arrondissements de référence.
+
+
+\newpage
+
+### 2) ANOVA
+
+L'ANOVA (Analyse de la Variance) est une technique statistique utilisée
+pour comparer les moyennes de plusieurs groupes ou catégories.
+L'objectif de l'ANOVA est de déterminer si les moyennes des groupes
+étudiés sont similaires ou différentes, et si ces différences sont
+statistiquement significatives.
+
+Dans le cadre de notre etude , pour faciliter notre analyse on a
+considerer la distance au centre ville (tres pres , pres , loin , tres
+loin).
+
+Ainsi avec les test de tukey qui va comparer chacune des differentes
+categories entres elle , permettront de dire si les differences entre
+les groupes sont statistiquement significatives et donc si la distance
+au centre-ville impacte le prix des logements.
+
+
+#### a) Anova de la distance \newline
+
+Il y a t-il difference significative entre les differents "groupes" de
+distance que nous avons etablit ?
+
+```{r include=TRUE}
+Anov1<-aov(DVF_LYON$VF_au_m2~ DVF_LYON$distanceB_Cat)
+summary(Anov1)
+```
+
+```{r message=FALSE, warning=FALSE, include=TRUE}
+library(multcomp)
+Tukey_Test1<-TukeyHSD(Anov1)
+Tukeydf1<-as.data.frame(Tukey_Test1$`DVF_LYON$distanceB_Cat`)
+kable(Tukeydf1, caption = "Tukey Test from ANOVA (1:Très près to 4:Très Loin)")
+```
+
+
+Il'savere que oui , il ya une difference au niveau du prix du logements
+en fonction des categories de distances.
+
+On observe en effet , qu'en prenant la categorie 1 (Tres pres ) comme
+categorie de reference , plus on avance dans les categories plus le prix
+du logement diminue ,**en d'autres termes plus on s'eloigne du cenre
+ville plus le prix du logement diminue**
+
+Avec le test de tukey , on peut s'apercevoir de la difference
+significative qu'il existe entre les categories de distance par rapport
+au centre ville.
+
+Par exemple ici on s'apercoit qu'en passant de la categorie 1 ( tres
+pres du centre) à la categorie 3 (loin du centre),**le prix du logement
+diminue significativement de 1104euros le m\^2.**
+
+Il est intéressant ici de s'intéresser à la significativité de passer
+d'une catégorie à une autre. On voit par exemple que le fait de passer
+d'un logement loin à très loin n'est pa significatif sur les prix des
+biens. On peut alors émettre l'hypothèse que passé un certain
+éloignement, la proximité au centre n'est plus impactante dans la
+détermination des prix.
+
+\newpage
+
+#### b) Anova du nombre de pieces \newline
+
+Il y a une difference significative du prix au m2 en fonction du nombre
+de pieces ?
+
+```{r include=TRUE}
+Anov2<-aov(DVF_LYON$VF_au_m2~ DVF_LYON$nombre_pieces_principales)
+summary(Anov2)
+```
+
+```{r include=TRUE}
+library(multcomp)
+Tukey_Test2<-TukeyHSD(Anov2)
+Tukeydf2<-as.data.frame(Tukey_Test2$`DVF_LYON$nombre_pieces_principales`)
+kable(Tukeydf2, caption = "Tukey Test from ANOVA (1 rooms to 6 rooms)")
+```
+
+
+Tout comme pour le premier tukey test concernant les différentes
+catégories de distance, pour les différents biens avec différents
+nombres de pièces, il est aussi intéressant de s'intéresser à la
+**significativité** lorsqu'on gagne une pièce en plus.
+
+Ici on peut émettre l'hypothèse qu'un bien d'une pièce et un autre de 0
+pièce sont à rapprocher. En effet il n'y a pas un écart significatif
+dans leur prix.
+
+Lorsqu'on passe d'un bien de 4 à 5 pièces et de 5 à 6 pièces on remarque
+une fois de plus qu'il n'y a pas de significativité au niveau de l'écart
+de leur prix. On peut alors émettre la nouvelle hypothèse qui est que
+passé un certain nombre de pièces l'apport d'une nouvelle pièce n'a plus
+beaucoup d'effet sur les prix.
+
+Grâce à ces tests, on peut alors se rendre compte de la décroissance de
+l'effet marginal du nombre de pièce ainsi que de la distance
+
+Il reste tout de même des limites aux interprétations précédentes En
+effet ces test sont faits sans prendre en compte de l'arrondissement et
+éloignement. Ainsi si par exemple les biens de 0 pièce sont
+majoritairement situés plus près du centre que les biens de 1 pièce, ces
+2 types de biens peuvent avoir un prix assez similaire, l'un car ayant
+une pièce en plus et les autres car étant plus près du sens. C'est biais
+potentiellement existant représentent un limite au possibilité
+d'interprétation des résultats.
+
+\newpage
+
+## IV. CONCLUSION
+
+En conclusion, l'étude a eu pour but d'appliquer les méthode de prix hédoniques pour expliquer le prix des logements à Lyon dans 3 Arrondissement de la ville :
+
+        - Lyon 5eme  
+        - Lyon 7eme 
+        - Villeurbanne 
+        
+Dans notre étude nous avons utilisé la méthode des MCO afin d'effectuer une regression lineaire multiple, dans le but d'identifier les facteurs qui influencent le plus fortement les prix des logements dans la ville.
+
+Cependant, il est important de noter que l'utilisation des MCO implique une relation linéaire entre les variables indépendantes et dépendantes, ainsi que la normalité et l'homoscédasticité des erreurs. Notre étude a révélé que les données ne répondaient pas à toutes ces hypothèses, ce qui a pu avoir un impact sur les résultats , ce qui est une des principale limite de notre modèle ainsi que le peu de variables explicatives que nous disposions.
+
+Afin d'en tenir compte et de mieux comprendre l'importance de la distance au centre ville (Bellecour) sur les prix des logements, une ANOVA a également été réalisée, pour realiser cela nous avons donc creer des categories de distance, ainsi grace aux résultats de l'ANOVA nous avons reussi a trouver l'effet statisquement significatif de la distance au centre ville sur  le prix des logements, en effet plus on s'eloigne du centre , plus le prix des logements diminuent significativement ,ce qui confirme l'importance de l'emplacement comme facteur déterminant des prix des logements à Lyon et confirme les hypothèses du théoreme d'Alonso et fait de Lyon une ville dite monocentrique.
+
+Dans l'ensemble, malgrè les nombreuses limites presentes (manque de variables explicatives et non respect de toutes les hypothèse MCO) notre étude fournit des informations précieuses sur les facteurs qui influencent les prix des logements à Lyon ainsi que les limites de l'utilisation de la régression MCO dans ce contexte. Elle souligne l'importance de l'emplacement, en particulier la proximité au centre-ville, dans la détermination des prix des logements. Cependant, des recherches supplémentaires sont nécessaires pour explorer davantage les autres facteurs qui contribuent au prix des maisons à Lyon,tel que la proximite des espaces verts , proximite des arrets de transport ou meme le taux de criminalité, en effet ,tout ces facteurs peuvent varier entre les différents quartiers de la ville et ainsi influencer la dynamique du marché immobilier à Lyon. En outre, les résultats de cette étude qui prouvent que Lyon est une ville monocentrique, peuvent servir de point de départ à d'autres recherches sur le marché du logement à Lyon et dans d'autres régions similaires.
+
+
+
+\newpage
+
+## V. BIBLIOGRAPHIE
+
+Anderson, S. T. & Bates, M. D. (2017). HEDONIC PRICES AND EQUILIBRIUM
+SORTING IN HOUSING MARKETS : A CLASSROOM SIMULATION. National Tax
+Journal, 70(1), 171-183.
+
+Arslanlı, K. Y. (2020). Analysis of house prices : a hedonic model
+proposal for Istanbul metropolitan area. Journal of Design for
+Resilience in Architecture and Planning, 1(1), 57-68.
+
+Ayouba, K., Breuillé, M. L., Grivault, C., Le Gallo, J. & Nappi-Choulet,
+I. (2019). Hétérogénéité spatiale des prix hédoniques des appartements
+du marché locatif privé en France. Revue française d'économie, Vol.
+XXXIV(2), 203-247.
+
+Deutsch, E., Quettier, A. & Simon, A. (2017). L'influence des
+arrondissements dans la formation des prix immobiliers à Paris :
+diffusion ou localisation ? Revue d'Économie Régionale & ; Urbaine,
+Octobre(4), 673-710.
+
+Napoléone Claude.Prix fonciers, immobiliers et localisation des ménages
+au sein d'une agglomération urbaine. In: Les Annales de la recherche
+urbaine, N°107, 2012. La ville en thèse. pp. 18-27;
+
+Sedoarisoa, N., Desponds, D., Dalmas, L. & Lavandier, C. (2017). Prix de
+l'immobilier et proximité de la plate-forme aéroportuaire de Paris --
+Charles-de-Gaulle (CDG). L'Espace géographique, Tome 46(1), 61-78.
+
+Thierry Brossard, Daniel Joly, François-Pierre Tourneux, Jean Cavailhès,
+Mohamed Hilal, Pierre Wavresky, Julie Le Gallo, Ghislain Geniaux, Claude
+Napoleone, Hubert Jayet, Nicolas Ovtracht & Pierre-Yves Péguy. (2007).
+La valeur économique des paysages des villes périurbanisées. Research
+Papers in Economics.
+
+Xiaochen Hu, Luechai Chulasai & Sasipen Phuangsaichai. (2011). Hedonic
+Pricing Model for Housing Market in City of Kunming, the People's
+Republic of China. (Journal of Economics Chiang Mai University), 15(1),
+144-165. \newpage
+
+## Test des Hypotheses MCO :
+
+### Independance des erreurs :
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tseries)
+Box.test(residuals(Reg5), type = "Ljung-Box")
+```
+
+### Normalité des erreurs :
+
+```{r echo=FALSE}
+shapiro.test(residuals(Reg5))
+```
+
+### Homosedasticity
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(lmtest)
+bptest(Reg5)
+```
+
+```{r echo=FALSE}
+library(sandwich)
+coeftest(Reg5, vcov = vcovHC(Reg5))
+```
