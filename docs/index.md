@@ -9,8 +9,7 @@ author_profile: false
 header:
   overlay_color: "#0b1220"
   overlay_filter: "0.6"
-  # Mets une image si tu en as une (sinon, laisse commenté)
-  # overlay_image: "../asset/hero/hero-grid.jpg"
+
   actions:
     - label: "🚀 Voir les projets"
       url: "/projets/"
@@ -27,21 +26,18 @@ intro:
 
 # Rangée 1
 feature_row:
-  - image_path: "/asset/tiles/nlp.png"
     alt: "NLP"
     title: "NLP — Classification de plaintes"
     excerpt: "66 699 textes • BiLSTM • pipeline NLP complet."
     url: "/projets/nlp-lstm/"
     btn_label: "Détails"
     btn_class: "btn--primary"
-  - image_path: "/asset/tiles/cv.png"
     alt: "Computer Vision"
     title: "Computer Vision — Imagerie médicale"
     excerpt: "CNN • scikit-image • Keras/PyTorch • démo Streamlit."
     url: "/projets/imagerie-medicale/"
     btn_label: "Détails"
     btn_class: "btn--primary"
-  - image_path: "/asset/tiles/analytics.png"
     alt: "Analytics"
     title: "Analyse — Terre de Liens"
     excerpt: "Profilage actionnaires • comportements d’investissement."
