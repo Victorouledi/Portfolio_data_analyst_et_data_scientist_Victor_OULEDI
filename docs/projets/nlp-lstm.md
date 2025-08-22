@@ -1,3 +1,11 @@
+---
+title: "NLP — Classification de plaintes"
+permalink: /projets/nlp-lstm/
+layout: single
+---
+
+
+
 # IA & NLP :  Model LSTM pour  la prédiction du type de sujet conernant les réclamations et pleintes à l'encontre de services financiers
 
 ## Présentation du problème : 
