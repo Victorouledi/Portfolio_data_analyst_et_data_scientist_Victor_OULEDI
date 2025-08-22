@@ -1,25 +1,23 @@
 ---
-title: "Clustering, et Analyse en Composantes Principales en Python  sur la criminalité aux Etats-Unis"
-permalink: /projets/crime-usa
+title: "Clustering & ACP (Python) sur la criminalité aux États-Unis"
+permalink: /projets/crime-usa/
 layout: single
+classes: wide
+toc: true
 ---
 
 
 
-# 2. Clustering, et Analyse en Composantes Principales en Python  sur la criminalité aux Etats-Unis
-
 ## Présentation du contexte de l'analyse de données
-Ce travail a été effectué dans le cadre d'une auto formation grace aux supports de Formasys.La base de données étudiée comporte des observations pour les 50 états des USA concernant 4 variables d'intéret.
+Ce travail a été effectué dans le cadre d’une auto-formation (Formasys). La base comporte des observations pour les **50 États** des USA et **4 variables** :  
+- **Murder** : taux de meurtres pour 100 000 hab.  
+- **Assault** : agressions pour 100 000 hab.  
+- **UrbanPop** : % de population urbaine.  
+- **Rape** : taux de viols pour 100 000 hab.
 
-"Murder" représente le taux de meurtre pour 100 000 habitants dans chaque État.
-"Assault" correspond au nombre d'agressions pour 100 000 habitants.
-"UrbanPop" indique le pourcentage de la population résidant dans des zones urbaines.
-"Rape" représente le taux de viols pour 100 000 habitants.
-
-L'enjeux du travail consistait dans un premier temps à utiliser l'agorithme kmeans dans le but de regrouper les états au sein d'un nombre de cluster optimal ou le plus pertinent possible. Le nombre de clusters optimal a été déterminer à hauteur de 4.
-
-Une fois le clustering effectué, il s'agissait d'effectuer une réduction de dimensions des données grâce à une ACP afin de pouvoir visualiser la répartition relative des états entre eux. Autrement dit il s'agissait de savoir sur quelles caractéristiques il était possible de rapprocher ou distinguer les états et de savoir sur quels critères les clusters avaient été établis. Notons que l'application d'un ACP se fait uniquement avec des données quantitatives
-
+Objectifs :  
+1) **Clustering K-means** pour regrouper les États (nombre optimal ≈ **4**),  
+2) **Réduction de dimension (ACP)** pour visualiser la structure et interpréter les axes.
 
 ## Code et quelques éléments de data vizualisation
 La base de données est à retrouver [ici](../asset/Clustering_USA_crime/data/dataset_USA.csv). Le code qui a permi la réalisation du travail est à retrouver sous forme de jupyter notebook via ce [lien](https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/blob/a56bcd8e730e852f0ed5949ac902ec4b930507d5/docs/asset/Clustering_USA_crime/notebooks/crime_usa_clustering.ipynb).  
