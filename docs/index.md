@@ -26,7 +26,7 @@ feature_row_home:
     url: "{{ site.baseurl }}/projets/imagerie-medicale/"
     btn_label: "Détails"
     btn_class: "btn--primary"
-  - title: "Analyse — Terre de Liens"
+  - title: "Data Analyse — Profils actionnaires Terre de Liens"
     excerpt: "Profilage actionnaires • comportements d’investissement."
     url: "{{ site.baseurl }}/projets/terre-de-liens/"
     btn_label: "Détails"
