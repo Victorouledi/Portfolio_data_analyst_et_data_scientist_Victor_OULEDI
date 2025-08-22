@@ -6,7 +6,7 @@ classes: wide
 
 feature_row:
   - title: "NLP — Classification de plaintes"
-    excerpt: "66 699 textes · BiLSTM · pipeline NLP complet."
+    excerpt: "66 699 textes · BiLSTM · pipeline NLP complet.                "
     url: "/projets/nlp-lstm/"
     btn_label: "Détails"
     btn_class: "btn--primary"
