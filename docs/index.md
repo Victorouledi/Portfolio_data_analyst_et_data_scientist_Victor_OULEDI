@@ -13,7 +13,7 @@ header:
       url: "/projets/"
     - label: "✉️ Me contacter"
       url: "/contacts/"
-
+ 
 # 1 rangée d'aperçu sur la home
 feature_row_home:
   - title: "NLP — Classification de plaintes"
