@@ -3,16 +3,19 @@ description: "Data Analyst & Data Scientist — NLP, Computer Vision, Statistiqu
 url: "https://victorouledi.github.io"
 baseurl: "/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI"
 
+# Thème (hébergé) — aucun Gemfile requis
 remote_theme: "mmistakes/minimal-mistakes@4.24.0"
-minimal_mistakes_skin: "dark"
+minimal_mistakes_skin: "dark"   # options: default, dark, mint, aqua, contrast…
 
+# Plugins autorisés par GitHub Pages
 plugins:
   - jekyll-remote-theme
+  - jekyll-include-cache
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-feed
-  # (tu peux ajouter jekyll-include-cache ensuite ; en cas d'erreur, laisse-le de côté)
 
+# Options générales
 locale: fr-FR
 repository: "Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI"
 markdown: kramdown
@@ -21,10 +24,12 @@ kramdown:
 permalink: pretty
 timezone: Europe/Paris
 
+# Dossiers complémentaires (on utilisera _data pour la navigation)
 include:
   - _pages
   - _data
 
+# Valeurs par défaut pour tes pages Markdown
 defaults:
   - scope:
       path: ""
