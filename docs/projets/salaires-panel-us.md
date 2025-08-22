@@ -1,3 +1,11 @@
+---
+title: " Modélisation statistique en données de panel en R : analyse des déterminants des salaires aux Etats-Unis"
+permalink: /projets/salaires-panel-us/
+layout: single
+---
+
+
+
 # Modélisation statistique en données de panel en R : analyse des déterminants des salaires aux Etats-Unis
 
 ## Présentation du contexte de la modélisation statistique
