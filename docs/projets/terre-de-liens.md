@@ -1,5 +1,5 @@
 ---
-title: "Analyse — Système d’actionnariat (Terre de Liens)"
+title: "Data Analyse — Système d’actionnariat (Terre de Liens)"
 permalink: /projets/terre-de-liens/
 layout: single
 classes: wide
