@@ -1,38 +1,39 @@
 ---
-title: "Certifications data"
+title: "Certifications"
 permalink: /projets/certifications/
 layout: single
+classes: wide
 ---
-# Certification data 
 
+## SQL Fundamentals
+**Thèmes** : jointures, manipulation de données, statistiques et **window functions**, fonctions et analyses en **PostgreSQL**.
 
-## Certification SQL 
+{% include figure image_path="{{ site.baseurl }}/asset/certification_data/certificat_SQL_fundamentals.jpg" alt="Certificat SQL Fundamentals" %}
 
-**Thèmes abordés par la certification :** joining data, data manipulation, PostgreSQL summary stats and window functions, functions for manipuation data in PostgreSQL, data analysis in SQL
+---
 
-![](../asset/certification_data/certificat_SQL_fundamentals.jpg)
+## Machine Learning with Python — Supervised (scikit-learn)
+**Thèmes** : modèles de régression & classification, **cross-validation**, recherche d’hyperparamètres (**GridSearch**), évaluation (precision/recall/F1, ROC), **pipelines** scikit-learn.
 
+{% include figure image_path="{{ site.baseurl }}/asset/certification_data/Supervised_Learning_with_sickit_learn.jpg" alt="Certificat ML supervisé avec scikit-learn" %}
 
-## Certification Machine Learning with Python: supervised learning with scikit-learn
+---
 
-**Thèmes abordés par la certification :** using supervised techniques to build predictive models (for regression and classification problems), cross-validation, best parameters searching (Gridseach), model performance evaluation, hyper-parameter tuning, using pipelines.
+## Machine Learning with Python — Unsupervised
+**Thèmes** : **K-means**, **classification hiérarchique** (visualisation), **ACP** (réduction de dimension), **NMF**, systèmes de recommandation avec NMF.
 
-![](../asset/certification_data/Supervised_Learning_with_sickit_learn.jpg)
+{% include figure image_path="{{ site.baseurl }}/asset/certification_data/unsupervised_learning.jpg" alt="Certificat ML non supervisé" %}
 
-## Certification Machine Learning with Python: unsupervised learning with Python (Scikit-Learn)
+---
 
-**Thèmes abordés par la certification :** clustering with K-means algorithm, data viz  with hierarchical clustering and t-SNE, dimensions reducition regarding principal component analysis (PCA), non-negative matrix factorization (NMF), building recommender systems with NMF
+## Data Preparation with Excel
+**Thèmes** : fonctions de préparation, **formules conditionnelles**, **lookups**, transformations.
 
-![](../asset/certification_data/unsupervised_learning.jpg)
+{% include figure image_path="{{ site.baseurl }}/asset/certification_data/Data_prep_with_excel_certificate.jpg" alt="Certificat Data preparation with Excel" %}
 
-## Certification Data preparation with Excel 
+---
 
-**Thèmes abordés par la certification :** Functions for Data Preparation, conditional formulas, Lookups and data transformation.
+## Data Analytics with Excel
+**Thèmes** : **Tableaux croisés dynamiques**, fonctions logiques, **What-if analysis**, **forecasting** (prévision).
 
-![](../asset/certification_data/Data_prep_with_excel_certificate.jpg)
-
-## Certification Data analytics with Excel 
-
-**Thèmes abordés par la certification :** PivotTables, Logical functions, What-if analysis, Forcasting.
-
-![](../asset/certification_data/Data_anlysis_with_excel.jpg)
+{% include figure image_path="{{ site.baseurl }}/asset/certification_data/Data_anlysis_with_excel.jpg" alt="Certificat Data analytics with Excel" %}
