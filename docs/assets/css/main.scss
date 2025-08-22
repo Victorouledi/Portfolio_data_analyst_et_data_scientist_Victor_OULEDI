@@ -7,9 +7,9 @@
    Couleurs de marque (variables)
    ================================ */
 :root{
-  --brand:   #22c55e;   /* vert */
-  --brand-2: #38bdf8;   /* cyan principal */
-  --brand-2-hover: #5bd0ff; /* cyan un peu plus clair pour :hover */
+  --brand:   #22c55e;     /* vert */
+  --brand-2: #38bdf8;     /* cyan principal */
+  --brand-2-hover: #5bd0ff; /* cyan plus clair au survol */
 }
 
 /* ================================
@@ -30,12 +30,11 @@ a:hover{ color:var(--brand-2-hover); }
   background:var(--brand-2);
   border-color:var(--brand-2);
   color:#0b1220 !important;
-  padding:.45rem .9rem;
+  padding:.5rem .95rem;
 }
 .btn--primary:hover{
   background:var(--brand-2-hover);
   border-color:var(--brand-2-hover);
-  filter:none;
   color:#091018 !important;
 }
 
@@ -44,7 +43,7 @@ a:hover{ color:var(--brand-2-hover); }
    ================================ */
 .layout--single .page,
 .layout--splash .page{
-  max-width:1180px;         /* plus large pour respirer */
+  max-width:1220px;        /* plus large pour respirer */
 }
 
 .page__content{
@@ -52,7 +51,7 @@ a:hover{ color:var(--brand-2-hover); }
   line-height:1.75;
 }
 
-/* Titres un peu plus compacts */
+/* Titres plus compacts */
 .page__content h1{ margin-top:.2rem; margin-bottom:1rem; }
 .page__content h2,.page__content h3{ margin-top:1.2rem; }
 
@@ -79,28 +78,23 @@ a:hover{ color:var(--brand-2-hover); }
 /* ================================
    Grille des feature_row (cartes)
    ================================ */
-/* Home (splash) */
-.layout--splash .feature__wrapper{
-  display:grid;
-  grid-template-columns:repeat(3, minmax(260px, 1fr)); /* largeur mini confortable */
-  gap:1.1rem;
-}
-/* Page Projets (single, si utilisée) */
+.layout--splash .feature__wrapper,
 .layout--single .feature__wrapper{
   display:grid;
-  grid-template-columns:repeat(3, minmax(260px, 1fr));
-  gap:1.1rem;
+  grid-template-columns:repeat(3, minmax(320px, 1fr)); /* largeur mini confortable */
+  gap:1.25rem;
 }
 
+/* Carte */
 .feature__item{
-  min-width:260px;                  /* évite les cartes trop étroites */
+  min-width:320px;                 /* évite les cartes trop étroites */
   background:rgba(255,255,255,.03);
   border:1px solid rgba(255,255,255,.08);
   border-radius:16px;
-  padding:1rem 1.1rem;
+  padding:1.15rem 1.25rem;         /* + padding */
   box-shadow:0 8px 30px rgba(0,0,0,.25);
   transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
-  min-height:160px;
+  min-height:190px;                /* + hauteur mini */
 }
 .feature__item:hover{
   transform:translateY(-2px);
@@ -108,21 +102,24 @@ a:hover{ color:var(--brand-2-hover); }
   border-color:rgba(56,189,248,.35); /* accent */
 }
 
-/* Titre & extrait dans la carte */
+/* Titre & extrait */
 .feature__item .archive__item-title{
-  font-size:1.05rem;
+  font-size:1.08rem;
   line-height:1.35;
-  margin-bottom:.2rem;
+  margin-bottom:.25rem;
 }
 .feature__item .archive__item-excerpt{
   opacity:.9;
-  font-size:.92rem;
+  font-size:.95rem;
+  line-height:1.5;
+  overflow-wrap:anywhere;   /* casse proprement les mots longs */
+  word-break:break-word;
 }
 
 /* Bouton dans la carte */
 .feature__item .btn{
-  margin-top:.6rem;
-  padding:.4rem .75rem;
+  margin-top:.75rem;
+  padding:.5rem .9rem;
 }
 
 /* ================================
@@ -131,7 +128,7 @@ a:hover{ color:var(--brand-2-hover); }
 @media (max-width:1024px){
   .layout--splash .feature__wrapper,
   .layout--single .feature__wrapper{
-    grid-template-columns:repeat(2, minmax(260px, 1fr));
+    grid-template-columns:repeat(2, minmax(320px, 1fr));
   }
 }
 @media (max-width:680px){
