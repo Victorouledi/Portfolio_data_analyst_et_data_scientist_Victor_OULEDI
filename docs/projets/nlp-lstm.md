@@ -1,4 +1,4 @@
-# 1. IA & NLP :  Model LSTM pour  la prédiction du type de sujet conernant les réclamations et pleintes à l'encontre de services financiers
+# IA & NLP :  Model LSTM pour  la prédiction du type de sujet conernant les réclamations et pleintes à l'encontre de services financiers
 
 ## Présentation du problème : 
 
