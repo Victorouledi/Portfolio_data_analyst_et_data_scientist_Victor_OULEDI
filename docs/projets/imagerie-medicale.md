@@ -10,6 +10,12 @@ toc: true
 Application web permettant d’uploader une image et de prédire **cerveau / poumon / autre**.  
 👉 [Ouvrir l’app](https://cnnimageriesmedicales.streamlit.app/)
 
+## Stack & outillage
+- **Python** : TensorFlow/Keras (CNN), scikit-image (prétraitements), OpenCV (I/O, transforms), (option) PyTorch
+- **App** : **Streamlit** (démo web)
+- **Viz** : Matplotlib/Seaborn ; (option) Grad-CAM pour interprétabilité
+- **CI/CD** : GitHub Actions (build app/test), gestion d’artefacts (modèle)
+
 ![](../asset/Computer_vision/images/app.png)
 
 ## Données
@@ -27,12 +33,6 @@ Application web permettant d’uploader une image et de prédire **cerveau / pou
 - Entraînement initial sur **3 époques** (démo)
 
 > Notebook : [Prédiction imagerie médicale (CNN)](../asset/Computer_vision/notebooks/Pre%CC%81diction%20imagerie%20me%CC%81dicale.ipynb)
-
-## Stack & outillage
-- **Python** : TensorFlow/Keras (CNN), scikit-image (prétraitements), OpenCV (I/O, transforms), (option) PyTorch
-- **App** : **Streamlit** (démo web)
-- **Viz** : Matplotlib/Seaborn ; (option) Grad-CAM pour interprétabilité
-- **CI/CD** : GitHub Actions (build app/test), gestion d’artefacts (modèle)
 
 
 ## Performances (validation)
