@@ -19,13 +19,15 @@ Objectifs :
 1) **Clustering K-means** pour regrouper les États (nombre optimal ≈ **4**),  
 2) **Réduction de dimension (ACP)** pour visualiser la structure et interpréter les axes.
 
-## Code et quelques éléments de data vizualisation
-La base de données est à retrouver [ici](../asset/Clustering_USA_crime/data/dataset_USA.csv). Le code qui a permi la réalisation du travail est à retrouver sous forme de jupyter notebook via ce [lien](https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/blob/a56bcd8e730e852f0ed5949ac902ec4b930507d5/docs/asset/Clustering_USA_crime/notebooks/crime_usa_clustering.ipynb).  
-
 ## Stack & outillage
 - **Python** : scikit-learn (KMeans, PCA), pandas, NumPy
 - **Viz** : Seaborn, Matplotlib (inertie/coude, biplots), Plotly (interactif)
 - **Qualité** : notebook propre, seeds fixés, export figures
+
+## Code et quelques éléments de data vizualisation
+La base de données est à retrouver [ici](../asset/Clustering_USA_crime/data/dataset_USA.csv). Le code qui a permi la réalisation du travail est à retrouver sous forme de jupyter notebook via ce [lien](https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/blob/a56bcd8e730e852f0ed5949ac902ec4b930507d5/docs/asset/Clustering_USA_crime/notebooks/crime_usa_clustering.ipynb).  
+
+
 
 
 ### Analyse des variables
