@@ -8,8 +8,8 @@ toc: true
  
 
 
-## Présentation du contexte de l'analyse de données
-Ce travail a été effectué dans le cadre d’une auto-formation (Formasys). La base comporte des observations pour les **50 États** des USA et **4 variables** :  
+## Contexte & objectif
+Ce travail a été effectué dans le cadre d’une auto-formation. La base comporte des observations pour les **50 États** des USA et **4 variables** :  
 - **Murder** : taux de meurtres pour 100 000 hab.  
 - **Assault** : agressions pour 100 000 hab.  
 - **UrbanPop** : % de population urbaine.  
