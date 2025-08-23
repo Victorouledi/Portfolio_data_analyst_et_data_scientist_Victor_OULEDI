@@ -10,6 +10,11 @@ toc: true
 Classification automatique de **66 699 plaintes** clients du secteur financier en **4 catégories** : *Recouvrement de dettes*, *Rapports de crédit*, *Prêt étudiant*, *Prêt sur salaire*.  
 Objectif : **prédire** la catégorie à partir du texte libre de la plainte.
 
+## Stack & outillage
+- **Python** : TensorFlow/Keras (BiLSTM), scikit-learn (métriques), **spaCy / NLTK** (tokenisation/lemmatisation), imbalanced-learn (pondération/échantillonnage)
+- **Pipeline** : nettoyage → tokenisation → padding → class weights
+- **Viz** : Matplotlib, Seaborn, Plotly
+
 - Dataset : [Consumer Complaint Database (Kaggle)](https://www.kaggle.com/datasets/selener/consumer-complaint-database)
 - Notebook : [finance_complaints_NLP.ipynb](../asset/NLP_LSTM/notebooks/finance_complaints_NLP.ipynb)
 
@@ -36,11 +41,7 @@ Nettoyage et normalisation des textes pour alimenter le modèle séquentiel :
 
 ![LSTM_model](../asset/NLP_LSTM/images/Model_LSTM.png)
 
-## Stack & outillage
-- **Python** : TensorFlow/Keras (BiLSTM), scikit-learn (métriques), **spaCy / NLTK** (tokenisation/lemmatisation), imbalanced-learn (pondération/échantillonnage)
-- **Pipeline** : nettoyage → tokenisation → padding → class weights
-- **Viz** : Matplotlib, Seaborn, Plotly
-  
+
 ## Entraînement
 - **Split** train/validation dédié.  
 - **Early stopping** sur `val_loss` pour éviter le sur-apprentissage.  
