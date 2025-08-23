@@ -13,14 +13,16 @@ Objectifs :
 2. Réaliser une **AFC** pour réduire la dimension et **visualiser les proximités/contrastes** entre départements et candidats.
 3. Interpréter les axes via **cos²** (qualité de représentation) et **contributions** (poids dans la construction des axes).
 
+## Stack & outillage
+- **Python** : pandas/NumPy, **prince** (AFC) ou `mca`
+- **Viz** : Matplotlib/Seaborn/Plotly (maps/factor maps)
+
 ## Données & code
 - Données : [election_2022_FRA.xlsx](../asset/ACF_elections_presidentielles/data/election_2022_FRA.xlsx)  
 - Notebook : [AFC_With_Python_Election_presidentielle.ipynb](../asset/ACF_elections_presidentielles/notebooks/AFC_With_Python%20Election%20pre%CC%81sidentielle%20.ipynb)  
 - Stack : **pandas**, **numpy**, **prince** (ou `mca`), **matplotlib** / **seaborn** / **plotly**
 
-## Stack & outillage
-- **Python** : pandas/NumPy, **prince** (AFC) ou `mca`
-- **Viz** : Matplotlib/Seaborn/Plotly (maps/factor maps)
+
 
 
 ## Tableau de contingence
