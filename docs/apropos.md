@@ -5,7 +5,8 @@ layout: single
 ---
 
 
-Fort de près de **2 ans d’expérience** dans les métiers de la data, je suis motivé par la curiosité et la rigueur que nécessitent la **statistique** et l’**IA**. Je crois à la valeur de l’exploitation raisonnée des données et des méthodes quantitatives pour répondre à des enjeux concrets — de la compréhension métier jusqu’au déploiement.
+Fort de près de **2 ans d’expérience** dans les métiers de la data et passionné par cet univers et celui de la **statistique** et de l’**IA**, je suis stimulé
+par la curiosité et la rigueur que ces disciplines impliquent. En effet, je suis convaincu de la plus value de l'exploitation de données et de l'utilisation de méthodes statistiques avancées pour répondre à des enjeux concrets — de la compréhension métier jusqu’au déploiement de soutions.
 
 - 📍 **Basé en France**
 - 💼 **Intérêts** : Aéro/Défense, Banque/Assurance, Santé, Énergie,
