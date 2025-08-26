@@ -10,11 +10,11 @@ header:
   overlay_filter: "0.6"
   actions:
     - label: "🚀 Voir les projets"
-      url: "../projets/"
+      url: "/projets/"
     - label: "✉️ Me contacter"
-      url: "../contacts/"
+      url: "/contacts/"
     - label: "🎬 Vidéo de présentation"
-      url: "../video/"
+      url: "/video/"
 
 # 1 rangée d'aperçu sur la home
 feature_row_home:
@@ -25,12 +25,12 @@ feature_row_home:
     btn_class: "btn--primary"
   - title: "Computer Vision — Imagerie médicale"
     excerpt: "CNN • scikit-image • Keras/PyTorch • démo Streamlit."
-    url: "../projets/imagerie-medicale/"
+    url: "/projets/imagerie-medicale/"
     btn_label: "Détails"
     btn_class: "btn--primary"
   - title: "Data Analyse — Profils actionnaires Terre de Liens"
     excerpt: "Profilage actionnaires • comportements d’investissement."
-    url: "../projets/terre-de-liens/"
+    url: "/projets/terre-de-liens/"
     btn_label: "Détails"
     btn_class: "btn--primary"
 ---
