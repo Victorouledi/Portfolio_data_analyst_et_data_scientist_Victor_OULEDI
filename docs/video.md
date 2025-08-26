@@ -17,7 +17,7 @@ classes: wide
 </div>
 
 <p class="hero-caption" style="text-align:center;">
-  Présentation rapide de mon parcours et de quelques projets phares.
+  Présentation rapide de mon parcours et de mon projet.
   <br>
   Si la vidéo ne démarre pas, 
   <a href="{{ '/asset/videos/video_presentation.mp4' | relative_url }}" target="_blank" rel="noopener">
