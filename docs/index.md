@@ -10,11 +10,11 @@ header:
   overlay_filter: "0.6"
   actions:
     - label: "🚀 Voir les projets"
-      url: "{{ site.baseurl }}/projets/"
+      url: "../projets/"
     - label: "✉️ Me contacter"
-      url: "{{ site.baseurl }}/contacts/"
+      url: "../contacts/"
     - label: "🎬 Vidéo de présentation"
-      url: "{{ site.baseurl }}/video/"
+      url: "../video/"
 
 # 1 rangée d'aperçu sur la home
 feature_row_home:
