@@ -18,3 +18,4 @@ classes: wide
 <p class="hero-caption" style="text-align:center;">
   Présentation rapide de mon parcours et de mon projet
 </p>
+
