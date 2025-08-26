@@ -10,27 +10,27 @@ header:
   overlay_filter: "0.6"
   actions:
     - label: "🚀 Voir les projets"
-      url: "{{ site.baseurl }}/projets/"
+      url: "/projets/"
     - label: "✉️ Me contacter"
-      url: "{{ site.baseurl }}/contacts/"
+      url: "/contacts/"
     - label: "🎬 Vidéo de présentation"
-      url: "{{ site.baseurl }}/video/"
+      url: "/video/"
 
 # 1 rangée d'aperçu sur la home
 feature_row_home:
   - title: "NLP — Classification de plaintes"
     excerpt: "66 699 textes • BiLSTM • pipeline NLP complet."
-    url: "{{ site.baseurl }}/projets/nlp-lstm/"
+    url: "/projets/nlp-lstm/"
     btn_label: "Détails"
     btn_class: "btn--primary"
   - title: "Computer Vision — Imagerie médicale"
     excerpt: "CNN • scikit-image • Keras/PyTorch • démo Streamlit."
-    url: "{{ site.baseurl }}/projets/imagerie-medicale/"
+    url: "/projets/imagerie-medicale/"
     btn_label: "Détails"
     btn_class: "btn--primary"
   - title: "Data Analyse — Profils actionnaires Terre de Liens"
     excerpt: "Profilage actionnaires • comportements d’investissement."
-    url: "{{ site.baseurl }}/projets/terre-de-liens/"
+    url: "/projets/terre-de-liens/"
     btn_label: "Détails"
     btn_class: "btn--primary"
 ---
