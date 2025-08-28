@@ -13,8 +13,8 @@ header:
       url: "/projets/"
     - label: "✉️ Me contacter"
       url: "/contacts/"
-    - label: "🎬 Vidéo de présentation"
-      url: "/video/"
+#   - label: "🎬 Vidéo de présentation"
+#    url: "/video/"
 
 # 1 rangée d'aperçu sur la home
 feature_row_home:
