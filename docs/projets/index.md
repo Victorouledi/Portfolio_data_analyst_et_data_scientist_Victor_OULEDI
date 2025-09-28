@@ -6,12 +6,12 @@ classes: wide
 
 feature_row:
   - title: "NLP — Classification de plaintes"
-    excerpt: "66 699 textes · BiLSTM · pipeline NLP complet.                "
+    excerpt: "66 699 textes classés · BiLSTM · pipeline NLP complet.                "
     url: "/projets/nlp-lstm/"
     btn_label: "Détails"
     btn_class: "btn--primary"
   - title: "Computer Vision — Imagerie médicale"
-    excerpt: "Classification · segmentation · scikit-image · Keras/PyTorch. "
+    excerpt: "Application streamlit pour classification/ segmentation · scikit-image · Keras/PyTorch. "
     url: "/projets/imagerie-medicale/"
     btn_label: "Détails"
     btn_class: "btn--primary"
