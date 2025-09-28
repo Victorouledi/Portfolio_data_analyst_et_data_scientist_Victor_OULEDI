@@ -19,12 +19,12 @@ header:
 # 1 rangée d'aperçu sur la home
 feature_row_home:
   - title: "NLP — Classification de plaintes"
-    excerpt: "66 699 textes • BiLSTM • pipeline NLP complet."
+    excerpt: "66 699 textes classés • BiLSTM • pipeline NLP complet."
     url: "/projets/nlp-lstm/"
     btn_label: "Détails"
     btn_class: "btn--primary"
   - title: "Computer Vision — Imagerie médicale"
-    excerpt: "CNN • scikit-image • Keras/PyTorch • démo Streamlit."
+    excerpt: "Application streamlit classification images • CNN • scikit-image • Keras/PyTorch"
     url: "/projets/imagerie-medicale/"
     btn_label: "Détails"
     btn_class: "btn--primary"
