@@ -11,7 +11,7 @@ feature_row:
     btn_label: "Détails"
     btn_class: "btn--primary"
   - title: "Computer Vision — Imagerie médicale"
-    excerpt: "Application streamlit pour classification/ segmentation · scikit-image · Keras/PyTorch. "
+    excerpt: "Application streamlit pour classification· scikit-image · Keras/PyTorch. "
     url: "/projets/imagerie-medicale/"
     btn_label: "Détails"
     btn_class: "btn--primary"
