@@ -16,7 +16,7 @@ Objectif : **prédire** la catégorie à partir du texte libre de la plainte.
 - **Viz** : Matplotlib, Seaborn, Plotly
 
 - Dataset : [Consumer Complaint Database (Kaggle)](https://www.kaggle.com/datasets/selener/consumer-complaint-database)
-- Notebook : [finance_complaints_NLP.ipynb](../asset/NLP_LSTM/notebooks/finance_complaints_NLP.ipynb)
+- Notebook : [finance_complaints_NLP.ipynb](https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/blob/portfolio/docs/asset/NLP_LSTM/notebooks/finance_complaints_NLP.ipynb)
 
  ![LSTM_Archi](../asset/NLP_LSTM/images/LSTM_archi.png)
 
