@@ -13,7 +13,7 @@ Objectifs :
 2) **identifier** les effets de variables **invariantes** (race/sex, etc.) malgré FE,  
 3) évaluer la **robustesse** (tests & SE) et interpréter les **élasticités**.
 
-- Notebook / Rmd : [code](../asset/Panel_analysis_educ_USA/notebooks/3.Code%20en%20R%20pour%20la%20re%CC%81alisation%20de%20la%20mode%CC%81lisation%20statistique.rmd)
+- Notebook / Rmd : [code](https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/blob/portfolio/docs/asset/Panel_analysis_educ_USA/notebooks/3.Code%20en%20R%20pour%20la%20re%CC%81alisation%20de%20la%20mode%CC%81lisation%20statistique.rmd)
 
 ## Stack & outillage
 - **R** : tidyverse, `plm` / `fixest` (FE/RE), `lmtest` (Hausman, BP), `sandwich` (HC/cluster), `car` (VIF)
