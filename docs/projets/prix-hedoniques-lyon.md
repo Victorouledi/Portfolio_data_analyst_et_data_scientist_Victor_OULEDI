@@ -11,8 +11,8 @@ Analyse hédonique des **prix immobiliers** sur Lyon/Villeurbanne à partir de *
 Objectif : estimer l’impact des **caractéristiques du bien** (surface, pièces, type…), de l’**éloignement au centre-ville** et d’effets géographiques locaux (« prestige ») sur le **prix**.
 
 - Données : DVF (open data) — [accès DVF](https://app.dvf.etalab.gouv.fr/)  
-- Dossier projet : [ressources](../asset/data_analysis_DVF/data)  
-- Script RMarkdown : [COTT_cv.Rmd](../asset/data_analysis_DVF/notebooks/COTT%20cv.rmd)
+- Dossier projet : [ressources](https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/tree/portfolio/docs/asset/data_analysis_DVF/data) 
+- Script RMarkdown : [COTT_cv.Rmd](https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/blob/portfolio/docs/asset/data_analysis_DVF/notebooks/COTT%20cv.rmd)
 
 ## Stack & outillage
 - **R** : tidyverse (`dplyr`, `readr`, `tidyr`), **ggplot2**
