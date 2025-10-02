@@ -19,7 +19,7 @@ Objectifs :
 
 ## Données & code
 - Données : [election_2022_FRA.xlsx](../asset/ACF_elections_presidentielles/data/election_2022_FRA.xlsx)  
-- Notebook : [AFC_With_Python_Election_presidentielle.ipynb](../asset/ACF_elections_presidentielles/notebooks/AFC_With_Python%20Election%20pre%CC%81sidentielle%20.ipynb)  
+- Notebook : [AFC_With_Python_Election_presidentielle.ipynb](https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/blob/portfolio/docs/asset/ACF_elections_presidentielles/notebooks/AFC_With_Python%20Election%20pre%CC%81sidentielle%20.ipynb)
 - Stack : **pandas**, **numpy**, **prince** (ou `mca`), **matplotlib** / **seaborn** / **plotly**
 
 
