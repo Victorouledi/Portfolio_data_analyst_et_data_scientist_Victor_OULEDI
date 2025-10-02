@@ -14,7 +14,7 @@ Analyse du **système d’actionnariat** de la foncière Terre de Liens pour mie
 
 > Base brute : **39 476 lignes**, **25 champs** (extrait Salesforce, version **fictive** reconstruite pour confidentialité).
 
-- Notebook : [Jupyter_notebook_analyse_actionnariat.ipynb](../asset/data_analysis_TDL/notebooks/Jupyter_notebook_analyse_actionnariat.ipynb)
+- Notebook : [Jupyter_notebook_analyse_actionnariat.ipynb](https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/blob/portfolio/docs/asset/data_analysis_TDL/notebooks/Jupyter_notebook_analyse_actionnariat.ipynb)
 
 ## Stack & outillage
 
