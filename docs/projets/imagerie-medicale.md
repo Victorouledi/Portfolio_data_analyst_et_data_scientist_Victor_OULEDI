@@ -32,8 +32,7 @@ Application web permettant d’uploader une image et de prédire **cerveau / pou
 - **Dense(3, softmax)** pour les 3 classes  
 - Entraînement initial sur **3 époques** (démo)
 
-> Notebook : [Prédiction imagerie médicale (CNN)](../asset/Computer_vision/notebooks/prediction_imagerie_medicale.ipynb)
-
+> Notebook : [Prédiction imagerie médicale (CNN)](https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/blob/portfolio/docs/asset/Computer_vision/notebooks/prediction_imagerie_medicale.ipynb)
 
 ## Performances (validation)
 ![](../asset/Computer_vision/images/perf1_CNN.png)
