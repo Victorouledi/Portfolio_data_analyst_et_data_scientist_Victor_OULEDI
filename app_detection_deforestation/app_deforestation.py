@@ -24,15 +24,16 @@ except Exception:
 
 
 
-def set_bg_and_text(
+def set_bg_and_text_minimal(
     image_url: str,
     text_color: str = "#F5F6FA",
     sidebar_bg: str = "#1B263B",
     sidebar_text: str = "#F5F6FA",
     overlay_opacity: float = 0.5,
-    card_bg: str = "#1E2A3A",
-    accent_color: str = "#00B4D8"
+    widget_bg: str = "#182434",      # fond sombre pour inputs & uploader
+    accent_green: str = "#28a745"    # vert des boutons
 ):
+    import streamlit as st
     st.markdown(f"""
     <style>
     /* === Fond global (image + overlay) === */
@@ -50,61 +51,60 @@ def set_bg_and_text(
     }}
     [data-testid="stSidebar"] * {{ color: {sidebar_text} !important; }}
 
-    /* === Texte global & conteneur principal === */
+    /* === Texte global & conteneur === */
     .stApp, .stApp * {{ color: {text_color} !important; }}
     .block-container {{ background: transparent !important; }}
 
-    /* === Cartes, encadrés, expandeurs, images, tableaux === */
-    [data-testid="stExpander"],
+    /* === IMPORTANT: Pas d'encadrés par défaut autour des blocs/markdown === */
     [data-testid="stVerticalBlock"] > div,
     .stMarkdown div,
-    .stImage, .stTable, .stDataFrame, [data-testid="stForm"],
-    [data-testid="stMetric"], .stPlotlyChart {{
-        background: {card_bg} !important;
-        border-radius: 10px !important;
+    [data-testid="stHeader"] > div {{
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+    }}
+
+    /* === Expander: transparent (si tu en utilises) === */
+    [data-testid="stExpander"] {{
+        background: transparent !important;
         border: 1px solid rgba(255,255,255,0.10) !important;
+        border-radius: 8px !important;
     }}
 
-    /* === Boutons === */
-    div.stButton > button:first-child {{
-        background-color: {accent_color} !important;
+    /* === Boutons verts (tous) === */
+    div.stButton > button:first-child,
+    div[data-testid="stFileUploader"] button {{
+        background-color: {accent_green} !important;
         color: #fff !important;
-        border: 0 !important; border-radius: 6px !important;
-        font-weight: 600 !important; transition: 0.2s ease;
+        border: 0 !important;
+        border-radius: 6px !important;
+        font-weight: 600 !important;
+        transition: 0.2s ease;
     }}
-    div.stButton > button:hover {{ transform: scale(1.03); }}
-
-    /* === Inputs texte / nombre / zone de texte === */
-    .stTextInput > div > div,
-    .stNumberInput > div > div,
-    .stTextArea > div > textarea {{
-        background: {card_bg} !important;
-        color: {text_color} !important;
-        border: 1px solid rgba(255,255,255,0.15) !important;
-        border-radius: 8px !important;
+    div.stButton > button:first-child:hover,
+    div[data-testid="stFileUploader"] button:hover {{
+        filter: brightness(0.95);
+        transform: translateY(-1px);
     }}
 
-    /* === Selectbox & Multiselect === */
-    .stSelectbox > div > div,
-    .stMultiSelect > div > div {{
-        background: {card_bg} !important;
-        color: {text_color} !important;
-        border: 1px solid rgba(255,255,255,0.15) !important;
-        border-radius: 8px !important;
-    }}
-
-    /* === File uploader (zone de drop) === */
+    /* === Zone de drop du file uploader === */
     [data-testid="stFileUploaderDropzone"] {{
-        background: {card_bg} !important;
+        background: {widget_bg} !important;
         color: {text_color} !important;
         border: 1px dashed rgba(255,255,255,0.25) !important;
         border-radius: 10px !important;
     }}
 
-    /* === Alertes (success/warning/info) — plus sombres === */
-    .stAlert {{
-        background: rgba(255,255,255,0.05) !important;
+    /* === Inputs / selects / textarea === */
+    .stTextInput > div > div,
+    .stNumberInput > div > div,
+    .stTextArea > div > textarea,
+    .stSelectbox > div > div,
+    .stMultiSelect > div > div {{
+        background: {widget_bg} !important;
+        color: {text_color} !important;
         border: 1px solid rgba(255,255,255,0.15) !important;
+        border-radius: 8px !important;
     }}
 
     /* === Champs désactivés (ex: BBox courant) === */
@@ -114,10 +114,39 @@ def set_bg_and_text(
         border: 1px solid rgba(255,255,255,0.12) !important;
     }}
 
-    /* === Petites finitions === */
+    /* Finitions */
     hr {{ border-color: rgba(255,255,255,0.12) !important; }}
-    .stTabs [data-baseweb="tab-list"] {{ background: transparent !important; }}
-    .stTabs [data-baseweb="tab-highlight"] {{ background: {accent_color} !important; }}
+    </style>
+    """, unsafe_allow_html=True)
+
+
+
+def set_bg_image_url(url: str, cover=True, fixed=True):
+    st.markdown(f"""
+    <style>
+    [data-testid="stAppViewContainer"] {{
+        background-image: url("{url}");
+        background-repeat: no-repeat;
+        background-position: center center;
+        {"background-size: cover;" if cover else ""}
+        {"background-attachment: fixed;" if fixed else ""}
+    }}
+    </style>
+    """, unsafe_allow_html=True)
+
+
+def set_bg_image_local(path: str, cover=True, fixed=True):
+    with open(path, "rb") as f:
+        data = base64.b64encode(f.read()).decode()
+    st.markdown(f"""
+    <style>
+    [data-testid="stAppViewContainer"] {{
+        background-image: url("data:image/png;base64,{data}");
+        background-repeat: no-repeat;
+        background-position: center center;
+        {"background-size: cover;" if cover else ""}
+        {"background-attachment: fixed;" if fixed else ""}
+    }}
     </style>
     """, unsafe_allow_html=True)
 
@@ -127,16 +156,17 @@ st.set_page_config(
     page_icon="🌳",  # 👈 ajoute l’emoji ici !
     layout="wide"
 )
-
-set_bg_and_text(
+st.set_page_config(..., layout="wide")
+set_bg_and_text_minimal(
     image_url="https://images.pexels.com/photos/586056/pexels-photo-586056.jpeg?_gl=1*12low9a*_ga*MTgzNTE0NTgxNy4xNzYwMDk1MTE5*_ga_8JE65Q40S6*czE3NjAwOTUxMTgkbzEkZzAkdDE3NjAwOTUxMTgkajYwJGwwJGgw",
     text_color="#E8F1FA",
     sidebar_bg="#0D1B2A",
     sidebar_text="#F5F6FA",
     overlay_opacity=0.45,
-    card_bg="#182434",          
-    accent_color="#00B4D8"      
+    widget_bg="#1E2A3A",      
+    accent_green="#28a745"   
 )
+
 
 
 
