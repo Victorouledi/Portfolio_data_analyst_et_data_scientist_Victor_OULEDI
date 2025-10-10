@@ -458,16 +458,17 @@ m = folium.Map(
     zoom_start=st.session_state["map_zoom"],
     tiles=None,
     control_scale=True,
-    height=MAP_HEIGHT,
+    height=MAP_HEIGHT,        
 )
 
 # Forcer hauteur dès le premier paint
 _map_id = m.get_name()
 m.get_root().header.add_child(folium.Element(f"""
 <style>
-html, body {{ height: {MAP_HEIGHT}px !important; margin: 0; padding: 0; }}
-.folium-map, .leaflet-container {{ height: {MAP_HEIGHT}px !important; }}
-#{_map_id} {{ height: {MAP_HEIGHT}px !important; width: 100% !important; }}
+/* L’iframe Streamlit reçoit une hauteur fixe (height param). Ici on force la carte à remplir 100% de cette iframe */
+html, body {{ height: 100% !important; margin: 0 !important; padding: 0 !important; }}
+.folium-map, .leaflet-container {{ height: 100% !important; }}
+#{_map_id} {{ position: absolute; inset: 0; height: 100% !important; width: 100% !important; }}
 </style>
 """))
 
@@ -508,67 +509,52 @@ st.markdown("""
 
 ret = st_folium(
     m,
-    height=MAP_HEIGHT,
+    height=MAP_HEIGHT,        
     use_container_width=True,
     returned_objects=["last_active_drawing", "all_drawn_geojson", "all_drawings"],
     key=f"map_main_{st.session_state['map_nonce']}",
 )
 
+
 # 🔧 Nuke the white gap under the map (works on first load)
 st.markdown("""
 <style>
-/* 1) Remove default margins/padding around the component wrapper */
-div[data-testid="stComponent"]:has(> iframe[title="st_folium"]) {
-  margin-bottom: 0 !important;
-  padding-bottom: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-}
-
-/* 2) Streamlit often injects a sibling spacer right after the component: hide it */
-div[data-testid="stComponent"]:has(> iframe[title="st_folium"]) + div {
-  display: none !important;
-  height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  background: transparent !important;
-}
-
-/* 3) Some builds wrap again in a generic block container: make sure it can't be white */
-div[data-testid="stVerticalBlock"] > div:has(> iframe[title="st_folium"]) {
-  background: transparent !important;
-  margin-bottom: 0 !important;
-  padding-bottom: 0 !important;
-  box-shadow: none !important;
-}
-
-/* 4) Paranoia: kill any empty blocks that could stretch the page */
-div[data-testid="stVerticalBlock"] > div:empty {
-  display: none !important;
-  height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* 5) And keep the main container tight at the bottom */
-.block-container > div:last-child {
-  margin-bottom: 0 !important;
-  padding-bottom: 0 !important;
-}
+/* supprime les marges du bloc Folium */
+div[data-testid="stComponent"] { margin-bottom: 0 !important; padding-bottom: 0 !important; }
+/* supprime la marge du bloc suivant (les colonnes du bouton) */
+div[data-testid="stComponent"] + div { margin-top: 0 !important; padding-top: 0 !important; }
 </style>
 """, unsafe_allow_html=True)
 
 
+
 # ==========================================================
-#  Export PNG
+#  Export PNG (corrigé — sans espace blanc)
 # ==========================================================
+
+bbox = extract_bbox_from_stfolium(ret) if ret else None
+
+# Évite les marges verticales après la carte
+st.markdown(
+    "<div style='margin-top:0; margin-bottom:0; padding:0'></div>",
+    unsafe_allow_html=True
+)
+
+# Disposition en colonnes, bouton à gauche
 col1, col2 = st.columns([1, 3])
 with col1:
-    do_export = st.button("📸 Exporter PNG")
+    do_export = st.button("📸 Exporter PNG", use_container_width=True)
 with col2:
-    bbox = extract_bbox_from_stfolium(ret) if ret else None
-    st.write("**BBox courant :**", bbox if bbox else "— (aucun rectangle détecté)")
+    st.markdown(
+        f"<p style='margin:0; padding-top:6px; color:#E8F1FA;'>"
+        f"<strong>BBox courant :</strong> {bbox if bbox else '— (aucun rectangle détecté)'}"
+        f"</p>",
+        unsafe_allow_html=True,
+    )
 
+# ==========================================================
+#  Logique d’export
+# ==========================================================
 if do_export:
     if not bbox:
         st.warning("Trace d’abord un rectangle sur la carte.")
@@ -577,10 +563,16 @@ if do_export:
             png_bytes = stitch_tiles_to_bytes(bbox, z=EXPORT_ZOOM, add_attribution=add_attr)
             st.success("PNG généré en mémoire ✅")
             st.image(png_bytes, caption=f"Export bbox @ zoom {EXPORT_ZOOM}", use_column_width=True)
-            st.download_button("💾 Télécharger le PNG", data=png_bytes, file_name="export_bbox.png", mime="image/png")
+            st.download_button(
+                "💾 Télécharger le PNG",
+                data=png_bytes,
+                file_name="export_bbox.png",
+                mime="image/png"
+            )
             st.session_state["last_export_png"] = png_bytes
         except Exception as e:
             st.error(f"Erreur pendant l’export: {e}")
+
 
 # ==========================================================
 #  Inférence TFLite (robuste 4/5 champs + bump cache)
