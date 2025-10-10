@@ -15,9 +15,9 @@ feature_row:
     url: "/projets/imagerie-medicale/"
     btn_label: "Détails"
     btn_class: "btn--primary"
-  - title: "Data Analyse — Profils actionnaires Terre de Liens"
-    excerpt: "Pandas · NumPy · Statsmodels · comportements d’investissement."
-    url: "/projets/terre-de-liens/"
+  - title: "Computer Vision — Détection de la déforestation"
+    excerpt: "TensorFlow · Streamlit · Folium · déforestation · imagerie satellite"
+    url: "/projets/detection_deforestation/"
     btn_label: "Détails"
     btn_class: "btn--primary"
 
@@ -39,6 +39,11 @@ feature_row2:
     btn_class: "btn--primary"
 
 feature_row3:
+  - title: "Data Analyse — Profils actionnaires Terre de Liens"
+    excerpt: "Pandas · NumPy · Statsmodels · comportements d’investissement."
+    url: "/projets/terre-de-liens/"
+    btn_label: "Détails"
+    btn_class: "btn--primary"
   - title: "R (panel) — Prix hédoniques (Lyon)"
     excerpt: "DVF · modèles panel (plm) · tidyverse · ggplot2.              "
     url: "/projets/prix-hedoniques-lyon/"
