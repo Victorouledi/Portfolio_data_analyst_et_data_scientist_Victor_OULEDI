@@ -503,7 +503,7 @@ if geojson_file is not None and gj_data is not None:
 st.markdown("""
 - Naviguer sur la carte ou centrer la carte grâce à l'import d'un Geojson           
 - Zoomez jusqu’à une **échelle ≈ 1:150 000** (barre d’échelle **10 km**) pour de meilleures performances de détection. 
-- Dessinez un rectangle avec l'outil ⬛, puis cliquez **Exporter PNG** (bouton en bas de la page ou rafraîchir la page pour l'approcher)
+- Dessinez un rectangle avec l'outil ⬛, puis cliquez **Exporter PNG** 
 """)
 
 ret = st_folium(
