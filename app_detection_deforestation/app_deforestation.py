@@ -243,7 +243,7 @@ ESRI_URL    = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imager
 TILE_SIZE   = 256
 USER_AGENT  = "Mozilla/5.0 (BBox Exporter - Streamlit)"
 EXPORT_ZOOM = 11
-MAP_HEIGHT  = 600
+MAP_HEIGHT  = 800
 
 def clamp_lat(lat: float) -> float:
     MAX_LAT = 85.05112878
@@ -519,21 +519,27 @@ st.components.v1.html(
     f"""
     <script>
     (function fixFoliumIframe() {{
-      // Essaye tout de suite…
-      const apply = () => {{
-        const iframes = window.parent.document.querySelectorAll('iframe[title="st_folium"]');
+      const H = {MAP_HEIGHT};
+      function apply() {{
+        const iframes = window.parent.document.querySelectorAll(
+          'iframe[title="st_folium"],iframe[title="streamlit_folium.st_folium"]'
+        );
         if (iframes.length === 0) return false;
         const iframe = iframes[iframes.length - 1];
-        iframe.style.height = "{MAP_HEIGHT}px";
-        iframe.style.maxHeight = "{MAP_HEIGHT}px";
-        iframe.style.minHeight = "{MAP_HEIGHT}px";
+        iframe.style.height = H + "px";
+        iframe.style.minHeight = H + "px";
+        iframe.style.maxHeight = H + "px";
+        // Fixe aussi le conteneur parent (certaines builds Streamlit en ont besoin)
+        const parent = iframe.parentElement;
+        if (parent) {{
+          parent.style.height = H + "px";
+          parent.style.minHeight = H + "px";
+          parent.style.maxHeight = H + "px";
+        }}
         return true;
-      }};
+      }}
       if (!apply()) {{
-        // …puis ré-essaye un peu plus tard si l’iframe n’est pas encore là
-        setTimeout(apply, 50);
-        setTimeout(apply, 150);
-        setTimeout(apply, 400);
+        [50, 150, 400, 800].forEach(t => setTimeout(apply, t));
       }}
     }})();
     </script>
@@ -541,14 +547,20 @@ st.components.v1.html(
     height=0,
 )
 
-st.markdown("""
+st.markdown(f"""
 <style>
-/* wrapper du composant */
-div[data-testid="stComponent"] { margin-bottom:0 !important; padding-bottom:0 !important; }
-/* bloc suivant (tes colonnes) */
-div[data-testid="stComponent"] + div { margin-top:0 !important; padding-top:0 !important; }
+iframe[title="st_folium"],
+iframe[title="streamlit_folium.st_folium"] {{
+  height: {MAP_HEIGHT}px !important;
+  min-height: {MAP_HEIGHT}px !important;
+  max-height: {MAP_HEIGHT}px !important;
+}}
+/* supprime les marges autour du composant et du bloc suivant (tes colonnes) */
+div[data-testid="stComponent"] {{ margin-bottom:0 !important; padding-bottom:0 !important; }}
+div[data-testid="stComponent"] + div {{ margin-top:0 !important; padding-top:0 !important; }}
 </style>
 """, unsafe_allow_html=True)
+
 
 
 # ==========================================================
