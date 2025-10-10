@@ -52,7 +52,7 @@ Le modèle repose sur un **ResNet50 pré-entraîné sur ImageNet**, adapté pour
 1. **Backbone ResNet50 gelé** au départ (extraction de caractéristiques visuelles générales).  
 2. **Fine-tuning partiel** sur les derniers blocs pour spécialiser sur les motifs de déforestation.  
 3. **Tête de classification** légère : *Global Average Pooling + Dropout + Dense(2, softmax)*.  
-4. **Rééquilibrage de classes** par pondération du loss et sur-échantillonnage des patches minoritaires.  
+4. **Rééquilibrage de classes** par pondération de la loss et sur-échantillonnage des patches minoritaires.  
 5. **Data augmentation** : flips, rotations, zooms, translations pour renforcer la robustesse.  
 6. **Test-Time Augmentation (TTA)** lors de l’inférence : moyenne des prédictions de plusieurs vues transformées.  
 
