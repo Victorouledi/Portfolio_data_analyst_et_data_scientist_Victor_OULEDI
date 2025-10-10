@@ -19,7 +19,7 @@ Application web interactive pour **détecter automatiquement la déforestation**
 - 📸 **Export PNG** : téléchargement automatique de la zone sélectionnée en image satellite haute résolution.  
 - 🧠 **Inférence intégrée** : possibilité d’analyser directement le PNG exporté via le modèle de détection de déforestation.  
 - ✅ **Résultats instantanés** : prédiction binaire (“déforestation” / “non déforestation”) avec probabilité associée.  
-- 🧩 **Interface épurée** : design harmonisé (CSS custom Streamlit), affichage réactif sans espace blanc parasite sous la carte.  
+- 🧩 **Interface épurée** : design harmonisé et interactif (CSS custom Streamlit)
 
 > Le flux complet — de la sélection géographique jusqu’à la prédiction — s’exécute entièrement dans le navigateur Streamlit.
 
