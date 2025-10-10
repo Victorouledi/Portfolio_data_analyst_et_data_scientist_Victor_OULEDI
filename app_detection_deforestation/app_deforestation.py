@@ -149,6 +149,42 @@ def set_bg_and_text_minimal(
     """, unsafe_allow_html=True)
 
 
+st.markdown("""
+<style>
+/* Plain pre (no box) */
+.prob-plain{
+  background: transparent !important;
+  color: #E8F1FA !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 0 1rem 0 !important;
+  white-space: pre-wrap;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.95rem;
+}
+/* Panel pre (same blue as inputs) */
+.prob-panel{
+  background: #1E2A3A !important;            /* ton widget_bg */
+  color: #E8F1FA !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  border-radius: 10px !important;
+  padding: 10px 12px !important;
+  white-space: pre-wrap;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.95rem;
+}
+/* Neutraliser totalement le viewer JSON intégré (au cas où) */
+[data-testid="stJson"], [data-testid="stJson"] *,
+[data-testid="stJsonViewer"], [data-testid="stJsonViewer"] *,
+div[role="tree"]{
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
 
 
 
@@ -699,4 +735,6 @@ if show_infer:
             st.markdown(f"### Classe prédite : `{CLASS_NAMES[idx]}` ({proba[idx]:.3f})")
 
         st.write("**Détail des probabilités**")
-        st.json({c: float(p) for c, p in zip(CLASS_NAMES, proba)})
+        prob_dict = {c: float(p) for c, p in zip(CLASS_NAMES, proba)}
+        json_str = json.dumps(prob_dict, indent=2, ensure_ascii=False)
+        st.markdown(f"<pre class='prob-plain'>{json_str}</pre>", unsafe_allow_html=True)
