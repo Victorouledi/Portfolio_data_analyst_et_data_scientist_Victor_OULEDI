@@ -243,7 +243,7 @@ ESRI_URL    = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imager
 TILE_SIZE   = 256
 USER_AGENT  = "Mozilla/5.0 (BBox Exporter - Streamlit)"
 EXPORT_ZOOM = 11
-MAP_HEIGHT  = 800
+MAP_HEIGHT  = 600
 
 def clamp_lat(lat: float) -> float:
     MAX_LAT = 85.05112878
