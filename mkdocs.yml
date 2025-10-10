@@ -45,6 +45,7 @@ nav:
       - Aperçu: projets/index.md
       - IA & NLP — Classification de plaintes: projets/nlp-lstm.md
       - Computer Vision — Imagerie médicale: projets/imagerie-medicale.md
+      - Computer Vision — Détection de la déforestation : projets/detection_deforestation.md
       - Clustering & ACP — Criminalité aux États-Unis: projets/crime-usa.md
       - AFC — Élections 2022 (IDF): projets/elections-afc.md
       - Data Analysis in R — Prix hédoniques (Lyon): projets/prix-hedoniques-lyon.md
