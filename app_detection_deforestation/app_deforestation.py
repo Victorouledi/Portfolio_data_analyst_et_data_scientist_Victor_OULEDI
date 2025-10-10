@@ -439,7 +439,7 @@ with st.sidebar:
         Choisir un niveau d'
         <strong>échelle cartographique d’environ 1 :150 000</strong>,
         soit une <strong>barre d’échelle d’environ 10 km</strong> visible sur la carte.<br>
-        Et dessiner un rectangle de <strong>1/10 la taille de la carte</strong> 
+        Et dessiner un rectangle d'environ <strong>1/10 la taille de la carte</strong>.
         Ce niveau offre un bon compromis entre zone couverte et détails visibles,
         et améliore la qualité des prédictions de déforestation. </div> """,
         unsafe_allow_html=True,
