@@ -121,34 +121,7 @@ def set_bg_and_text_minimal(
 
 
 
-def set_bg_image_url(url: str, cover=True, fixed=True):
-    st.markdown(f"""
-    <style>
-    [data-testid="stAppViewContainer"] {{
-        background-image: url("{url}");
-        background-repeat: no-repeat;
-        background-position: center center;
-        {"background-size: cover;" if cover else ""}
-        {"background-attachment: fixed;" if fixed else ""}
-    }}
-    </style>
-    """, unsafe_allow_html=True)
 
-
-def set_bg_image_local(path: str, cover=True, fixed=True):
-    with open(path, "rb") as f:
-        data = base64.b64encode(f.read()).decode()
-    st.markdown(f"""
-    <style>
-    [data-testid="stAppViewContainer"] {{
-        background-image: url("data:image/png;base64,{data}");
-        background-repeat: no-repeat;
-        background-position: center center;
-        {"background-size: cover;" if cover else ""}
-        {"background-attachment: fixed;" if fixed else ""}
-    }}
-    </style>
-    """, unsafe_allow_html=True)
 
 
 st.set_page_config(
@@ -156,7 +129,6 @@ st.set_page_config(
     page_icon="🌳",  # 👈 ajoute l’emoji ici !
     layout="wide"
 )
-st.set_page_config(..., layout="wide")
 set_bg_and_text_minimal(
     image_url="https://images.pexels.com/photos/586056/pexels-photo-586056.jpeg?_gl=1*12low9a*_ga*MTgzNTE0NTgxNy4xNzYwMDk1MTE5*_ga_8JE65Q40S6*czE3NjAwOTUxMTgkbzEkZzAkdDE3NjAwOTUxMTgkajYwJGwwJGgw",
     text_color="#E8F1FA",
