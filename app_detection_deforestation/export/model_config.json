@@ -1,0 +1,11 @@
+{
+  "class_names": [
+    "no_deforestation",
+    "deforestation"
+  ],
+  "img_size": [
+    224,
+    224
+  ],
+  "threshold": 0.5
+}
