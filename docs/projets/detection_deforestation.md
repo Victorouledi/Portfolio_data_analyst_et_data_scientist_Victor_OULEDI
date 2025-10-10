@@ -75,7 +75,7 @@ Le modèle est exporté en **TensorFlow Lite quantifié**, assurant des prédict
 ---
 
 ## Limites & pistes d’évolution
-- 🛰️ **Enrichir les données** : étendre à d’autres régions (Afrique, Asie du Sud-Est) pour plus de diversité.  
+- 🛰️ **Enrichir les données** : étendre à d’autres régions (Afrique, Asie du Sud-Est) pour plus de diversité (réelle distinction entre déforestation et zones désertiques).  
 - ⚙️ **Améliorer la résolution** : intégrer Sentinel-1 (radar) ou PlanetScope pour les cas nuageux.  
 - 🧮 **Interprétabilité** : ajout d’un module **Grad-CAM** pour visualiser les zones qui influencent la décision.  
 - 🌐 **API / batch mode** : permettre le traitement automatique de plusieurs zones via un endpoint.  
