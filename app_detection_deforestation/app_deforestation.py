@@ -80,6 +80,7 @@ st.set_page_config(
     layout="wide"
 )
 set_bg_color(color="#0D1B2A", text="#F5F6FA", secondary="#1B263B", sidebar_text="#F5F6FA")
+set_bg_image_url("https://images.pexels.com/photos/586056/pexels-photo-586056.jpeg?_gl=1*12low9a*_ga*MTgzNTE0NTgxNy4xNzYwMDk1MTE5*_ga_8JE65Q40S6*czE3NjAwOTUxMTgkbzEkZzAkdDE3NjAwOTUxMTgkajYwJGwwJGgw")
 
 
 
