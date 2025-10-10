@@ -30,8 +30,8 @@ def set_bg_and_text_minimal(
     sidebar_bg: str = "#1B263B",
     sidebar_text: str = "#F5F6FA",
     overlay_opacity: float = 0.5,
-    widget_bg: str = "#182434",      # fond sombre pour inputs & uploader
-    accent_green: str = "#28a745"    # vert des boutons
+    widget_bg: str = "#1E2A3A",      # même bleu que ta dropzone
+    accent_green: str = "#28a745"    # vert boutons
 ):
     import streamlit as st
     st.markdown(f"""
@@ -55,7 +55,7 @@ def set_bg_and_text_minimal(
     .stApp, .stApp * {{ color: {text_color} !important; }}
     .block-container {{ background: transparent !important; }}
 
-    /* === IMPORTANT: Pas d'encadrés par défaut autour des blocs/markdown === */
+    /* === Pas d'encadrés autour des blocs/markdown === */
     [data-testid="stVerticalBlock"] > div,
     .stMarkdown div,
     [data-testid="stHeader"] > div {{
@@ -64,15 +64,16 @@ def set_bg_and_text_minimal(
         box-shadow: none !important;
     }}
 
-    /* === Expander: transparent (si tu en utilises) === */
+    /* === Expander (si utilisé) === */
     [data-testid="stExpander"] {{
         background: transparent !important;
         border: 1px solid rgba(255,255,255,0.10) !important;
         border-radius: 8px !important;
     }}
 
-    /* === Boutons verts (tous) === */
+    /* === Boutons verts (y compris Download) === */
     div.stButton > button:first-child,
+    div.stDownloadButton > button,
     div[data-testid="stFileUploader"] button {{
         background-color: {accent_green} !important;
         color: #fff !important;
@@ -82,6 +83,7 @@ def set_bg_and_text_minimal(
         transition: 0.2s ease;
     }}
     div.stButton > button:first-child:hover,
+    div.stDownloadButton > button:hover,
     div[data-testid="stFileUploader"] button:hover {{
         filter: brightness(0.95);
         transform: translateY(-1px);
@@ -95,29 +97,45 @@ def set_bg_and_text_minimal(
         border-radius: 10px !important;
     }}
 
-    /* === Inputs / selects / textarea === */
+    /* === Inputs / selects / textarea (normaux + désactivés) === */
     .stTextInput > div > div,
     .stNumberInput > div > div,
     .stTextArea > div > textarea,
     .stSelectbox > div > div,
-    .stMultiSelect > div > div {{
+    .stMultiSelect > div > div,
+    .stTextInput input, .stNumberInput input {{
         background: {widget_bg} !important;
         color: {text_color} !important;
         border: 1px solid rgba(255,255,255,0.15) !important;
         border-radius: 8px !important;
     }}
-
-    /* === Champs désactivés (ex: BBox courant) === */
     input[disabled], textarea[disabled] {{
         background: rgba(255,255,255,0.06) !important;
         color: {text_color} !important;
         border: 1px solid rgba(255,255,255,0.12) !important;
     }}
 
+    /* === JSON pretty (st.json) === */
+    [data-testid="stJson"] pre {{
+        background: {widget_bg} !important;
+        color: {text_color} !important;
+        border: 1px solid rgba(255,255,255,0.15) !important;
+        border-radius: 10px !important;
+    }}
+
+    /* === Code/pre au cas où le BBox est rendu en <pre> === */
+    pre, code, .stCodeBlock {{
+        background: {widget_bg} !important;
+        color: {text_color} !important;
+        border: 1px solid rgba(255,255,255,0.12) !important;
+        border-radius: 8px !important;
+    }}
+
     /* Finitions */
     hr {{ border-color: rgba(255,255,255,0.12) !important; }}
     </style>
     """, unsafe_allow_html=True)
+
 
 
 
