@@ -28,9 +28,9 @@ feature_row_home:
     url: "/projets/imagerie-medicale/"
     btn_label: "Détails"
     btn_class: "btn--primary"
-  - title: "Data Analyse — Profils actionnaires Terre de Liens"
-    excerpt: "Profilage actionnaires • comportements d’investissement."
-    url: "/projets/terre-de-liens/"
+  - title: "Computer Vision — Détection de la déforestation"
+    excerpt: "TensorFlow · Streamlit · Folium · déforestation · imagerie satellite"
+    url: "/projets/detection_deforestation/"
     btn_label: "Détails"
     btn_class: "btn--primary"
 ---
