@@ -24,52 +24,100 @@ except Exception:
 
 
 
-def set_bg_color(color="#0D1B2A", text="#F5F6FA",
-                 secondary="#1B263B", sidebar_text="#F5F6FA"):
+def set_bg_and_text(
+    image_url: str,
+    text_color: str = "#F5F6FA",
+    sidebar_bg: str = "#1B263B",
+    sidebar_text: str = "#F5F6FA",
+    overlay_opacity: float = 0.5,
+    card_bg: str = "#1E2A3A",
+    accent_color: str = "#00B4D8"
+):
     st.markdown(f"""
     <style>
-    /* page */
+    /* === Fond global (image + overlay) === */
     [data-testid="stAppViewContainer"] {{
-        background: {color} !important;
+        background:
+          linear-gradient(rgba(13,27,42,{overlay_opacity}), rgba(13,27,42,{overlay_opacity})),
+          url('{image_url}') no-repeat center center fixed !important;
+        background-size: cover !important;
     }}
-    /* sidebar */
+
+    /* === Sidebar === */
     [data-testid="stSidebar"] > div:first-child {{
-        background: {secondary} !important;
+        background: {sidebar_bg} !important;
         color: {sidebar_text} !important;
     }}
     [data-testid="stSidebar"] * {{ color: {sidebar_text} !important; }}
-    /* texte global */
-    .stApp, .stApp * {{ color: {text}; }}
-    </style>
-    """, unsafe_allow_html=True)
 
+    /* === Texte global & conteneur principal === */
+    .stApp, .stApp * {{ color: {text_color} !important; }}
+    .block-container {{ background: transparent !important; }}
 
-def set_bg_image_url(url: str, cover=True, fixed=True):
-    st.markdown(f"""
-    <style>
-    [data-testid="stAppViewContainer"] {{
-        background-image: url("{url}");
-        background-repeat: no-repeat;
-        background-position: center center;
-        {"background-size: cover;" if cover else ""}
-        {"background-attachment: fixed;" if fixed else ""}
+    /* === Cartes, encadrés, expandeurs, images, tableaux === */
+    [data-testid="stExpander"],
+    [data-testid="stVerticalBlock"] > div,
+    .stMarkdown div,
+    .stImage, .stTable, .stDataFrame, [data-testid="stForm"],
+    [data-testid="stMetric"], .stPlotlyChart {{
+        background: {card_bg} !important;
+        border-radius: 10px !important;
+        border: 1px solid rgba(255,255,255,0.10) !important;
     }}
-    </style>
-    """, unsafe_allow_html=True)
 
-
-def set_bg_image_local(path: str, cover=True, fixed=True):
-    with open(path, "rb") as f:
-        data = base64.b64encode(f.read()).decode()
-    st.markdown(f"""
-    <style>
-    [data-testid="stAppViewContainer"] {{
-        background-image: url("data:image/png;base64,{data}");
-        background-repeat: no-repeat;
-        background-position: center center;
-        {"background-size: cover;" if cover else ""}
-        {"background-attachment: fixed;" if fixed else ""}
+    /* === Boutons === */
+    div.stButton > button:first-child {{
+        background-color: {accent_color} !important;
+        color: #fff !important;
+        border: 0 !important; border-radius: 6px !important;
+        font-weight: 600 !important; transition: 0.2s ease;
     }}
+    div.stButton > button:hover {{ transform: scale(1.03); }}
+
+    /* === Inputs texte / nombre / zone de texte === */
+    .stTextInput > div > div,
+    .stNumberInput > div > div,
+    .stTextArea > div > textarea {{
+        background: {card_bg} !important;
+        color: {text_color} !important;
+        border: 1px solid rgba(255,255,255,0.15) !important;
+        border-radius: 8px !important;
+    }}
+
+    /* === Selectbox & Multiselect === */
+    .stSelectbox > div > div,
+    .stMultiSelect > div > div {{
+        background: {card_bg} !important;
+        color: {text_color} !important;
+        border: 1px solid rgba(255,255,255,0.15) !important;
+        border-radius: 8px !important;
+    }}
+
+    /* === File uploader (zone de drop) === */
+    [data-testid="stFileUploaderDropzone"] {{
+        background: {card_bg} !important;
+        color: {text_color} !important;
+        border: 1px dashed rgba(255,255,255,0.25) !important;
+        border-radius: 10px !important;
+    }}
+
+    /* === Alertes (success/warning/info) — plus sombres === */
+    .stAlert {{
+        background: rgba(255,255,255,0.05) !important;
+        border: 1px solid rgba(255,255,255,0.15) !important;
+    }}
+
+    /* === Champs désactivés (ex: BBox courant) === */
+    input[disabled], textarea[disabled] {{
+        background: rgba(255,255,255,0.06) !important;
+        color: {text_color} !important;
+        border: 1px solid rgba(255,255,255,0.12) !important;
+    }}
+
+    /* === Petites finitions === */
+    hr {{ border-color: rgba(255,255,255,0.12) !important; }}
+    .stTabs [data-baseweb="tab-list"] {{ background: transparent !important; }}
+    .stTabs [data-baseweb="tab-highlight"] {{ background: {accent_color} !important; }}
     </style>
     """, unsafe_allow_html=True)
 
@@ -79,9 +127,16 @@ st.set_page_config(
     page_icon="🌳",  # 👈 ajoute l’emoji ici !
     layout="wide"
 )
-set_bg_color(color="#0D1B2A", text="#F5F6FA", secondary="#1B263B", sidebar_text="#F5F6FA")
-set_bg_image_url("https://images.pexels.com/photos/586056/pexels-photo-586056.jpeg?_gl=1*12low9a*_ga*MTgzNTE0NTgxNy4xNzYwMDk1MTE5*_ga_8JE65Q40S6*czE3NjAwOTUxMTgkbzEkZzAkdDE3NjAwOTUxMTgkajYwJGwwJGgw")
 
+set_bg_and_text(
+    image_url="https://images.pexels.com/photos/586056/pexels-photo-586056.jpeg?_gl=1*12low9a*_ga*MTgzNTE0NTgxNy4xNzYwMDk1MTE5*_ga_8JE65Q40S6*czE3NjAwOTUxMTgkbzEkZzAkdDE3NjAwOTUxMTgkajYwJGwwJGgw",
+    text_color="#E8F1FA",
+    sidebar_bg="#0D1B2A",
+    sidebar_text="#F5F6FA",
+    overlay_opacity=0.45,
+    card_bg="#182434",          
+    accent_color="#00B4D8"      
+)
 
 
 
