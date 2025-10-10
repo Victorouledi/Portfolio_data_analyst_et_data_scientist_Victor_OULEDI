@@ -1,0 +1,9 @@
+[theme]
+primaryColor = "#1D428A"              # Bleu Airbus (accent principal)
+backgroundColor = "#0D1B2A"           # Bleu nuit pour le fond principal
+secondaryBackgroundColor = "#1B263B"  # Légèrement plus clair pour la sidebar
+textColor = "#F5F6FA"                 # Presque blanc pour une lecture claire
+font = "sans serif"
+
+[ui]
+borderRadius = 8
