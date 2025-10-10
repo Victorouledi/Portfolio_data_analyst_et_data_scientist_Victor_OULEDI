@@ -115,38 +115,28 @@ def set_bg_and_text_minimal(
         border: 1px solid rgba(255,255,255,0.12) !important;
     }}
 
-    /* === JSON pretty (st.json) === */
     /* === st.json (toutes versions connues) === */
     [data-testid="stJson"],
     [data-testid="stJson"] pre,
     [data-testid="stJson"] code,
-    div[role="tree"] {
-    background: {widget_bg} !important;
-    color: {text_color} !important;
-    border: 1px solid rgba(255,255,255,0.15) !important;
-    border-radius: 10px !important;
-    }
+    div[role="tree"] {{
+        background: {widget_bg} !important;
+        color: {text_color} !important;
+        border: 1px solid rgba(255,255,255,0.15) !important;
+        border-radius: 10px !important;
+    }}
     /* Forcer couleur des clés/valeurs */
     [data-testid="stJson"] span,
-    div[role="tree"] span {
-    color: {text_color} !important;
-    }
+    div[role="tree"] span {{
+        color: {text_color} !important;
+    }}
     /* Enlever ombres/marges parasites éventuelles */
-    [data-testid="stJson"] * {
-    box-shadow: none !important;
-    }
+    [data-testid="stJson"] * {{
+        box-shadow: none !important;
+    }}
 
     /* === Code/pre/chips (ex. la BBox et les backticks) === */
-    pre, code, .stCodeBlock,
-    .stMarkdown code {
-    background: {widget_bg} !important;
-    color: {text_color} !important;
-    border: 1px solid rgba(255,255,255,0.12) !important;
-    border-radius: 8px !important;
-    }
-
-    /* === Code/pre au cas où le BBox est rendu en <pre> === */
-    pre, code, .stCodeBlock {{
+    pre, code, .stCodeBlock, .stMarkdown code {{
         background: {widget_bg} !important;
         color: {text_color} !important;
         border: 1px solid rgba(255,255,255,0.12) !important;
@@ -157,8 +147,6 @@ def set_bg_and_text_minimal(
     hr {{ border-color: rgba(255,255,255,0.12) !important; }}
     </style>
     """, unsafe_allow_html=True)
-
-
 
 
 
