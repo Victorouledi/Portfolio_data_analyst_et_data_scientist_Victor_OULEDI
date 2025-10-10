@@ -58,7 +58,7 @@ Le modèle repose sur un **ResNet50 pré-entraîné sur ImageNet**, adapté pour
 
 Le modèle est exporté en **TensorFlow Lite quantifié**, assurant des prédictions rapides et légères directement dans l’application.
 
-![](../asset/Computer_vision/images/accuracy_traingin_deforest.png)
+![](../asset/Computer_vision/images/accuracy_training_deforest.png)
 
 
 ---
