@@ -116,12 +116,34 @@ def set_bg_and_text_minimal(
     }}
 
     /* === JSON pretty (st.json) === */
-    [data-testid="stJson"] pre {{
-        background: {widget_bg} !important;
-        color: {text_color} !important;
-        border: 1px solid rgba(255,255,255,0.15) !important;
-        border-radius: 10px !important;
-    }}
+    /* === st.json (toutes versions connues) === */
+    [data-testid="stJson"],
+    [data-testid="stJson"] pre,
+    [data-testid="stJson"] code,
+    div[role="tree"] {
+    background: {widget_bg} !important;
+    color: {text_color} !important;
+    border: 1px solid rgba(255,255,255,0.15) !important;
+    border-radius: 10px !important;
+    }
+    /* Forcer couleur des clés/valeurs */
+    [data-testid="stJson"] span,
+    div[role="tree"] span {
+    color: {text_color} !important;
+    }
+    /* Enlever ombres/marges parasites éventuelles */
+    [data-testid="stJson"] * {
+    box-shadow: none !important;
+    }
+
+    /* === Code/pre/chips (ex. la BBox et les backticks) === */
+    pre, code, .stCodeBlock,
+    .stMarkdown code {
+    background: {widget_bg} !important;
+    color: {text_color} !important;
+    border: 1px solid rgba(255,255,255,0.12) !important;
+    border-radius: 8px !important;
+    }
 
     /* === Code/pre au cas où le BBox est rendu en <pre> === */
     pre, code, .stCodeBlock {{
@@ -374,7 +396,7 @@ if "map_nonce" not in st.session_state:
 # ==========================
 with st.sidebar:
     # --- 1) GeoJSON en premier ---
-    st.subheader("Centrage de la carte grâce à un GeoJSON importer en local")
+    st.subheader("Centrage de la carte grâce à un GeoJSON à importer en local")
     geojson_file = st.file_uploader(
         "Charger un GeoJSON (WGS84)",
         type=["geojson", "json"],
