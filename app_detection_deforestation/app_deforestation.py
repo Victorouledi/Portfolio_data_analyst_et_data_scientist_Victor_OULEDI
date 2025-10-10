@@ -149,6 +149,25 @@ def set_bg_and_text_minimal(
     """, unsafe_allow_html=True)
 
 
+
+
+
+st.set_page_config(
+    page_title="Détection de la déforestation en Amazonie – sélection de zone et inférence",
+    page_icon="🌳",  # 👈 ajoute l’emoji ici !
+    layout="wide"
+)
+set_bg_and_text_minimal(
+    image_url="https://images.pexels.com/photos/586056/pexels-photo-586056.jpeg?_gl=1*12low9a*_ga*MTgzNTE0NTgxNy4xNzYwMDk1MTE5*_ga_8JE65Q40S6*czE3NjAwOTUxMTgkbzEkZzAkdDE3NjAwOTUxMTgkajYwJGwwJGgw",
+    text_color="#E8F1FA",
+    sidebar_bg="#0D1B2A",
+    sidebar_text="#F5F6FA",
+    overlay_opacity=0.45,
+    widget_bg="#1E2A3A",      
+    accent_green="#28a745"   
+)
+
+
 st.markdown("""
 <style>
 /* Plain pre (no box) */
@@ -184,27 +203,6 @@ div[role="tree"]{
 }
 </style>
 """, unsafe_allow_html=True)
-
-
-
-
-st.set_page_config(
-    page_title="Détection de la déforestation en Amazonie – sélection de zone et inférence",
-    page_icon="🌳",  # 👈 ajoute l’emoji ici !
-    layout="wide"
-)
-set_bg_and_text_minimal(
-    image_url="https://images.pexels.com/photos/586056/pexels-photo-586056.jpeg?_gl=1*12low9a*_ga*MTgzNTE0NTgxNy4xNzYwMDk1MTE5*_ga_8JE65Q40S6*czE3NjAwOTUxMTgkbzEkZzAkdDE3NjAwOTUxMTgkajYwJGwwJGgw",
-    text_color="#E8F1FA",
-    sidebar_bg="#0D1B2A",
-    sidebar_text="#F5F6FA",
-    overlay_opacity=0.45,
-    widget_bg="#1E2A3A",      
-    accent_green="#28a745"   
-)
-
-
-
 
 
 st.markdown(
