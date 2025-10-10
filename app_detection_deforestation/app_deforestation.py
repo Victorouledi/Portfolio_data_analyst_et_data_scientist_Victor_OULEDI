@@ -501,7 +501,7 @@ if geojson_file is not None and gj_data is not None:
         pass
 
 st.markdown("""
-- Naviguer sur la carte ou centrer la carte grâce à l'import d'un Geojson           
+- Naviguez sur la carte ou centrez la carte grâce à l'import d'un Geojson           
 - Zoomez jusqu’à une **échelle ≈ 1:150 000** (barre d’échelle **10 km** en bas à gauche) pour de meilleures performances de détection. 
 - Dessinez un rectangle avec l'outil ⬛, puis cliquez sur **Exporter PNG** 
 - Pour lancer la prédiction de déforestation sur la zone sélectionnée, cliquez sur **Tester l'inférence** 
