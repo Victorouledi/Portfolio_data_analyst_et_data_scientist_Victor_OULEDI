@@ -45,7 +45,7 @@ Application web interactive pour **détecter automatiquement la déforestation**
 
 ## Modèle & entraînement
 Le modèle repose sur un **ResNet50 pré-entraîné sur ImageNet**, adapté pour la classification binaire.  
-👉 [Voir le Notebook d'entrainement](../asset/app_detection_deforestation/deforestation_resnet_pipeline.ipynb)
+👉 [Voir le Notebook d'entrainement](https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/blob/portfolio/docs/asset/app_detection_deforestation/deforestation_resnet_pipeline.ipynb)
 
 
 **Pipeline simplifié :**
