@@ -232,26 +232,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# JS : tuer le spacer autour de l'iframe au premier rendu
-st_javascript("""
-(() => {
-  const fix = () => {
-    const iframes = parent.document.querySelectorAll('iframe[title="st_folium"]');
-    if (!iframes.length) return;
-    const ifr = iframes[iframes.length - 1];
-    const wrap = ifr.closest('div[data-testid="stComponent"]');
-    if (wrap) {
-      wrap.style.marginBottom = '0px';
-      const sib = wrap.nextElementSibling;
-      if (sib && sib.style && sib.style.height) sib.style.height = '0px';
-    }
-  };
-  fix();
-  const obs = new MutationObserver(() => fix());
-  obs.observe(parent.document.body, { childList: true, subtree: true });
-  setTimeout(fix, 120);
-})();
-""")
+
 
 st.title("🛰️ Détection de la déforestation en Amazonie – sélection de zones et inférence")
 
@@ -533,6 +514,30 @@ ret = st_folium(
     key=f"map_main_{st.session_state['map_nonce']}",    # <-- here
 )
 
+st.markdown("""
+<style>
+/* Élimine toute marge ou espace après le composant folium */
+div[data-testid="stVerticalBlock"] > div:has(> iframe[title="st_folium"]),
+div[data-testid="stComponent"]:has(> iframe[title="st_folium"]) {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* Supprime les conteneurs Streamlit vides créés juste après */
+div[data-testid="stVerticalBlock"] > div:empty {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Supprime la marge globale sous le dernier bloc de carte */
+.block-container > div:last-child {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+</style>
+""", unsafe_allow_html=True)
 
 # ==========================================================
 #  Export PNG
