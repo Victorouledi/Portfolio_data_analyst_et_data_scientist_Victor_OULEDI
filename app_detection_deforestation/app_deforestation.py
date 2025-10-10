@@ -79,7 +79,7 @@ st.set_page_config(
     page_icon="🌳",  # 👈 ajoute l’emoji ici !
     layout="wide"
 )
-set_bg_image_url("https://lejournal.cnrs.fr/sites/default/files/styles/visuel_principal/public/assets/images/pia25623_vp_0.jpg?itok=X7tUYmWX")
+set_bg_color(color="#0D1B2A", text="#F5F6FA", secondary="#1B263B", sidebar_text="#F5F6FA")
 
 
 
