@@ -1,6 +1,6 @@
 ---
 title: "Computer Vision — Détection de la déforestation à partir d’imageries satellite"
-permalink: /projets/detection-deforestation/
+permalink: /projets/detection_deforestation/
 layout: single
 classes: wide
 toc: true
