@@ -22,13 +22,6 @@ except Exception:
     def st_javascript(*args, **kwargs):
         return None
 
-st.set_page_config(
-    page_title="Détection de la déforestation en Amazonie – sélection de zone et inférence",
-    page_icon="🌳",  # 👈 ajoute l’emoji ici !
-    layout="wide"
-)
-set_bg_image_url("https://lejournal.cnrs.fr/sites/default/files/styles/visuel_principal/public/assets/images/pia25623_vp_0.jpg?itok=X7tUYmWX")
-
 
 
 def set_bg_color(color="#0D1B2A", text="#F5F6FA",
@@ -79,6 +72,17 @@ def set_bg_image_local(path: str, cover=True, fixed=True):
     }}
     </style>
     """, unsafe_allow_html=True)
+
+
+st.set_page_config(
+    page_title="Détection de la déforestation en Amazonie – sélection de zone et inférence",
+    page_icon="🌳",  # 👈 ajoute l’emoji ici !
+    layout="wide"
+)
+set_bg_image_url("https://lejournal.cnrs.fr/sites/default/files/styles/visuel_principal/public/assets/images/pia25623_vp_0.jpg?itok=X7tUYmWX")
+
+
+
 
 
 st.markdown(
