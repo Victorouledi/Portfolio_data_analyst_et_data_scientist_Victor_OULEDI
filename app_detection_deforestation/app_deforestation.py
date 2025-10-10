@@ -511,33 +511,53 @@ ret = st_folium(
     height=MAP_HEIGHT,
     use_container_width=True,
     returned_objects=["last_active_drawing", "all_drawn_geojson", "all_drawings"],
-    key=f"map_main_{st.session_state['map_nonce']}",    # <-- here
+    key=f"map_main_{st.session_state['map_nonce']}",
 )
 
+# 🔧 Nuke the white gap under the map (works on first load)
 st.markdown("""
 <style>
-/* Élimine toute marge ou espace après le composant folium */
-div[data-testid="stVerticalBlock"] > div:has(> iframe[title="st_folium"]),
+/* 1) Remove default margins/padding around the component wrapper */
 div[data-testid="stComponent"]:has(> iframe[title="st_folium"]) {
-    margin-bottom: 0 !important;
-    padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
-/* Supprime les conteneurs Streamlit vides créés juste après */
+/* 2) Streamlit often injects a sibling spacer right after the component: hide it */
+div[data-testid="stComponent"]:has(> iframe[title="st_folium"]) + div {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+/* 3) Some builds wrap again in a generic block container: make sure it can't be white */
+div[data-testid="stVerticalBlock"] > div:has(> iframe[title="st_folium"]) {
+  background: transparent !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  box-shadow: none !important;
+}
+
+/* 4) Paranoia: kill any empty blocks that could stretch the page */
 div[data-testid="stVerticalBlock"] > div:empty {
-    display: none !important;
-    height: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-/* Supprime la marge globale sous le dernier bloc de carte */
+/* 5) And keep the main container tight at the bottom */
 .block-container > div:last-child {
-    margin-bottom: 0 !important;
-    padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
 }
 </style>
 """, unsafe_allow_html=True)
+
 
 # ==========================================================
 #  Export PNG
