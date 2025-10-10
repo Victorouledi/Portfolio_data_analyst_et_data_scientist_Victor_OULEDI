@@ -10,7 +10,7 @@ toc: true
 Application web interactive pour **détecter automatiquement la déforestation** à partir d’imageries satellite (type Sentinel-2).  
 👉 [Ouvrir l’app](https://detectiondeforestationamazonie.streamlit.app/)
 
-![](../asset/Computer_vision/images/app_deforestation.png)
+![](../asset/Computer_vision/images/app_deforest.png)
 
 ## Fonctionnalités principales
 - 🌍 **Exploration cartographique** : carte satellite ESRI intégrée via **Folium**, zoomable et déplaçable.  
@@ -56,14 +56,19 @@ Le modèle repose sur un **ResNet50 pré-entraîné sur ImageNet**, adapté pour
 
 Le modèle est exporté en **TensorFlow Lite quantifié**, assurant des prédictions rapides et légères directement dans l’application.
 
+![](../asset/Computer_vision/images/accuracy_traingin_deforest.png)
+
+
 ---
 
 ## Performances (validation)
-![](../asset/Computer_vision/images/perf_deforestation.png)
+![](../asset/Computer_vision/images/MC_deforest.png)
 
 - **Précision / Rappel / F1-score** évalués sur un jeu de validation séparé.  
 - Seuil ajusté pour optimiser le **F1-score** (meilleur compromis entre détection et faux positifs).  
 - Excellente robustesse sur des zones jamais vues en entraînement (bonne généralisation spatiale).  
+
+![](../asset/Computer_vision/images/roc_deforest.png)
 
 ---
 
