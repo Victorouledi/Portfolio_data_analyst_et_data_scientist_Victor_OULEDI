@@ -2,6 +2,7 @@ import io
 import math
 import json
 from pathlib import Path
+import base64
 
 import numpy as np
 import requests
@@ -26,6 +27,59 @@ st.set_page_config(
     page_icon="🌳",  # 👈 ajoute l’emoji ici !
     layout="wide"
 )
+set_bg_image_url("https://lejournal.cnrs.fr/sites/default/files/styles/visuel_principal/public/assets/images/pia25623_vp_0.jpg?itok=X7tUYmWX")
+
+
+
+def set_bg_color(color="#0D1B2A", text="#F5F6FA",
+                 secondary="#1B263B", sidebar_text="#F5F6FA"):
+    st.markdown(f"""
+    <style>
+    /* page */
+    [data-testid="stAppViewContainer"] {{
+        background: {color} !important;
+    }}
+    /* sidebar */
+    [data-testid="stSidebar"] > div:first-child {{
+        background: {secondary} !important;
+        color: {sidebar_text} !important;
+    }}
+    [data-testid="stSidebar"] * {{ color: {sidebar_text} !important; }}
+    /* texte global */
+    .stApp, .stApp * {{ color: {text}; }}
+    </style>
+    """, unsafe_allow_html=True)
+
+
+def set_bg_image_url(url: str, cover=True, fixed=True):
+    st.markdown(f"""
+    <style>
+    [data-testid="stAppViewContainer"] {{
+        background-image: url("{url}");
+        background-repeat: no-repeat;
+        background-position: center center;
+        {"background-size: cover;" if cover else ""}
+        {"background-attachment: fixed;" if fixed else ""}
+    }}
+    </style>
+    """, unsafe_allow_html=True)
+
+
+def set_bg_image_local(path: str, cover=True, fixed=True):
+    with open(path, "rb") as f:
+        data = base64.b64encode(f.read()).decode()
+    st.markdown(f"""
+    <style>
+    [data-testid="stAppViewContainer"] {{
+        background-image: url("data:image/png;base64,{data}");
+        background-repeat: no-repeat;
+        background-position: center center;
+        {"background-size: cover;" if cover else ""}
+        {"background-attachment: fixed;" if fixed else ""}
+    }}
+    </style>
+    """, unsafe_allow_html=True)
+
 
 st.markdown(
     """
