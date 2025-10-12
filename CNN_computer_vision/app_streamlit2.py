@@ -122,14 +122,14 @@ st.markdown("""
 
 
 # Afficher le résumé du modèle
-model_summary = StringIO()  # Créer un objet StringIO pour capturer la sortie
-model.summary(print_fn=lambda x: model_summary.write(x + '\n'))  # Capturer le résumé du modèle
-st.markdown(f"""
-<div class="card">
-  <h3 style="text-align:center; margin-top:0;">Résumé du modèle</h3>
-  <pre class="model-summary">{model_summary.getvalue()}</pre>
-</div>
-""", unsafe_allow_html=True)
+model_summary = StringIO()
+model.summary(print_fn=lambda x: model_summary.write(x + "\n"))
+summary_text = model_summary.getvalue()
+
+# Colonnage pour centrer le bloc
+c1, c2, c3 = st.columns([1, 3, 1])
+with c2:
+    st.code(summary_text, language="text")
 
 # Chargement de l'image par l'utilisateur
 uploaded_file = st.file_uploader("Choisissez une image", type=["jpg", "jpeg", "png"])
