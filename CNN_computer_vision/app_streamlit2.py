@@ -26,22 +26,95 @@ model = load_model_from_github(model_url)
 img_height, img_width = 200, 200
 class_names = ['Autres', 'Cerveau', 'Poumon']
 
-# Interface de l'application
-st.markdown("<h1 style='text-align: center;'>Classification d'imageries médicales</h1>", unsafe_allow_html=True)
-
-# Modifier la couleur de fond
-st.markdown(
-    """
-    <style>
-    .reportview-container {
-        background: #f0f2f5; /* Changez cette couleur selon vos besoins */
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
+# ---- Page config + thème visuel (fond + overlay + widgets) ----
+st.set_page_config(
+    page_title="Classification d'imageries médicales",
+    page_icon="🩺",   # icône médicale
+    layout="wide"
 )
 
-st.write("Cette interface a pour but de classer des documents d'imagerie médicale et permet de prédire la classe d'une image comme étant soit une imagerie du cerveau, des poumons ou aucune de ces classes précédentes")
+def set_bg_and_text_minimal(
+    image_url: str,
+    text_color: str = "#E8FFF1",       # texte vert-blanc apaisant
+    sidebar_bg: str = "#143D26",       # vert forêt foncé (sidebar)
+    sidebar_text: str = "#E8FFF1",     # texte lisible sur fond vert
+    overlay_opacity: float = 0.45,     # opacité moyenne
+    widget_bg: str = "#1C5031",        # fond vert bouteille pour inputs
+    accent_green: str = "#4CAF50"      # vert médical clair pour boutons
+):
+
+    st.markdown(f"""
+    <style>
+    [data-testid="stAppViewContainer"] {{
+        background:
+          linear-gradient(rgba(13,27,42,{overlay_opacity}), rgba(13,27,42,{overlay_opacity})),
+          url('{image_url}') no-repeat center center fixed !important;
+        background-size: cover !important;
+    }}
+    [data-testid="stSidebar"] > div:first-child {{
+        background: {sidebar_bg} !important;
+        color: {sidebar_text} !important;
+    }}
+    [data-testid="stSidebar"] * {{ color: {sidebar_text} !important; }}
+    .stApp, .stApp * {{ color: {text_color} !important; }}
+    .block-container {{ background: transparent !important; }}
+
+    /* Boutons (upload / actions) */
+    div.stButton > button:first-child,
+    div.stDownloadButton > button,
+    div[data-testid="stFileUploader"] button {{
+        background-color: {accent_green} !important;
+        color: #fff !important;
+        border: 0 !important;
+        border-radius: 8px !important;
+        font-weight: 600 !important;
+        transition: 0.2s ease;
+    }}
+    div.stButton > button:first-child:hover,
+    div.stDownloadButton > button:hover,
+    div[data-testid="stFileUploader"] button:hover {{
+        filter: brightness(0.95); transform: translateY(-1px);
+    }}
+
+    /* Uploader */
+    [data-testid="stFileUploaderDropzone"] {{
+        background: {widget_bg} !important;
+        color: {text_color} !important;
+        border: 1px dashed rgba(255,255,255,0.25) !important;
+        border-radius: 12px !important;
+    }}
+
+    /* Inputs / code / texte long */
+    .stTextInput > div > div,
+    .stNumberInput > div > div,
+    .stTextArea > div > textarea,
+    .stTextInput input, .stNumberInput input,
+    pre, code, .stCodeBlock, .stMarkdown code {{
+        background: {widget_bg} !important;
+        color: {text_color} !important;
+        border: 1px solid rgba(255,255,255,0.12) !important;
+        border-radius: 8px !important;
+    }}
+    hr {{ border-color: rgba(255,255,255,0.12) !important; }}
+    </style>
+    """, unsafe_allow_html=True)
+
+# Choisis l’un de ces fonds (ou remplace par ton URL)
+medical_bg = "https://www.alcimed.com/wp-content/uploads/2023/10/intelligence-artificielle-imagerie-medicale-2.webp"
+
+
+set_bg_and_text_minimal(
+    image_url=medical_bg,
+    text_color="#E8FFF1",
+    sidebar_bg="#143D26",
+    sidebar_text="#E8FFF1",
+    overlay_opacity=0.45,
+    widget_bg="#1C5031",
+    accent_green="#4CAF50"
+)
+
+st.markdown("<h1 style='text-align:center;'>🩺 Classification d'imageries médicales</h1>", unsafe_allow_html=True)
+
 
 # Afficher le résumé du modèle
 st.write("Les prédictions se basent sur un modèle simple de réseau de neurones convolutif dont voici les paramètres :")
