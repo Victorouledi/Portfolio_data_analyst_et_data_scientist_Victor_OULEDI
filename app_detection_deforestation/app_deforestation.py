@@ -606,8 +606,8 @@ if bbox:
             ({bbox[0]:.6f}, {bbox[1]:.6f}, {bbox[2]:.6f}, {bbox[3]:.6f})
           </div>
           <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
-            <span style="background:#1E2A3A;padding:6px 10px;border-radius:8px;">⚙️ <strong>Zoom export :</strong> {EXPORT_ZOOM}</span>
-            <span style="background:#1E2A3A;padding:6px 10px;border-radius:8px;">🗺️ <strong>Échelle approx. :</strong> 1:{metrics['scale']:,}</span>
+            <span style="background:#1E2A3A;padding:6px 10px;border-radius:8px;">🔍<strong>Zoom export :</strong> {EXPORT_ZOOM}</span>
+            <span style="background:#1E2A3A;padding:6px 10px;border-radius:8px;">🗺️ <strong>Échelle approx. zoom export :</strong> 1:{metrics['scale']:,}</span>
             <span style="background:#1E2A3A;padding:6px 10px;border-radius:8px;">📏 <strong>Largeur réelle couverte :</strong> {metrics['km_w']:.2f} km</span>
             <span style="background:#1E2A3A;padding:6px 10px;border-radius:8px;">📐 <strong>Hauteur réelle couverte :</strong> {metrics['km_h']:.2f} km</span>
             <span style="background:#1E2A3A;padding:6px 10px;border-radius:8px;">🖼️ <strong>Pixels export :</strong> {metrics['px_w']} × {metrics['px_h']}</span>
