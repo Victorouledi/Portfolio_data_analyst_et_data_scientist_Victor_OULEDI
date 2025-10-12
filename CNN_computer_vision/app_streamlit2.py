@@ -30,7 +30,7 @@ class_names = ['Autres', 'Cerveau', 'Poumon']
 st.set_page_config(
     page_title="Classification d'imageries médicales",
     page_icon="🩺",   # icône médicale
-    layout="wide"
+    layout="centered"
 )
 
 def set_bg_and_text_minimal(
