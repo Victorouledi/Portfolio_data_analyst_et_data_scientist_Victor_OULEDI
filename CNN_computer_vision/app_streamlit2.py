@@ -127,40 +127,26 @@ model_summary = StringIO()
 model.summary(print_fn=lambda x: model_summary.write(x + "\n"))
 summary_text = model_summary.getvalue()
 
-st.markdown(f"""
-<style>
-.keras-summary-wrap {{
-  text-align: center;                 /* centre le contenu interne */
-  margin: 0 auto 1rem auto;
-}}
-.keras-summary-box {{
-  display: inline-block;              /* s'ajuste au contenu et peut être centré */
-  text-align: left;                   /* mais le texte reste aligné à gauche */
-  background: rgba(13,27,42,0.65);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 12px;
-  padding: 14px 18px;
-  max-width: 98vw;                    /* sécurité petit écran */
-  overflow-x: auto;                   /* scroll horizontal si trop large */
-}}
-.keras-summary-pre {{
-  margin: 0;
-  white-space: pre;                   /* préserve tous les espaces */
-  font-family: "Courier New", Courier, monospace !important;  /* monospace strict */
-  font-variant-ligatures: none;       /* pas de ligatures qui faussent les colonnes */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-size: 14px;
-  line-height: 1.25;                  /* compact pour garder l’aspect tableau */
-}}
-</style>
-
-<div class="keras-summary-wrap">
-  <div class="keras-summary-box">
-    <pre class="keras-summary-pre">{summary_text}</pre>
-  </div>
+summary_html = f"""
+<div style="display:flex; justify-content:center;">
+  <pre style="
+    background: rgba(13,27,42,0.65);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 8px auto;
+    white-space: pre;            /* conserve l'espacement exact */
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 14px;
+    line-height: 1.25;
+    color: #E8F1FA;
+    width: max-content;          /* largeur = contenu */
+    max-width: 90vw;             /* évite de dépasser l'écran */
+    overflow-x: auto;            /* scroll horizontal si besoin */
+  ">{summary_text}</pre>
 </div>
-""", unsafe_allow_html=True)
+"""
+st.markdown(summary_html, unsafe_allow_html=True)
 
 
 # Chargement de l'image par l'utilisateur
