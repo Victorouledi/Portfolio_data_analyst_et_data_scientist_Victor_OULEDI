@@ -115,6 +115,7 @@ set_bg_and_text_minimal(
 
 st.markdown("<h1 style='text-align:center;'>🩺 Classification d'imageries médicales</h1>", unsafe_allow_html=True)
 
+st.write("Cette interface a pour but de classer des documents d'imagerie médicale et permet de prédire la classe d'une image comme étant soit une imagerie du cerveau, des poumons ou aucune de ces classes précédentes")
 
 # Afficher le résumé du modèle
 st.write("Les prédictions se basent sur un modèle simple de réseau de neurones convolutif dont voici les paramètres :")
