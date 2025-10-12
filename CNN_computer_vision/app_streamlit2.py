@@ -122,44 +122,46 @@ st.markdown("""
 
 
 # Afficher le résumé du modèle
+
 model_summary = StringIO()
 model.summary(print_fn=lambda x: model_summary.write(x + "\n"))
 summary_text = model_summary.getvalue()
 
-c1, c2, c3 = st.columns([1, 3, 1])
-with c2:
-    st.code(summary_text, language="text")
-
 st.markdown(f"""
 <style>
-.summary-wrap {{
-  display: block;
-  max-width: 980px;           /* largeur max du cartouche */
-  margin: 0 auto 1rem auto;   /* centre horizontalement */
+.keras-summary-wrap {{
+  text-align: center;                 /* centre le contenu interne */
+  margin: 0 auto 1rem auto;
 }}
-.summary-box {{
+.keras-summary-box {{
+  display: inline-block;              /* s'ajuste au contenu et peut être centré */
+  text-align: left;                   /* mais le texte reste aligné à gauche */
   background: rgba(13,27,42,0.65);
   border: 1px solid rgba(255,255,255,0.12);
   border-radius: 12px;
   padding: 14px 18px;
-  width: fit-content;         /* s'ajuste au contenu */
-  max-width: 100%;            /* mais ne dépasse pas la wrap */
-  margin: 0 auto;             /* centre la box dans la wrap */
-  overflow-x: auto;           /* scroll si trop large */
+  max-width: 98vw;                    /* sécurité petit écran */
+  overflow-x: auto;                   /* scroll horizontal si trop large */
 }}
-.summary-box pre {{
-  white-space: pre;            /* respecte les espacements */
+.keras-summary-pre {{
   margin: 0;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 14px; line-height: 1.35;
-  color: #E8FFF1 !important;
+  white-space: pre;                   /* préserve tous les espaces */
+  font-family: "Courier New", Courier, monospace !important;  /* monospace strict */
+  font-variant-ligatures: none;       /* pas de ligatures qui faussent les colonnes */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 14px;
+  line-height: 1.25;                  /* compact pour garder l’aspect tableau */
 }}
 </style>
 
-<div class="summary-wrap">
-  <div class="summary-box"><pre>{summary_text}</pre></div>
+<div class="keras-summary-wrap">
+  <div class="keras-summary-box">
+    <pre class="keras-summary-pre">{summary_text}</pre>
+  </div>
 </div>
 """, unsafe_allow_html=True)
+
 
 # Chargement de l'image par l'utilisateur
 uploaded_file = st.file_uploader("Choisissez une image", type=["jpg", "jpeg", "png"])
