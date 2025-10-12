@@ -472,9 +472,9 @@ with st.sidebar:
     st.markdown(
         """ <div class="tip"> 💡 <strong>Conseil :</strong><br>
         Choisir un niveau d'
-        <strong>échelle cartographique d’environ 1 :250 000</strong>,
-        soit une <strong>barre d’échelle d’environ 30 km</strong> visible en bas à gauche de la carte.
-        Et dessiner un rectangle d'environ <strong>1/10 la taille de la carte</strong>.<br>
+        <strong>échelle cartographique d’environ 1 :150 000</strong>,
+        soit une <strong>barre d’échelle d’environ 10 km</strong> visible sur la carte.<br>
+        Et dessiner un rectangle d'environ <strong>1/10 la taille de la carte</strong>.
         Ce niveau offre un bon compromis entre zone couverte et détails visibles,
         et améliore la qualité des prédictions de déforestation. </div> """,
         unsafe_allow_html=True,
@@ -535,7 +535,7 @@ if geojson_file is not None and gj_data is not None:
 
 st.markdown("""
 - Naviguez sur la carte ou centrez la carte grâce à l'import d'un Geojson           
-- Zoomez jusqu’à une **échelle ≈ 1:250 000** (barre d’échelle **30 km** en bas à gauche) pour de meilleures performances de détection. 
+- Zoomez jusqu’à une **échelle ≈ 1:150 000** (barre d’échelle **10 km** en bas à gauche) pour de meilleures performances de détection. 
 - Dessinez un rectangle avec l'outil ⬛, puis cliquez sur **Exporter PNG** 
 - Pour lancer la prédiction de déforestation sur la zone sélectionnée, cliquez sur **Tester l'inférence** 
 """)
@@ -593,51 +593,21 @@ div[data-testid="stComponent"] + div {{ margin-top:0 !important; padding-top:0 !
 </style>
 """, unsafe_allow_html=True)
 
-# === BBox + métriques affichées (BBox au-dessus, reste sur une ligne) ===
+# === BBox + métriques affichées comme des "chips" ===
 bbox = extract_bbox_from_stfolium(ret) if ret else None
 if bbox:
     metrics = bbox_metrics(bbox, z=EXPORT_ZOOM)
+    st.write("**BBox courant :**", bbox)
 
     st.markdown(
         f"""
-        <div style="
-            background:rgba(30,42,58,0.6);
-            padding:10px 14px;
-            border-radius:10px;
-            margin-top:12px;
-            font-size:0.95rem;
-        ">
-          <div style="margin-bottom:8px;">
-            📦 <strong>Coordonnées géo BBox courant :</strong>
-            ({bbox[0]:.6f}, {bbox[1]:.6f}, {bbox[2]:.6f}, {bbox[3]:.6f})
-          </div>
-
-          <div style="
-              display:flex;
-              flex-wrap:wrap;
-              gap:10px;
-              align-items:center;
-              justify-content:flex-start;
-          ">
-            <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">
-              ⚙️ <strong>Zoom export :</strong> {EXPORT_ZOOM}
-            </span>
-            <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">
-              🗺️ <strong>Échelle approx. :</strong> 1:{metrics['scale']:,}
-            </span>
-            <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">
-              📏 <strong>Largeur réelle couverte :</strong> {metrics['km_w']:.2f} km
-            </span>
-            <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">
-              📐 <strong>Hauteur réelle couverte :</strong> {metrics['km_h']:.2f} km
-            </span>
-            <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">
-              🖼️ <strong>Pixels export :</strong> {metrics['px_w']} × {metrics['px_h']}
-            </span>
-            <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">
-              📍 <strong>Résolution export :</strong> {metrics['mpp']:.2f} m/px
-            </span>
-          </div>
+        <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center;">
+          <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">📏 Largeur&nbsp;: <strong>{metrics['km_w']:.2f} km</strong></span>
+          <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">📐 Hauteur&nbsp;: <strong>{metrics['km_h']:.2f} km</strong></span>
+          <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">🖼️ Pixels&nbsp;: <strong>{metrics['px_w']} × {metrics['px_h']}</strong></span>
+          <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">🔎 Résolution&nbsp;: <strong>{metrics['mpp']:.2f} m/px</strong></span>
+          <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">🗺️ Échelle approx.&nbsp;: <strong>1:{metrics['scale']:,}</strong></span>
+          <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">z export&nbsp;: <strong>{EXPORT_ZOOM}</strong></span>
         </div>
         """,
         unsafe_allow_html=True
@@ -655,7 +625,7 @@ with col1:
     do_export = st.button("📸 Exporter PNG")
 with col2:
     bbox = extract_bbox_from_stfolium(ret) if ret else None
-    st.write("**BBox courant :**", bbox if bbox else "— (aucun rectangle détecté)")
+    st.write("**📦 Coordonnées géograohique BBox courant :**", bbox if bbox else "— (aucun rectangle détecté)")
 
 if do_export:
     if not bbox:
