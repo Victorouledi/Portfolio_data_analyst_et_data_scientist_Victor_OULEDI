@@ -473,8 +473,8 @@ with st.sidebar:
         """ <div class="tip"> 💡 <strong>Conseil :</strong><br>
         Choisir un niveau d'
         <strong>échelle cartographique d’environ 1 :250 000</strong>,
-        soit une <strong>barre d’échelle d’environ 30 km</strong> visible en bas à gauche de la carte.<br>
-        Et dessiner un rectangle d'environ <strong>1/10 la taille de la carte</strong>.
+        soit une <strong>barre d’échelle d’environ 30 km</strong> visible en bas à gauche de la carte.
+        Et dessiner un rectangle d'environ <strong>1/10 la taille de la carte</strong>.<br>
         Ce niveau offre un bon compromis entre zone couverte et détails visibles,
         et améliore la qualité des prédictions de déforestation. </div> """,
         unsafe_allow_html=True,
@@ -593,7 +593,7 @@ div[data-testid="stComponent"] + div {{ margin-top:0 !important; padding-top:0 !
 </style>
 """, unsafe_allow_html=True)
 
-# === BBox + métriques affichées en ligne (horizontales) ===
+# === BBox + métriques affichées (BBox au-dessus, reste sur une ligne) ===
 bbox = extract_bbox_from_stfolium(ret) if ret else None
 if bbox:
     metrics = bbox_metrics(bbox, z=EXPORT_ZOOM)
@@ -601,35 +601,43 @@ if bbox:
     st.markdown(
         f"""
         <div style="
-            display:flex;
-            flex-wrap:wrap;
-            gap:10px;
-            align-items:center;
-            justify-content:flex-start;
             background:rgba(30,42,58,0.6);
             padding:10px 14px;
             border-radius:10px;
             margin-top:12px;
             font-size:0.95rem;
         ">
-          <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">
-            ⚙️ <strong>Zoom export :</strong> {EXPORT_ZOOM}
-          </span>
-          <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">
-            🗺️ <strong>Échelle approx. :</strong> 1:{metrics['scale']:,}
-          </span>
-          <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">
-            📏 <strong>Largeur réelle :</strong> {metrics['km_w']:.2f} km
-          </span>
-          <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">
-            📐 <strong>Hauteur réelle :</strong> {metrics['km_h']:.2f} km
-          </span>
-          <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">
-            🖼️ <strong>Pixels export :</strong> {metrics['px_w']} × {metrics['px_h']}
-          </span>
-          <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">
-            📍 <strong>Résolution export :</strong> {metrics['mpp']:.2f} m/px
-          </span>
+          <div style="margin-bottom:8px;">
+            📦 <strong>Coordonnées géo BBox courant :</strong>
+            ({bbox[0]:.6f}, {bbox[1]:.6f}, {bbox[2]:.6f}, {bbox[3]:.6f})
+          </div>
+
+          <div style="
+              display:flex;
+              flex-wrap:wrap;
+              gap:10px;
+              align-items:center;
+              justify-content:flex-start;
+          ">
+            <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">
+              ⚙️ <strong>Zoom export :</strong> {EXPORT_ZOOM}
+            </span>
+            <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">
+              🗺️ <strong>Échelle approx. :</strong> 1:{metrics['scale']:,}
+            </span>
+            <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">
+              📏 <strong>Largeur réelle couverte :</strong> {metrics['km_w']:.2f} km
+            </span>
+            <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">
+              📐 <strong>Hauteur réelle couverte :</strong> {metrics['km_h']:.2f} km
+            </span>
+            <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">
+              🖼️ <strong>Pixels export :</strong> {metrics['px_w']} × {metrics['px_h']}
+            </span>
+            <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">
+              📍 <strong>Résolution export :</strong> {metrics['mpp']:.2f} m/px
+            </span>
+          </div>
         </div>
         """,
         unsafe_allow_html=True
