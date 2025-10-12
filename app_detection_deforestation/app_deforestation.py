@@ -608,8 +608,8 @@ if bbox:
           <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
             <span style="background:#1E2A3A;padding:6px 10px;border-radius:8px;">⚙️ <strong>Zoom export :</strong> {EXPORT_ZOOM}</span>
             <span style="background:#1E2A3A;padding:6px 10px;border-radius:8px;">🗺️ <strong>Échelle approx. :</strong> 1:{metrics['scale']:,}</span>
-            <span style="background:#1E2A3A;padding:6px 10px;border-radius:8px;">📏 <strong>Largeur réelle :</strong> {metrics['km_w']:.2f} km</span>
-            <span style="background:#1E2A3A;padding:6px 10px;border-radius:8px;">📐 <strong>Hauteur réelle :</strong> {metrics['km_h']:.2f} km</span>
+            <span style="background:#1E2A3A;padding:6px 10px;border-radius:8px;">📏 <strong>Largeur réelle couverte :</strong> {metrics['km_w']:.2f} km</span>
+            <span style="background:#1E2A3A;padding:6px 10px;border-radius:8px;">📐 <strong>Hauteur réelle couverte :</strong> {metrics['km_h']:.2f} km</span>
             <span style="background:#1E2A3A;padding:6px 10px;border-radius:8px;">🖼️ <strong>Pixels export :</strong> {metrics['px_w']} × {metrics['px_h']}</span>
             <span style="background:#1E2A3A;padding:6px 10px;border-radius:8px;">📍 <strong>Résolution export :</strong> {metrics['mpp']:.2f} m/px</span>
           </div>
