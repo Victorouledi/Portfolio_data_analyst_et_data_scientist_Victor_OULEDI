@@ -127,26 +127,17 @@ model_summary = StringIO()
 model.summary(print_fn=lambda x: model_summary.write(x + "\n"))
 summary_text = model_summary.getvalue()
 
-summary_html = f"""
-<div style="display:flex; justify-content:center;">
-  <pre style="
-    background: rgba(13,27,42,0.65);
-    border: 1px solid rgba(255,255,255,0.18);
-    border-radius: 12px;
-    padding: 16px 20px;
-    margin: 8px auto;
-    white-space: pre;            /* conserve l'espacement exact */
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: 14px;
-    line-height: 1.25;
-    color: #E8F1FA;
-    width: max-content;          /* largeur = contenu */
-    max-width: 90vw;             /* évite de dépasser l'écran */
-    overflow-x: auto;            /* scroll horizontal si besoin */
-  ">{summary_text}</pre>
-</div>
-"""
-st.markdown(summary_html, unsafe_allow_html=True)
+# Colonnage pour centrer le bloc
+c1, c2, c3 = st.columns([1, 3, 1])
+with c2:
+    st.code(summary_text, language="text")
+
+st.markdown("""
+<style>
+[data-testid="stCodeBlock"] { max-width: 980px; margin: 0 auto; }
+</style>
+""", unsafe_allow_html=True)
+st.code(summary_text, language="text")
 
 
 # Chargement de l'image par l'utilisateur
