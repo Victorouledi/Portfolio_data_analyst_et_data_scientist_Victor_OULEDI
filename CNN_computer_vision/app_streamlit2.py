@@ -126,6 +126,10 @@ model_summary = StringIO()
 model.summary(print_fn=lambda x: model_summary.write(x + "\n"))
 summary_text = model_summary.getvalue()
 
+c1, c2, c3 = st.columns([1, 3, 1])
+with c2:
+    st.code(summary_text, language="text")
+
 st.markdown(f"""
 <style>
 .summary-wrap {{
