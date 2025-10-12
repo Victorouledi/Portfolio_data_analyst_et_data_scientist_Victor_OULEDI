@@ -257,6 +257,45 @@ def lonlat_to_global_pixels(lon: float, lat: float, z: int):
     y = (0.5 - math.log((1 + siny) / (1 - siny)) / (4 * math.pi)) * n * TILE_SIZE
     return x, y
 
+# --- métriques BBox (m/px, km, pixels, échelle) ---
+def meters_per_pixel(z: int, lat_deg: float) -> float:
+    """Résolution (m/px) en WebMercator à la latitude donnée (DPI=96)."""
+    return 156543.03392 * math.cos(math.radians(lat_deg)) / (2 ** z)
+
+def scale_denominator_from_mpp(mpp: float, dpi: float = 96.0) -> int:
+    """Échelle 1:N approximative pour un affichage web (DPI=96)."""
+    N = mpp * dpi * 39.37007874015748  # m/px * px/in * in/m
+    return int(round(N))
+
+def bbox_metrics(bbox, z: int):
+    """
+    Calcule : largeur/hauteur en km, dimensions en pixels de l'export,
+    résolution (m/px) et échelle 1:N, à partir de la BBox et du zoom d'export.
+    """
+    min_lon, min_lat, max_lon, max_lat = bbox
+    # Dimensions en pixels via WebMercator
+    min_px, max_py = lonlat_to_global_pixels(min_lon, min_lat, z)
+    max_px, min_py = lonlat_to_global_pixels(max_lon, max_lat, z)
+    px_w = max(1, int(round(max_px - min_px)))
+    px_h = max(1, int(round(max_py - min_py)))
+
+    # Résolution et dimensions physiques (km)
+    lat_c = (min_lat + max_lat) * 0.5
+    mpp   = meters_per_pixel(z, lat_c)
+    km_w  = (px_w * mpp) / 1000.0
+    km_h  = (px_h * mpp) / 1000.0
+
+    scaleN = scale_denominator_from_mpp(mpp, dpi=96.0)
+    return {
+        "lat_center": lat_c,
+        "mpp": mpp,
+        "scale": scaleN,
+        "px_w": px_w,
+        "px_h": px_h,
+        "km_w": km_w,
+        "km_h": km_h,
+    }
+
 def fetch_tile(z: int, x: int, y: int, timeout: int = 15) -> Image.Image:
     url = ESRI_URL.format(z=z, x=x, y=y)
     resp = requests.get(url, headers={"User-Agent": USER_AGENT}, timeout=timeout)
@@ -398,7 +437,6 @@ if "map_nonce" not in st.session_state:
 #  Sidebar (GeoJSON d'abord)
 # ==========================
 with st.sidebar:
-    # --- 1) GeoJSON en premier ---
     st.subheader("Centrage de la carte grâce à un GeoJSON à importer en local")
     geojson_file = st.file_uploader(
         "Charger un GeoJSON (WGS84)",
@@ -421,7 +459,6 @@ with st.sidebar:
                 if bounds:
                     st.session_state["map_center"] = center
                     st.session_state["map_zoom"] = 8
-                    # si tu as ajouté le nonce pour reconstruire l'iframe :
                     if "map_nonce" in st.session_state:
                         st.session_state["map_nonce"] += 1
                     st.success("Carte centrée sur le GeoJSON.")
@@ -431,8 +468,6 @@ with st.sidebar:
             st.error(f"GeoJSON invalide : {e}")
 
     st.markdown("---")
-
-    # --- 2) Conseils ensuite ---
     st.header("Comment booster la détection ? ")
     st.markdown(
         """ <div class="tip"> 💡 <strong>Conseil :</strong><br>
@@ -445,7 +480,7 @@ with st.sidebar:
         unsafe_allow_html=True,
     )
 
-# attribution forcée activée par défaut (plus de case à cocher)
+# attribution forcée activée par défaut
 add_attr = True
 
 # ==========================================================
@@ -481,10 +516,8 @@ folium.TileLayer(
 
 Draw(
     export=False,
-    draw_options={
-        "polyline": False, "polygon": False, "circle": False, "circlemarker": False,
-        "marker": False, "rectangle": True
-    },
+    draw_options={"polyline": False, "polygon": False, "circle": False, "circlemarker": False,
+                  "marker": False, "rectangle": True},
     edit_options={"edit": True, "remove": True},
 ).add_to(m)
 
@@ -505,7 +538,6 @@ st.markdown("""
 - Zoomez jusqu’à une **échelle ≈ 1:150 000** (barre d’échelle **10 km** en bas à gauche) pour de meilleures performances de détection. 
 - Dessinez un rectangle avec l'outil ⬛, puis cliquez sur **Exporter PNG** 
 - Pour lancer la prédiction de déforestation sur la zone sélectionnée, cliquez sur **Tester l'inférence** 
-
 """)
 
 ret = st_folium(
@@ -516,7 +548,7 @@ ret = st_folium(
     key=f"map_main_{st.session_state['map_nonce']}",
 )
 
-
+# Corrige l'iframe Folium (hauteur fixe)
 st.components.v1.html(
     f"""
     <script>
@@ -531,7 +563,6 @@ st.components.v1.html(
         iframe.style.height = H + "px";
         iframe.style.minHeight = H + "px";
         iframe.style.maxHeight = H + "px";
-        // Fixe aussi le conteneur parent (certaines builds Streamlit en ont besoin)
         const parent = iframe.parentElement;
         if (parent) {{
           parent.style.height = H + "px";
@@ -557,11 +588,33 @@ iframe[title="streamlit_folium.st_folium"] {{
   min-height: {MAP_HEIGHT}px !important;
   max-height: {MAP_HEIGHT}px !important;
 }}
-/* supprime les marges autour du composant et du bloc suivant (tes colonnes) */
 div[data-testid="stComponent"] {{ margin-bottom:0 !important; padding-bottom:0 !important; }}
 div[data-testid="stComponent"] + div {{ margin-top:0 !important; padding-top:0 !important; }}
 </style>
 """, unsafe_allow_html=True)
+
+# === BBox + métriques affichées comme des "chips" ===
+bbox = extract_bbox_from_stfolium(ret) if ret else None
+if bbox:
+    metrics = bbox_metrics(bbox, z=EXPORT_ZOOM)
+    st.write("**BBox courant :**", bbox)
+
+    st.markdown(
+        f"""
+        <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center;">
+          <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">🗺️ Échelle approx.&nbsp;: <strong>1:{metrics['scale']:,}</strong></span>
+          <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">zoom export&nbsp;: <strong>{EXPORT_ZOOM}</strong></span>
+          <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">📏 Largeur réelle&nbsp;: <strong>{metrics['km_w']:.2f} km</strong></span>
+          <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">📐 Hauteur réelle&nbsp;: <strong>{metrics['km_h']:.2f} km</strong></span>
+          <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">🖼️ Pixels export&nbsp;: <strong>{metrics['px_w']} × {metrics['px_h']}</strong></span>
+          <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">🔎 Résolution export&nbsp;: <strong>{metrics['mpp']:.2f} m/px</strong></span>
+
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+else:
+    st.write("**BBox courant :** — (aucun rectangle détecté)")
 
 
 
