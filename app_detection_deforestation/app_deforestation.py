@@ -593,21 +593,26 @@ div[data-testid="stComponent"] + div {{ margin-top:0 !important; padding-top:0 !
 </style>
 """, unsafe_allow_html=True)
 
-# === BBox + métriques affichées comme des "chips" ===
+# === BBox + métriques (BBox AU-DESSUS, puis chips en ligne) ===
 bbox = extract_bbox_from_stfolium(ret) if ret else None
 if bbox:
     metrics = bbox_metrics(bbox, z=EXPORT_ZOOM)
-    st.write("**BBox courant :**", bbox)
 
     st.markdown(
         f"""
-        <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center;">
-          <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">📏 Largeur&nbsp;: <strong>{metrics['km_w']:.2f} km</strong></span>
-          <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">📐 Hauteur&nbsp;: <strong>{metrics['km_h']:.2f} km</strong></span>
-          <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">🖼️ Pixels&nbsp;: <strong>{metrics['px_w']} × {metrics['px_h']}</strong></span>
-          <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">🔎 Résolution&nbsp;: <strong>{metrics['mpp']:.2f} m/px</strong></span>
-          <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">🗺️ Échelle approx.&nbsp;: <strong>1:{metrics['scale']:,}</strong></span>
-          <span style="background:#1E2A3A; padding:6px 10px; border-radius:8px;">z export&nbsp;: <strong>{EXPORT_ZOOM}</strong></span>
+        <div style="background:rgba(30,42,58,0.6);padding:10px 14px;border-radius:10px;margin-top:12px;font-size:0.95rem;">
+          <div style="margin-bottom:8px;">
+            📦 <strong>Coordonnées géographiques BBox courant :</strong>
+            ({bbox[0]:.6f}, {bbox[1]:.6f}, {bbox[2]:.6f}, {bbox[3]:.6f})
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+            <span style="background:#1E2A3A;padding:6px 10px;border-radius:8px;">⚙️ <strong>Zoom export :</strong> {EXPORT_ZOOM}</span>
+            <span style="background:#1E2A3A;padding:6px 10px;border-radius:8px;">🗺️ <strong>Échelle approx. :</strong> 1:{metrics['scale']:,}</span>
+            <span style="background:#1E2A3A;padding:6px 10px;border-radius:8px;">📏 <strong>Largeur réelle :</strong> {metrics['km_w']:.2f} km</span>
+            <span style="background:#1E2A3A;padding:6px 10px;border-radius:8px;">📐 <strong>Hauteur réelle :</strong> {metrics['km_h']:.2f} km</span>
+            <span style="background:#1E2A3A;padding:6px 10px;border-radius:8px;">🖼️ <strong>Pixels export :</strong> {metrics['px_w']} × {metrics['px_h']}</span>
+            <span style="background:#1E2A3A;padding:6px 10px;border-radius:8px;">📍 <strong>Résolution export :</strong> {metrics['mpp']:.2f} m/px</span>
+          </div>
         </div>
         """,
         unsafe_allow_html=True
@@ -615,17 +620,14 @@ if bbox:
 else:
     st.write("**BBox courant :** — (aucun rectangle détecté)")
 
-
-
 # ==========================================================
-#  Export PNG
+#  Export PNG (SANS ré-afficher la BBox)
 # ==========================================================
 col1, col2 = st.columns([1, 3])
 with col1:
     do_export = st.button("📸 Exporter PNG")
 with col2:
-    bbox = extract_bbox_from_stfolium(ret) if ret else None
-    st.write("**📦 Coordonnées géograohique BBox courant :**", bbox if bbox else "— (aucun rectangle détecté)")
+    st.markdown("&nbsp;")  
 
 if do_export:
     if not bbox:
