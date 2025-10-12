@@ -35,7 +35,7 @@ Application web interactive pour **détecter automatiquement la déforestation**
 ---
 
 ## Données
-- Données issues du [dataset kaggle](https://www.kaggle.com/datasets/zafish/deforestation?select=fragments) + sélection personnelle d'images
+- Données issues d'un [dataset kaggle](https://www.kaggle.com/datasets/zafish/deforestation?select=fragments) + sélection personnelle d'images
 - Patches satellite Sentinel-2 répartis en deux classes :  
   - `no_deforestation/` : zones forestières intactes  
   - `deforestation/` : zones dégradées ou ouvertes  
