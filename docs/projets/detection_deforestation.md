@@ -15,7 +15,7 @@ Application web interactive pour **détecter automatiquement la déforestation**
 ## Fonctionnalités principales
 - 🌍 **Exploration cartographique** : carte satellite ESRI intégrée via **Folium**, zoomable et déplaçable.  
 - 📍 **Import GeoJSON** : recentrage automatique de la carte sur une zone géographique donnée.  
-- ⬛ **Sélection par rectangle** : l’utilisateur trace une *Bounding Box* (BBox) sur la carte pour définir la zone d’étude.  
+- ✂️ **Sélection par rectangle** : l’utilisateur trace une *Bounding Box* (BBox) sur la carte pour définir la zone d’étude.  
 - 📸 **Export PNG** : téléchargement automatique de la zone sélectionnée en image satellite haute résolution.  
 - 🧠 **Inférence intégrée** : possibilité d’analyser directement le PNG exporté via le modèle de détection de déforestation.  
 - ✅ **Résultats instantanés** : prédiction binaire (“déforestation” / “non déforestation”) avec probabilité associée.  
