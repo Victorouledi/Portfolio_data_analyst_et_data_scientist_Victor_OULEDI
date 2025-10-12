@@ -115,8 +115,7 @@ set_bg_and_text_minimal(
 st.markdown("""
 <div class="hero">
   <h1>🩺 Classification d'imageries médicales</h1>
-  <p>Cette interface classe des images d’imagerie médicale (cerveau, poumons ou autre) et affiche une prédiction basée sur un modèle CNN.</p>
-  <p>Les prédictions se basent sur un modèle simple de réseau de neurones convolutif dont voici les paramètres :<p>
+  <p>Cette interface classe des images d’imagerie médicale (cerveau, poumons ou autre) et affiche une prédiction basée sur un modèle CNN dont voici les paramètres :</p>
 </div>
 """, unsafe_allow_html=True)
 
