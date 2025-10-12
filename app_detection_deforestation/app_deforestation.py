@@ -580,6 +580,61 @@ st.components.v1.html(
     height=0,
 )
 
+
+st.components.v1.html("""
+<script>
+(function () {
+  function patchScissors() {
+    // Trouver l’iframe Folium
+    const ifr = window.parent.document.querySelector(
+      'iframe[title="st_folium"],iframe[title="streamlit_folium.st_folium"]'
+    );
+    if (!ifr) return false;
+
+    // Accéder au document interne de la carte
+    const doc = ifr.contentDocument || (ifr.contentWindow && ifr.contentWindow.document);
+    if (!doc) return false;
+
+    // Bouton rectangle par défaut de Leaflet.Draw
+    const btn = doc.querySelector('.leaflet-draw-draw-rectangle');
+    if (!btn) return false;
+
+    // Remplacement visuel (une seule fois)
+    if (!btn.classList.contains('scissorized')) {
+      btn.classList.add('scissorized');
+      btn.innerHTML = '✂️';
+      btn.style.fontSize = '18px';
+      btn.style.display = 'flex';
+      btn.style.alignItems = 'center';
+      btn.style.justifyContent = 'center';
+      btn.style.color = 'white';
+      btn.title = 'Tracer une zone (rectangle)'; // tooltip
+    }
+    return true;
+  }
+
+  // Essais progressifs (le temps que la carte se charge)
+  if (!patchScissors()) {
+    [150, 500, 1200, 2000, 3500].forEach(t => setTimeout(patchScissors, t));
+  }
+
+  // Repatch si Streamlit/Folium re-render la toolbar
+  const mo = new MutationObserver(() => patchScissors());
+  mo.observe(window.parent.document.body, { childList: true, subtree: true });
+})();
+</script>
+<style>
+/* Cohérence visuelle avec ta charte */
+.leaflet-draw-toolbar a {
+  background-color: #1E2A3A !important;
+  border-radius: 6px !important;
+}
+.leaflet-draw-toolbar a:hover {
+  background-color: #28a745 !important;
+}
+</style>
+""", height=0)
+
 st.markdown(f"""
 <style>
 iframe[title="st_folium"],
