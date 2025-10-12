@@ -35,67 +35,66 @@ st.set_page_config(
 
 def set_bg_and_text_minimal(
     image_url: str,
-    text_color: str = "#E8FFF1",       # texte vert-blanc apaisant
-    sidebar_bg: str = "#143D26",       # vert forêt foncé (sidebar)
-    sidebar_text: str = "#E8FFF1",     # texte lisible sur fond vert
-    overlay_opacity: float = 0.45,     # opacité moyenne
-    widget_bg: str = "#1C5031",        # fond vert bouteille pour inputs
-    accent_green: str = "#4CAF50"      # vert médical clair pour boutons
+    text_color: str = "#EAF6FF",   # blanc bleuté lisible
+    sidebar_bg: str = "#0B1F3A",   # bleu nuit (sidebar)
+    sidebar_text: str = "#EAF6FF", # texte sidebar
+    overlay_opacity: float = 0.50, # léger voile bleu
+    widget_bg: str = "#102A43",    # bleu sombre pour inputs
+    accent_green: str = "#2F80ED"  # bleu action (boutons)
 ):
-
     st.markdown(f"""
     <style>
+    /* Fond global */
     [data-testid="stAppViewContainer"] {{
-        background:
-          linear-gradient(rgba(13,27,42,{overlay_opacity}), rgba(13,27,42,{overlay_opacity})),
-          url('{image_url}') no-repeat center center fixed !important;
-        background-size: cover !important;
+      background:
+        linear-gradient(rgba(10,25,47,{overlay_opacity}), rgba(10,25,47,{overlay_opacity})),
+        url('{image_url}') no-repeat center center fixed !important;
+      background-size: cover !important;
     }}
-    [data-testid="stSidebar"] > div:first-child {{
-        background: {sidebar_bg} !important;
-        color: {sidebar_text} !important;
-    }}
-    [data-testid="stSidebar"] * {{ color: {sidebar_text} !important; }}
-    .stApp, .stApp * {{ color: {text_color} !important; }}
+    /* Sidebar */
+    [data-testid="stSidebar"] > div:first-child {{ background:{sidebar_bg} !important; color:{sidebar_text} !important; }}
+    [data-testid="stSidebar"] * {{ color:{sidebar_text} !important; }}
+
+    /* Texte global + container */
+    .stApp, .stApp * {{ color:{text_color} !important; }}
     .block-container {{ background: transparent !important; }}
 
-    /* Boutons (upload / actions) */
+    /* Boutons (Upload / actions) */
     div.stButton > button:first-child,
     div.stDownloadButton > button,
     div[data-testid="stFileUploader"] button {{
-        background-color: {accent_green} !important;
-        color: #fff !important;
-        border: 0 !important;
-        border-radius: 8px !important;
-        font-weight: 600 !important;
-        transition: 0.2s ease;
+      background-color:{accent_green} !important; color:#fff !important;
+      border:0 !important; border-radius:10px !important; font-weight:600 !important;
+      transition:.2s ease;
     }}
     div.stButton > button:first-child:hover,
     div.stDownloadButton > button:hover,
     div[data-testid="stFileUploader"] button:hover {{
-        filter: brightness(0.95); transform: translateY(-1px);
+      filter:brightness(0.95); transform:translateY(-1px);
     }}
 
-    /* Uploader */
-    [data-testid="stFileUploaderDropzone"] {{
-        background: {widget_bg} !important;
-        color: {text_color} !important;
-        border: 1px dashed rgba(255,255,255,0.25) !important;
-        border-radius: 12px !important;
-    }}
-
-    /* Inputs / code / texte long */
-    .stTextInput > div > div,
-    .stNumberInput > div > div,
-    .stTextArea > div > textarea,
-    .stTextInput input, .stNumberInput input,
+    /* Dropzone & inputs */
+    [data-testid="stFileUploaderDropzone"],
+    .stTextInput > div > div, .stNumberInput > div > div,
+    .stTextArea > div > textarea, .stTextInput input, .stNumberInput input,
     pre, code, .stCodeBlock, .stMarkdown code {{
-        background: {widget_bg} !important;
-        color: {text_color} !important;
-        border: 1px solid rgba(255,255,255,0.12) !important;
-        border-radius: 8px !important;
+      background:{widget_bg} !important; color:{text_color} !important;
+      border:1px solid rgba(255,255,255,0.15) !important; border-radius:10px !important;
     }}
-    hr {{ border-color: rgba(255,255,255,0.12) !important; }}
+
+    /* Cartes centrées et cartes/sections */
+    .hero, .card {{
+      max-width: 1100px; margin: 0 auto;   /* <-- centre horizontalement */
+    }}
+    .hero {{ text-align:center; }}
+    .card {{ margin-top:14px; padding:14px; background:rgba(16,42,67,0.55); border-radius:12px; }}
+
+    /* Résumé du modèle : pré monospacé scrollable, centré via container */
+    .model-summary {{
+      max-height: 360px; overflow:auto; padding:12px 14px; line-height:1.2;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      background:{widget_bg}; border-radius:10px; border:1px solid rgba(255,255,255,.12);
+    }}
     </style>
     """, unsafe_allow_html=True)
 
@@ -105,23 +104,32 @@ medical_bg = "https://www.alcimed.com/wp-content/uploads/2023/10/intelligence-ar
 
 set_bg_and_text_minimal(
     image_url=medical_bg,
-    text_color="#E8FFF1",
-    sidebar_bg="#143D26",
-    sidebar_text="#E8FFF1",
-    overlay_opacity=0.45,
-    widget_bg="#1C5031",
-    accent_green="#4CAF50"
+    text_color="#EAF6FF",
+    sidebar_bg="#0B1F3A",
+    sidebar_text="#EAF6FF",
+    overlay_opacity=0.50,
+    widget_bg="#102A43",
+    accent_green="#2F80ED"
 )
 
-st.markdown("<h1 style='text-align:center;'>🩺 Classification d'imageries médicales</h1>", unsafe_allow_html=True)
+st.markdown("""
+<div class="hero">
+  <h1>🩺 Classification d'imageries médicales</h1>
+  <p>Cette interface classe des images d’imagerie médicale (cerveau, poumons ou autre) et affiche une prédiction basée sur un modèle CNN.</p>
+</div>
+""", unsafe_allow_html=True)
 
-st.write("Cette interface a pour but de classer des documents d'imagerie médicale et permet de prédire la classe d'une image comme étant soit une imagerie du cerveau, des poumons ou aucune de ces classes précédentes")
 
 # Afficher le résumé du modèle
 st.write("Les prédictions se basent sur un modèle simple de réseau de neurones convolutif dont voici les paramètres :")
 model_summary = StringIO()  # Créer un objet StringIO pour capturer la sortie
 model.summary(print_fn=lambda x: model_summary.write(x + '\n'))  # Capturer le résumé du modèle
-st.text(model_summary.getvalue())  # Afficher le résumé dans l'application
+st.markdown(f"""
+<div class="card">
+  <h3 style="text-align:center; margin-top:0;">Résumé du modèle</h3>
+  <pre class="model-summary">{model_summary.getvalue()}</pre>
+</div>
+""", unsafe_allow_html=True)
 
 # Chargement de l'image par l'utilisateur
 uploaded_file = st.file_uploader("Choisissez une image", type=["jpg", "jpeg", "png"])
