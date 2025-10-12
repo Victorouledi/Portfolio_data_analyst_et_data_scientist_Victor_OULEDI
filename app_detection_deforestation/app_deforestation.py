@@ -536,7 +536,7 @@ if geojson_file is not None and gj_data is not None:
 st.markdown("""
 - Naviguez sur la carte ou centrez la carte grâce à l'import d'un Geojson           
 - Zoomez jusqu’à une **échelle ≈ 1:250 000** (barre d’échelle **30 km** en bas à gauche) pour de meilleures performances de détection. 
-- Dessinez un rectangle avec l'outil ⬛, puis cliquez sur **Exporter PNG** 
+- Dessinez un rectangle avec l'outil ✂️, puis cliquez sur **Exporter PNG** 
 - Pour lancer la prédiction de déforestation sur la zone sélectionnée, cliquez sur **Tester l'inférence** 
 """)
 
@@ -585,54 +585,56 @@ st.components.v1.html("""
 <script>
 (function () {
   function patchScissors() {
-    // Trouver l’iframe Folium
+    // 1) Trouver l’iframe folium
     const ifr = window.parent.document.querySelector(
       'iframe[title="st_folium"],iframe[title="streamlit_folium.st_folium"]'
     );
     if (!ifr) return false;
 
-    // Accéder au document interne de la carte
     const doc = ifr.contentDocument || (ifr.contentWindow && ifr.contentWindow.document);
     if (!doc) return false;
 
-    // Bouton rectangle par défaut de Leaflet.Draw
+    // 2) Enlever le sprite via un <style> dans l'iframe
+    if (!doc.getElementById('draw-scissors-style')) {
+      const css = `
+        .leaflet-draw-toolbar a.leaflet-draw-draw-rectangle{
+          background-image: none !important;  /* supprime l’icône sprite */
+        }
+      `;
+      const style = doc.createElement('style');
+      style.id = 'draw-scissors-style';
+      style.textContent = css;
+      doc.head.appendChild(style);
+    }
+
+    // 3) Remplacer visuellement par un ciseau ✂️ (centré)
     const btn = doc.querySelector('.leaflet-draw-draw-rectangle');
     if (!btn) return false;
 
-    // Remplacement visuel (une seule fois)
     if (!btn.classList.contains('scissorized')) {
       btn.classList.add('scissorized');
-      btn.innerHTML = '✂️';
-      btn.style.fontSize = '18px';
+      btn.textContent = '✂️';             // icône unique
       btn.style.display = 'flex';
       btn.style.alignItems = 'center';
       btn.style.justifyContent = 'center';
+      btn.style.backgroundColor = '#1E2A3A';  // cohérence avec ton thème
       btn.style.color = 'white';
-      btn.title = 'Tracer une zone (rectangle)'; // tooltip
+      btn.style.fontSize = '18px';
+      btn.style.lineHeight = '1';
+      btn.style.padding = '0';
+      btn.style.textIndent = '0';              // éviter tout décalage
+      btn.title = 'Tracer une zone (rectangle)';
     }
     return true;
   }
 
-  // Essais progressifs (le temps que la carte se charge)
   if (!patchScissors()) {
     [150, 500, 1200, 2000, 3500].forEach(t => setTimeout(patchScissors, t));
   }
-
-  // Repatch si Streamlit/Folium re-render la toolbar
   const mo = new MutationObserver(() => patchScissors());
   mo.observe(window.parent.document.body, { childList: true, subtree: true });
 })();
 </script>
-<style>
-/* Cohérence visuelle avec ta charte */
-.leaflet-draw-toolbar a {
-  background-color: #1E2A3A !important;
-  border-radius: 6px !important;
-}
-.leaflet-draw-toolbar a:hover {
-  background-color: #28a745 !important;
-}
-</style>
 """, height=0)
 
 st.markdown(f"""
