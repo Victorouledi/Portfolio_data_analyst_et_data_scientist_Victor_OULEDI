@@ -70,6 +70,7 @@ Le modèle est exporté en **TensorFlow Lite quantifié**, assurant des prédict
 - Seuil ajusté pour optimiser le **F1-score** (meilleur compromis entre détection et faux positifs).  
 - Excellente robustesse sur des zones jamais vues en entraînement (bonne généralisation spatiale).  
 
+![](../asset/Computer_vision/images/metrics_model_def.png)
 ![](../asset/Computer_vision/images/roc_deforest.png)
 
 ---
