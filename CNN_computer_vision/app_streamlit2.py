@@ -132,13 +132,6 @@ c1, c2, c3 = st.columns([1, 3, 1])
 with c2:
     st.code(summary_text, language="text")
 
-st.markdown("""
-<style>
-[data-testid="stCodeBlock"] { max-width: 980px; margin: 0 auto; }
-</style>
-""", unsafe_allow_html=True)
-st.code(summary_text, language="text")
-
 
 # Chargement de l'image par l'utilisateur
 uploaded_file = st.file_uploader("Choisissez une image", type=["jpg", "jpeg", "png"])
