@@ -472,11 +472,11 @@ with st.sidebar:
     st.markdown(
         """ <div class="tip"> 💡 <strong>Conseil :</strong><br>
         Choisir un niveau d'
-        <strong>échelle cartographique d’environ 1 :150 000</strong>,
-        soit une <strong>barre d’échelle d’environ 10 km</strong> visible sur la carte.<br>
-        Et dessiner un rectangle d'environ <strong>1/10 la taille de la carte</strong>.
-        Ce niveau offre un bon compromis entre zone couverte et détails visibles,
-        et améliore la qualité des prédictions de déforestation. </div> """,
+        <strong>échelle cartographique d’environ 1 :250 000</strong>,
+        soit une <strong>barre d’échelle d’environ 30 km</strong> visible en bas à gauche de la carte.
+        Et dessiner un rectangle d'environ <strong>1/10 la taille de la carte</strong>.<br>
+        Ce niveau offre un bon compromis entre zone couverte, détails visibles et taille de l'export,
+        et améliore la vitesse et qualité des prédictions de déforestation. </div> """,
         unsafe_allow_html=True,
     )
 
@@ -535,7 +535,7 @@ if geojson_file is not None and gj_data is not None:
 
 st.markdown("""
 - Naviguez sur la carte ou centrez la carte grâce à l'import d'un Geojson           
-- Zoomez jusqu’à une **échelle ≈ 1:150 000** (barre d’échelle **10 km** en bas à gauche) pour de meilleures performances de détection. 
+- Zoomez jusqu’à une **échelle ≈ 1:250 000** (barre d’échelle **30 km** en bas à gauche) pour de meilleures performances de détection. 
 - Dessinez un rectangle avec l'outil ⬛, puis cliquez sur **Exporter PNG** 
 - Pour lancer la prédiction de déforestation sur la zone sélectionnée, cliquez sur **Tester l'inférence** 
 """)
