@@ -116,12 +116,12 @@ st.markdown("""
 <div class="hero">
   <h1>🩺 Classification d'imageries médicales</h1>
   <p>Cette interface classe des images d’imagerie médicale (cerveau, poumons ou autre) et affiche une prédiction basée sur un modèle CNN.</p>
+  <p>Les prédictions se basent sur un modèle simple de réseau de neurones convolutif dont voici les paramètres :<p>
 </div>
 """, unsafe_allow_html=True)
 
 
 # Afficher le résumé du modèle
-st.write("Les prédictions se basent sur un modèle simple de réseau de neurones convolutif dont voici les paramètres :")
 model_summary = StringIO()  # Créer un objet StringIO pour capturer la sortie
 model.summary(print_fn=lambda x: model_summary.write(x + '\n'))  # Capturer le résumé du modèle
 st.markdown(f"""
