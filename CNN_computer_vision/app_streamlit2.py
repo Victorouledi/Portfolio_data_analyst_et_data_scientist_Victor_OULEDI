@@ -126,10 +126,36 @@ model_summary = StringIO()
 model.summary(print_fn=lambda x: model_summary.write(x + "\n"))
 summary_text = model_summary.getvalue()
 
-# Colonnage pour centrer le bloc
-c1, c2, c3 = st.columns([1, 3, 1])
-with c2:
-    st.code(summary_text, language="text")
+st.markdown(f"""
+<style>
+.summary-wrap {{
+  display: block;
+  max-width: 980px;           /* largeur max du cartouche */
+  margin: 0 auto 1rem auto;   /* centre horizontalement */
+}}
+.summary-box {{
+  background: rgba(13,27,42,0.65);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  padding: 14px 18px;
+  width: fit-content;         /* s'ajuste au contenu */
+  max-width: 100%;            /* mais ne dépasse pas la wrap */
+  margin: 0 auto;             /* centre la box dans la wrap */
+  overflow-x: auto;           /* scroll si trop large */
+}}
+.summary-box pre {{
+  white-space: pre;            /* respecte les espacements */
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 14px; line-height: 1.35;
+  color: #E8FFF1 !important;
+}}
+</style>
+
+<div class="summary-wrap">
+  <div class="summary-box"><pre>{summary_text}</pre></div>
+</div>
+""", unsafe_allow_html=True)
 
 # Chargement de l'image par l'utilisateur
 uploaded_file = st.file_uploader("Choisissez une image", type=["jpg", "jpeg", "png"])
