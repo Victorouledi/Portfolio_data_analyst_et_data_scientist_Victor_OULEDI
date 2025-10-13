@@ -30,7 +30,8 @@ Application web interactive pour **détecter automatiquement la déforestation**
 - **Géospatial** : Folium, Mercantile (assemblage des tuiles satellite ESRI), GeoJSON  
 - **App Web** : **Streamlit** + CSS personnalisé pour un rendu fluide  
 - **Visualisation** : Matplotlib, affichage interactif des prédictions et des probabilités  
-- **CI/CD** : déploiement via **Streamlit Cloud**  
+- **CI/CD** : déploiement via **Streamlit Cloud**
+- [Code](https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/blob/main/app_detection_deforestation/app_deforestation.py
 
 ---
 
@@ -40,7 +41,7 @@ Application web interactive pour **détecter automatiquement la déforestation**
   - `no_deforestation/` : zones forestières intactes  
   - `deforestation/` : zones dégradées ou ouvertes  
 - **3 500 images d’entraînement** après nettoyage et augmentation.  
-- Données prétraitées : redimensionnement, harmonisation des noms, séparation claire train/validation.
+- Données prétraitées : redimensionnement, harmonisation des noms, sé)paration claire train/validation.
 
 ---
 
