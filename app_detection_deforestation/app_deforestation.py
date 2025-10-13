@@ -592,58 +592,89 @@ st.components.v1.html(
 st.components.v1.html("""
 <script>
 (function () {
-  function patchScissors() {
-    // 1) Trouver l’iframe folium
-    const ifr = window.parent.document.querySelector(
-      'iframe[title="st_folium"],iframe[title="streamlit_folium.st_folium"]'
-    );
+  // Applique le patch une fois l'iframe folium prête
+  function withIframeDoc(cb) {
+    const sel = 'iframe[title="st_folium"],iframe[title="streamlit_folium.st_folium"]';
+    const ifr = window.parent.document.querySelector(sel);
     if (!ifr) return false;
-
     const doc = ifr.contentDocument || (ifr.contentWindow && ifr.contentWindow.document);
     if (!doc) return false;
-
-    // 2) Enlever le sprite via un <style> dans l'iframe
-    if (!doc.getElementById('draw-scissors-style')) {
-      const css = `
-        .leaflet-draw-toolbar a.leaflet-draw-draw-rectangle{
-          background-image: none !important;  /* supprime l’icône sprite */
-        }
-      `;
-      const style = doc.createElement('style');
-      style.id = 'draw-scissors-style';
-      style.textContent = css;
-      doc.head.appendChild(style);
-    }
-
-    // 3) Remplacer visuellement par un ciseau ✂️ (centré)
-    const btn = doc.querySelector('.leaflet-draw-draw-rectangle');
-    if (!btn) return false;
-
-    if (!btn.classList.contains('scissorized')) {
-      btn.classList.add('scissorized');
-      btn.textContent = '✂️';             // icône unique
-      btn.style.display = 'flex';
-      btn.style.alignItems = 'center';
-      btn.style.justifyContent = 'center';
-      btn.style.backgroundColor = '#1E2A3A';  // cohérence avec ton thème
-      btn.style.color = 'white';
-      btn.style.fontSize = '18px';
-      btn.style.lineHeight = '1';
-      btn.style.padding = '0';
-      btn.style.textIndent = '0';              // éviter tout décalage
-      btn.title = 'Tracer une zone (rectangle)';
-    }
+    cb(doc, ifr);
     return true;
   }
 
-  if (!patchScissors()) {
-    [150, 500, 1200, 2000, 3500].forEach(t => setTimeout(patchScissors, t));
+  function injectStyle(doc){
+    if (doc.getElementById('draw-scissors-style')) return;
+    const style = doc.createElement('style');
+    style.id = 'draw-scissors-style';
+    style.textContent = `
+      /* retire le sprite par défaut et applique fond blanc */
+      .leaflet-draw-toolbar a.leaflet-draw-draw-rectangle{
+        background-image:none !important;
+        background-color:#fff !important;              /* FOND BLANC */
+        color:#1E2A3A !important;                      /* Couleur icône foncée */
+        width:26px;height:26px;
+        text-indent:0 !important;
+        border:1px solid rgba(0,0,0,0.15) !important;
+        box-shadow:0 1px 2px rgba(0,0,0,0.08);
+        border-radius:4px;
+      }
+      .leaflet-draw-toolbar a.leaflet-draw-draw-rectangle:hover{
+        background-color:#f5f5f7 !important;           /* Hover doux */
+      }
+      /* état actif quand l’outil rectangle est sélectionné */
+      .leaflet-draw-toolbar a.leaflet-draw-draw-rectangle.leaflet-draw-toolbar-button-enabled{
+        outline:2px solid #1E2A3A;
+        outline-offset:0;
+      }
+      /* icône ✂️ via pseudo-élément → persiste même si le bouton est recréé */
+      .leaflet-draw-toolbar a.leaflet-draw-draw-rectangle::before{
+        content:"✂️";
+        display:flex; align-items:center; justify-content:center;
+        width:100%; height:100%;
+        font-size:18px; line-height:1;
+      }
+    `;
+    doc.head.appendChild(style);
   }
-  const mo = new MutationObserver(() => patchScissors());
-  mo.observe(window.parent.document.body, { childList: true, subtree: true });
+
+  function patchOnce(){
+    return withIframeDoc((doc, ifr)=>{
+      injectStyle(doc);
+      // Si le bouton existe déjà, on ajoute le titre et le centrage
+      const btn = doc.querySelector('.leaflet-draw-draw-rectangle');
+      if (btn && !btn.classList.contains('scissorized')){
+        btn.classList.add('scissorized');
+        btn.title = 'Tracer une zone (rectangle)';
+        btn.style.display = 'flex';
+        btn.style.alignItems = 'center';
+        btn.style.justifyContent = 'center';
+      }
+      // Observe les recréations dans l’iframe
+      if (!doc.getElementById('draw-scissors-mutation-hook')){
+        const hook = doc.createElement('meta'); hook.id = 'draw-scissors-mutation-hook';
+        doc.head.appendChild(hook);
+        const mo = new MutationObserver(()=>injectStyle(doc));
+        mo.observe(doc.body, {subtree:true, childList:true});
+      }
+      // Si l’iframe se recharge complètement, on réapplique
+      if (!ifr._scissors_onload_bound){
+        ifr._scissors_onload_bound = true;
+        ifr.addEventListener('load', ()=>{ setTimeout(patchOnce, 150); });
+      }
+    });
+  }
+
+  // Tente maintenant + retries différés (nouvelle iframe ou re-render)
+  if (!patchOnce()){
+    [150, 500, 1200, 2000, 3500].forEach(t => setTimeout(patchOnce, t));
+  } else {
+    [300, 1200, 3000].forEach(t => setTimeout(patchOnce, t));
+  }
 })();
 </script>
 """, height=0)
+
 
 st.markdown(f"""
 <style>
