@@ -602,20 +602,19 @@ st.components.v1.html("""
     return true;
   }
 
-  function injectStyle(doc){
-    if (doc.getElementById('draw-scissors-style')) return;
-    const style = doc.createElement('style');
+  function injectStyleLast(doc){
+    // Toujours remettre le style en DERNIER pour battre les ré-injections Leaflet
+    let style = doc.getElementById('draw-scissors-style');
+    if (style) style.remove();
+    style = doc.createElement('style');
     style.id = 'draw-scissors-style';
     style.textContent = `
-      /* Nettoyage total de l'icône sprite par défaut */
+      /* Nettoyage du sprite + style bouton (fond blanc) */
       .leaflet-draw-toolbar a.leaflet-draw-draw-rectangle{
         background-image:none !important;
         background-size:0 0 !important;
         background-position:0 0 !important;
-        mask-image:none !important;
-        -webkit-mask-image:none !important;
-
-        /* style visuel (fond blanc) */
+        mask-image:none !important; -webkit-mask-image:none !important;
         background-color:#fff !important;
         color:#1E2A3A !important;
         width:26px;height:26px;
@@ -623,10 +622,9 @@ st.components.v1.html("""
         border:1px solid rgba(0,0,0,0.15) !important;
         box-shadow:0 1px 2px rgba(0,0,0,0.08);
         border-radius:4px;
-        display:flex;align-items:center;justify-content:center;
-        overflow:hidden;              /* évite tout résidu interne */
+        overflow:hidden !important;
       }
-      /* Cache TOUT enfant ajouté par Leaflet (span icône, etc.) */
+      /* Cache tout enfant inséré par Leaflet (span icône…) */
       .leaflet-draw-toolbar a.leaflet-draw-draw-rectangle > *{
         display:none !important;
       }
@@ -636,56 +634,73 @@ st.components.v1.html("""
       .leaflet-draw-toolbar a.leaflet-draw-draw-rectangle.leaflet-draw-toolbar-button-enabled{
         outline:2px solid #1E2A3A; outline-offset:0;
       }
-      /* Icône ✂️ persistante via pseudo-élément */
-      .leaflet-draw-toolbar a.leaflet-draw-draw-rectangle::before{
-        content:"✂️";
-        display:flex; align-items:center; justify-content:center;
-        width:100%; height:100%;
-        font-size:18px; line-height:1;
-      }
     `;
     doc.head.appendChild(style);
   }
 
-  function patchOnce(){
-    return withIframeDoc((doc, ifr)=>{
-      injectStyle(doc);
-
-      // Optionnel : titre accessible + centrage du bouton s'il existe déjà
-      const btn = doc.querySelector('.leaflet-draw-draw-rectangle');
-      if (btn && !btn.classList.contains('scissorized')){
-        btn.classList.add('scissorized');
-        btn.title = 'Tracer une zone (rectangle)';
-        btn.style.display = 'flex';
-        btn.style.alignItems = 'center';
-        btn.style.justifyContent = 'center';
-      }
-
-      // Observe les recréations à l'intérieur de l'iframe
-      if (!doc.getElementById('draw-scissors-mutation-hook')){
-        const hook = doc.createElement('meta'); hook.id = 'draw-scissors-mutation-hook';
-        doc.head.appendChild(hook);
-        const mo = new MutationObserver(()=>injectStyle(doc));
-        mo.observe(doc.body, {subtree:true, childList:true});
-      }
-
-      // Si l’iframe se recharge, on réapplique
-      if (!ifr._scissors_onload_bound){
-        ifr._scissors_onload_bound = true;
-        ifr.addEventListener('load', ()=>{ setTimeout(patchOnce, 150); });
-      }
+  function enforceInlineButton(doc){
+    const nodes = doc.querySelectorAll('.leaflet-draw-toolbar a.leaflet-draw-draw-rectangle');
+    nodes.forEach(btn=>{
+      // Supprime tout contenu enfant (le petit carré noir)
+      while (btn.firstChild) btn.removeChild(btn.firstChild);
+      // Met l’emoji ✂️ en texte
+      btn.textContent = '✂️';
+      // Inline styles (priorité max)
+      btn.style.backgroundImage = 'none';
+      btn.style.backgroundColor = '#fff';
+      btn.style.color = '#1E2A3A';
+      btn.style.width = '26px';
+      btn.style.height = '26px';
+      btn.style.display = 'flex';
+      btn.style.alignItems = 'center';
+      btn.style.justifyContent = 'center';
+      btn.style.textIndent = '0';
+      btn.style.border = '1px solid rgba(0,0,0,0.15)';
+      btn.style.boxShadow = '0 1px 2px rgba(0,0,0,0.08)';
+      btn.style.borderRadius = '4px';
+      btn.title = 'Tracer une zone (rectangle)';
     });
   }
 
-  // Tente maintenant + retries différés
-  if (!patchOnce()){
-    [150, 500, 1200, 2000, 3500].forEach(t => setTimeout(patchOnce, t));
+  function applyPatch(){
+    return withIframeDoc((doc, ifr)=>{
+      injectStyleLast(doc);
+      enforceInlineButton(doc);
+
+      // MutationObserver DANS l’iframe : ré-applique à chaque changement
+      if (!doc.getElementById('draw-scissors-mutation-hook')){
+        const hook = doc.createElement('meta'); hook.id = 'draw-scissors-mutation-hook';
+        doc.head.appendChild(hook);
+        const mo = new MutationObserver(()=>{
+          injectStyleLast(doc);
+          enforceInlineButton(doc);
+        });
+        mo.observe(doc.body, {subtree:true, childList:true, attributes:true});
+      }
+
+      // Si l’iframe se recharge, ré-appliquer
+      if (!ifr._scissors_onload_bound){
+        ifr._scissors_onload_bound = true;
+        ifr.addEventListener('load', ()=>{ setTimeout(applyPatch, 150); });
+      }
+
+      // Petits retries temporisés pour les réinsertions tardives
+      [150, 400, 1200, 2000].forEach(t=>setTimeout(()=>{
+        injectStyleLast(doc);
+        enforceInlineButton(doc);
+      }, t));
+    });
+  }
+
+  if (!applyPatch()){
+    [150, 500, 1200, 2000, 3500].forEach(t => setTimeout(applyPatch, t));
   } else {
-    [300, 1200, 3000].forEach(t => setTimeout(patchOnce, t));
+    [600, 1800, 3600].forEach(t => setTimeout(applyPatch, t));
   }
 })();
 </script>
 """, height=0)
+
 
 
 
