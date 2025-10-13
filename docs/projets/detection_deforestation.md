@@ -31,7 +31,7 @@ Application web interactive pour **détecter automatiquement la déforestation**
 - **App Web** : **Streamlit** + CSS personnalisé pour un rendu fluide  
 - **Visualisation** : Matplotlib, affichage interactif des prédictions et des probabilités  
 - **CI/CD** : déploiement via **Streamlit Cloud**
-- [Code](https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/blob/main/app_detection_deforestation/app_deforestation.py
+- [Code](https://github.com/Victorouledi/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI/blob/main/app_detection_deforestation/app_deforestation.py)
 
 ---
 
