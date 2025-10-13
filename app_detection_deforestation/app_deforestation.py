@@ -540,13 +540,21 @@ st.markdown("""
 - Pour lancer la prédiction de déforestation sur la zone sélectionnée, cliquez sur **Tester l'inférence** 
 """)
 
-ret = st_folium(
-    m,
-    height=MAP_HEIGHT,
-    use_container_width=True,
-    returned_objects=["last_active_drawing", "all_drawn_geojson", "all_drawings"],
-    key=f"map_main_{st.session_state['map_nonce']}",
-)
+try:
+    ret = st_folium(
+        m,
+        height=MAP_HEIGHT,
+        use_container_width=True,
+        returned_objects=["last_active_drawing", "all_drawings"],
+        key=f"map_main_{st.session_state['map_nonce']}",
+    )
+except TypeError:
+    ret = st_folium(
+        m,
+        height=MAP_HEIGHT,
+        returned_objects=["last_active_drawing", "all_drawings"],
+        key=f"map_main_{st.session_state['map_nonce']}",
+    )
 
 # Corrige l'iframe Folium (hauteur fixe)
 st.components.v1.html(
