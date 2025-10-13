@@ -46,7 +46,7 @@ def set_bg_and_text_minimal(
 
     /* === Sidebar === */
     [data-testid="stSidebar"] > div:first-child {{
-        background: {sidebar_bg} !important;
+        background: {sidebar_bg} !important; 
         color: {sidebar_text} !important;
     }}
     [data-testid="stSidebar"] * {{ color: {sidebar_text} !important; }}
