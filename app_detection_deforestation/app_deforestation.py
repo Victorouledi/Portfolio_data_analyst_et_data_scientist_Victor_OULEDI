@@ -521,6 +521,76 @@ Draw(
     edit_options={"edit": True, "remove": True},
 ).add_to(m)
 
+
+m.get_root().html.add_child(folium.Element(f"""
+<style>
+  /* On masque le bouton rectangle d'origine (évite le carré noir) */
+  .leaflet-draw-toolbar a.leaflet-draw-draw-rectangle {{ display:none !important; }}
+
+  /* Style du bouton ✂️ (fond blanc, comme les contrôles Leaflet) */
+  .leaflet-bar a.scissor-btn {{
+    background:#fff; border:1px solid rgba(0,0,0,0.15);
+    box-shadow:0 1px 2px rgba(0,0,0,0.08);
+    width:26px; height:26px; line-height:26px;
+    text-align:center; font-size:18px; color:#111; text-decoration:none;
+    display:block; border-radius:4px;
+  }}
+  .leaflet-bar a.scissor-btn:hover {{ background:#f5f5f7; }}
+</style>
+<script>
+(function() {{
+  // Référence vers la carte folium (variable JS générée par folium)
+  var map = {m.get_name()};
+
+  // Retrouver le contrôle Leaflet.Draw pour activer le mode rectangle
+  function findDrawCtrl() {{
+    var arr = map._controls || [];
+    for (var i=0;i<arr.length;i++) {{
+      var c = arr[i];
+      if (c && c._toolbars && c._toolbars.draw && c._toolbars.draw._modes && c._toolbars.draw._modes.rectangle) {{
+        return c;
+      }}
+    }}
+    return null;
+  }}
+
+  // Ajouter notre bouton ✂️ (si pas déjà présent)
+  function addScissorBtn() {{
+    if (document.querySelector('.leaflet-bar a.scissor-btn')) return;
+
+    var Scissor = L.Control.extend({{
+      options: {{ position: 'topleft' }},
+      onAdd: function(map) {{
+        var container = L.DomUtil.create('div', 'leaflet-bar');
+        var a = L.DomUtil.create('a', 'scissor-btn', container);
+        a.href = '#';
+        a.title = 'Tracer une zone (rectangle)';
+        a.innerHTML = '✂️';
+        L.DomEvent.disableClickPropagation(container);
+        L.DomEvent.on(a, 'click', function(e) {{
+          L.DomEvent.stop(e);
+          var dc = findDrawCtrl();
+          if (dc) {{
+            // Active le mode "dessin de rectangle" de Leaflet.Draw
+            dc._toolbars.draw._modes.rectangle.handler.enable();
+          }}
+        }});
+        return container;
+      }}
+    }});
+
+    map.addControl(new Scissor());
+  }}
+
+  // Initialisation (le contrôle Draw peut arriver un peu après)
+  (function init() {{
+    if (findDrawCtrl()) addScissorBtn();
+    else setTimeout(init, 150);
+  }})();
+}})();
+</script>
+"""))
+
 # Afficher GeoJSON (overlay) si chargé
 if geojson_file is not None and gj_data is not None:
     try:
@@ -589,76 +659,76 @@ st.components.v1.html(
 )
 
 
-st.components.v1.html("""
-<script>
-(function () {
-  // Injecte le CSS dans l'iframe folium
-  function inject(doc){
-    if (doc.getElementById('scissor-style')) return; // déjà en place
-    const style = doc.createElement('style');
-    style.id = 'scissor-style';
-    style.textContent = `
-      /* remplace l'icône par défaut par un ✂️, fond blanc */
-      .leaflet-draw-toolbar a.leaflet-draw-draw-rectangle{
-        background-image:none !important;
-        background-color:#fff !important;
-        color:#111 !important;
-        width:26px; height:26px;
-        border:1px solid rgba(0,0,0,0.15) !important;
-        box-shadow:0 1px 2px rgba(0,0,0,0.08);
-        border-radius:4px;
-        text-indent:0 !important;
-        display:flex; align-items:center; justify-content:center;
-        overflow:hidden;
-      }
-      /* masque tout enfant (le petit carré/sprite interne) */
-      .leaflet-draw-toolbar a.leaflet-draw-draw-rectangle > *{
-        display:none !important;
-      }
-      /* icône ✂️ persistante */
-      .leaflet-draw-toolbar a.leaflet-draw-draw-rectangle::before{
-        content:"✂️";
-        font-size:18px; line-height:1;
-        display:block;
-      }
-      .leaflet-draw-toolbar a.leaflet-draw-draw-rectangle:hover{
-        background-color:#f5f5f7 !important;
-      }
-      .leaflet-draw-toolbar a.leaflet-draw-draw-rectangle.leaflet-draw-toolbar-button-enabled{
-        outline:2px solid #111; outline-offset:0;
-      }
-    `;
-    doc.head.appendChild(style);
-  }
+# st.components.v1.html("""
+# <script>
+# (function () {
+#   // Injecte le CSS dans l'iframe folium
+#   function inject(doc){
+#     if (doc.getElementById('scissor-style')) return; // déjà en place
+#     const style = doc.createElement('style');
+#     style.id = 'scissor-style';
+#     style.textContent = `
+#       /* remplace l'icône par défaut par un ✂️, fond blanc */
+#       .leaflet-draw-toolbar a.leaflet-draw-draw-rectangle{
+#         background-image:none !important;
+#         background-color:#fff !important;
+#         color:#111 !important;
+#         width:26px; height:26px;
+#         border:1px solid rgba(0,0,0,0.15) !important;
+#         box-shadow:0 1px 2px rgba(0,0,0,0.08);
+#         border-radius:4px;
+#         text-indent:0 !important;
+#         display:flex; align-items:center; justify-content:center;
+#         overflow:hidden;
+#       }
+#       /* masque tout enfant (le petit carré/sprite interne) */
+#       .leaflet-draw-toolbar a.leaflet-draw-draw-rectangle > *{
+#         display:none !important;
+#       }
+#       /* icône ✂️ persistante */
+#       .leaflet-draw-toolbar a.leaflet-draw-draw-rectangle::before{
+#         content:"✂️";
+#         font-size:18px; line-height:1;
+#         display:block;
+#       }
+#       .leaflet-draw-toolbar a.leaflet-draw-draw-rectangle:hover{
+#         background-color:#f5f5f7 !important;
+#       }
+#       .leaflet-draw-toolbar a.leaflet-draw-draw-rectangle.leaflet-draw-toolbar-button-enabled{
+#         outline:2px solid #111; outline-offset:0;
+#       }
+#     `;
+#     doc.head.appendChild(style);
+#   }
 
-  function applyOnce(){
-    const sel = 'iframe[title="st_folium"],iframe[title="streamlit_folium.st_folium"]';
-    const ifr = window.parent.document.querySelector(sel);
-    if (!ifr) return false;
-    const doc = ifr.contentDocument || (ifr.contentWindow && ifr.contentWindow.document);
-    if (!doc) return false;
+#   function applyOnce(){
+#     const sel = 'iframe[title="st_folium"],iframe[title="streamlit_folium.st_folium"]';
+#     const ifr = window.parent.document.querySelector(sel);
+#     if (!ifr) return false;
+#     const doc = ifr.contentDocument || (ifr.contentWindow && ifr.contentWindow.document);
+#     if (!doc) return false;
 
-    // injection immédiate
-    inject(doc);
+#     // injection immédiate
+#     inject(doc);
 
-    // si l’iframe se recharge (ex: import GeoJSON), on ré-injecte
-    if (!ifr._scissor_load_bound){
-      ifr._scissor_load_bound = true;
-      ifr.addEventListener('load', function(){
-        const d = ifr.contentDocument || (ifr.contentWindow && ifr.contentWindow.document);
-        if (d) inject(d);
-      });
-    }
-    return true;
-  }
+#     // si l’iframe se recharge (ex: import GeoJSON), on ré-injecte
+#     if (!ifr._scissor_load_bound){
+#       ifr._scissor_load_bound = true;
+#       ifr.addEventListener('load', function(){
+#         const d = ifr.contentDocument || (ifr.contentWindow && ifr.contentWindow.document);
+#         if (d) inject(d);
+#       });
+#     }
+#     return true;
+#   }
 
-  // tente maintenant + quelques retries légers (aucun observer)
-  if (!applyOnce()){
-    [150, 500, 1200].forEach(t => setTimeout(applyOnce, t));
-  }
-})();
-</script>
-""", height=0)
+#   // tente maintenant + quelques retries légers (aucun observer)
+#   if (!applyOnce()){
+#     [150, 500, 1200].forEach(t => setTimeout(applyOnce, t));
+#   }
+# })();
+# </script>
+# """, height=0)
 
 
 
