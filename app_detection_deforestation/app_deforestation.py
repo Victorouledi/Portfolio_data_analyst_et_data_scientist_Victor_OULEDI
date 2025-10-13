@@ -592,7 +592,6 @@ st.components.v1.html(
 st.components.v1.html("""
 <script>
 (function () {
-  // Applique le patch une fois l'iframe folium prête
   function withIframeDoc(cb) {
     const sel = 'iframe[title="st_folium"],iframe[title="streamlit_folium.st_folium"]';
     const ifr = window.parent.document.querySelector(sel);
@@ -608,26 +607,36 @@ st.components.v1.html("""
     const style = doc.createElement('style');
     style.id = 'draw-scissors-style';
     style.textContent = `
-      /* retire le sprite par défaut et applique fond blanc */
+      /* Nettoyage total de l'icône sprite par défaut */
       .leaflet-draw-toolbar a.leaflet-draw-draw-rectangle{
         background-image:none !important;
-        background-color:#fff !important;              /* FOND BLANC */
-        color:#1E2A3A !important;                      /* Couleur icône foncée */
+        background-size:0 0 !important;
+        background-position:0 0 !important;
+        mask-image:none !important;
+        -webkit-mask-image:none !important;
+
+        /* style visuel (fond blanc) */
+        background-color:#fff !important;
+        color:#1E2A3A !important;
         width:26px;height:26px;
         text-indent:0 !important;
         border:1px solid rgba(0,0,0,0.15) !important;
         box-shadow:0 1px 2px rgba(0,0,0,0.08);
         border-radius:4px;
+        display:flex;align-items:center;justify-content:center;
+        overflow:hidden;              /* évite tout résidu interne */
+      }
+      /* Cache TOUT enfant ajouté par Leaflet (span icône, etc.) */
+      .leaflet-draw-toolbar a.leaflet-draw-draw-rectangle > *{
+        display:none !important;
       }
       .leaflet-draw-toolbar a.leaflet-draw-draw-rectangle:hover{
-        background-color:#f5f5f7 !important;           /* Hover doux */
+        background-color:#f5f5f7 !important;
       }
-      /* état actif quand l’outil rectangle est sélectionné */
       .leaflet-draw-toolbar a.leaflet-draw-draw-rectangle.leaflet-draw-toolbar-button-enabled{
-        outline:2px solid #1E2A3A;
-        outline-offset:0;
+        outline:2px solid #1E2A3A; outline-offset:0;
       }
-      /* icône ✂️ via pseudo-élément → persiste même si le bouton est recréé */
+      /* Icône ✂️ persistante via pseudo-élément */
       .leaflet-draw-toolbar a.leaflet-draw-draw-rectangle::before{
         content:"✂️";
         display:flex; align-items:center; justify-content:center;
@@ -641,7 +650,8 @@ st.components.v1.html("""
   function patchOnce(){
     return withIframeDoc((doc, ifr)=>{
       injectStyle(doc);
-      // Si le bouton existe déjà, on ajoute le titre et le centrage
+
+      // Optionnel : titre accessible + centrage du bouton s'il existe déjà
       const btn = doc.querySelector('.leaflet-draw-draw-rectangle');
       if (btn && !btn.classList.contains('scissorized')){
         btn.classList.add('scissorized');
@@ -650,14 +660,16 @@ st.components.v1.html("""
         btn.style.alignItems = 'center';
         btn.style.justifyContent = 'center';
       }
-      // Observe les recréations dans l’iframe
+
+      // Observe les recréations à l'intérieur de l'iframe
       if (!doc.getElementById('draw-scissors-mutation-hook')){
         const hook = doc.createElement('meta'); hook.id = 'draw-scissors-mutation-hook';
         doc.head.appendChild(hook);
         const mo = new MutationObserver(()=>injectStyle(doc));
         mo.observe(doc.body, {subtree:true, childList:true});
       }
-      // Si l’iframe se recharge complètement, on réapplique
+
+      // Si l’iframe se recharge, on réapplique
       if (!ifr._scissors_onload_bound){
         ifr._scissors_onload_bound = true;
         ifr.addEventListener('load', ()=>{ setTimeout(patchOnce, 150); });
@@ -665,7 +677,7 @@ st.components.v1.html("""
     });
   }
 
-  // Tente maintenant + retries différés (nouvelle iframe ou re-render)
+  // Tente maintenant + retries différés
   if (!patchOnce()){
     [150, 500, 1200, 2000, 3500].forEach(t => setTimeout(patchOnce, t));
   } else {
@@ -674,6 +686,7 @@ st.components.v1.html("""
 })();
 </script>
 """, height=0)
+
 
 
 st.markdown(f"""
