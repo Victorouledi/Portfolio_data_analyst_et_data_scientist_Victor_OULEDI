@@ -2,9 +2,12 @@
 # Theremin à pinch (pouce-pouce) + dièse/bémol selon la diagonale
 
 # --- Stabilité MediaPipe / asyncio ---
-import os, asyncio, platform
-os.environ["MEDIAPIPE_DISABLE_GPU"] = "1"  # CPU-only: stable partout (mac & cloud)
+import os, asyncio
+os.environ["MEDIAPIPE_DISABLE_GPU"] = "1"     # CPU only
+os.environ["GLOG_minloglevel"] = "3"          # baisse les logs Mediapipe
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"      # baisse les logs TF Lite
 asyncio.set_event_loop_policy(asyncio.DefaultEventLoopPolicy())
+
 
 import math
 from typing import List, Optional
