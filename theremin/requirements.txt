@@ -1,21 +1,9 @@
-# --- Framework & UI ---
 streamlit==1.39.0
-
-# --- WebRTC stack ---
 streamlit-webrtc==0.47.6
-aiortc==1.14.0
-aioice==0.10.1
-av==16.0.1
-
-# --- Vision (headless pour le cloud) ---
-mediapipe==0.10.8          # stable + compatible protobuf 3.20.x
+mediapipe==0.10.8
 opencv-python-headless==4.12.0.88
-
-# --- Numérique ---
 numpy>=2.1,<2.3
-
-# --- Pins compat MediaPipe/Streamlit ---
 protobuf==3.20.3
 flatbuffers==23.5.26
-pillow==10.4.0             # streamlit<11
-packaging==24.2            # streamlit<25
+pillow==10.4.0
+packaging==24.2

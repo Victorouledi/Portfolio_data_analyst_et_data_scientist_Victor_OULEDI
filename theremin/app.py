@@ -23,6 +23,7 @@ st.title("🖐️🎶 Theremin à pinch : distance des pouces → notes, diagona
 
 # Par défaut: STUN ON sauf sur macOS (où on préfère OFF en dev local)
 DEFAULT_USE_STUN = (platform.system() != "Darwin")
+
 with st.sidebar:
     st.subheader("Réglages")
     use_stun = st.toggle("Connexion internet (activer STUN)", value=DEFAULT_USE_STUN,
@@ -46,7 +47,7 @@ st.caption(
 )
 
 # ==========================
-#  Musique / notes
+#  Fonctions musicales
 # ==========================
 SEMITONES = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"]
 
@@ -82,17 +83,43 @@ def nearest_from_scale(midi_float: float, scale_midis: List[int]) -> int:
     return min(scale_midis, key=lambda x: abs(x - midi_float))
 
 # ==========================
-#  WebRTC / MediaPipe
+#  Config WebRTC + TURN/STUN
 # ==========================
-RTC_CONFIGURATION = RTCConfiguration(
-    {"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]} if use_stun else {"iceServers": []}
-)
+def build_ice_servers():
+    servers = []
+    # 1️⃣ — Serveurs TURN custom via secrets (optionnel)
+    urls = st.secrets.get("TURN_URLS", "").split() if "TURN_URLS" in st.secrets else []
+    user = st.secrets.get("TURN_USERNAME")
+    cred = st.secrets.get("TURN_CREDENTIAL")
+    if urls:
+        servers.append({"urls": urls, "username": user, "credential": cred})
 
+    # 2️⃣ — Serveur STUN Google
+    servers.append({"urls": ["stun:stun.l.google.com:19302"]})
+
+    # 3️⃣ — Fallback public OpenRelay (fonctionne souvent sur Streamlit Cloud)
+    if not urls:
+        servers.append({
+            "urls": [
+                "turn:openrelay.metered.ca:80",
+                "turn:openrelay.metered.ca:443?transport=tcp",
+                "turn:openrelay.metered.ca:443"
+            ],
+            "username": "openrelayproject",
+            "credential": "openrelayproject",
+        })
+    return servers
+
+RTC_CONFIGURATION = RTCConfiguration({"iceServers": build_ice_servers()})
+
+# ==========================
+#  Classe principale MediaPipe
+# ==========================
 try:
     import mediapipe as mp
     mp_hands = mp.solutions.hands
 except Exception:
-    st.error("❌ MediaPipe introuvable. Vérifie l'installation des dépendances.")
+    st.error("❌ MediaPipe introuvable. Vérifie les dépendances.")
     st.stop()
 
 class PinchTheremin(VideoProcessorBase):
@@ -102,12 +129,12 @@ class PinchTheremin(VideoProcessorBase):
             max_num_hands=2,
             min_detection_confidence=0.6,
             min_tracking_confidence=0.6,
-            model_complexity=0,   # 0 = plus léger et robuste
+            model_complexity=0,   # plus léger pour le cloud
         )
-        self.freq: float = 0.0
-        self.note_txt: str = ""
-        self.play: bool = False
-        self._sfreq: Optional[float] = None
+        self.freq = 0.0
+        self.note_txt = ""
+        self.play = False
+        self._sfreq = None
 
     def _smooth(self, new_val: float, alpha: float) -> float:
         if self._sfreq is None:
@@ -132,9 +159,9 @@ class PinchTheremin(VideoProcessorBase):
             xs = [p[0] for p in pts]
             bbox_w = max(max(xs) - min(xs), 1)
             infos.append({
-                "handed": handed.classification[0].label,  # 'Left'/'Right'
-                "thumb": pts[4],   # thumb tip
-                "index": pts[8],   # index tip
+                "handed": handed.classification[0].label,
+                "thumb": pts[4],
+                "index": pts[8],
                 "bbox_w": bbox_w
             })
         return infos
@@ -142,8 +169,8 @@ class PinchTheremin(VideoProcessorBase):
     def recv(self, frame):
         img = frame.to_ndarray(format="bgr24")
         h, w, _ = img.shape
-
         hands = self._extract_points(img)
+
         if len(hands) < 2:
             self.play = False
             self.freq = 0.0
@@ -155,37 +182,30 @@ class PinchTheremin(VideoProcessorBase):
         if left is None or right is None:
             left, right = hands[0], hands[1]
 
-        # PINCH (pouce-index) normalisé par largeur de main
         pinch_L = self._norm_distance(left["thumb"], left["index"], left["bbox_w"])
         pinch_R = self._norm_distance(right["thumb"], right["index"], right["bbox_w"])
         is_pinch = (pinch_L < pinch_thresh) and (pinch_R < pinch_thresh)
 
-        # Distance entre pouces (normalisé largeur image)
-        pL = left["thumb"]; pR = right["thumb"]
+        pL, pR = left["thumb"], right["thumb"]
         dist_norm = math.hypot(pL[0]-pR[0], pL[1]-pR[1]) / float(w)
         dist_norm = float(np.clip(dist_norm, 0.0, 1.0))
 
-        # Angle pour ♯ / ♭
-        dx = pL[0] - pR[0]
-        dy = pL[1] - pR[1]
-        angle_deg = math.degrees(math.atan2(-dy, dx))  # y écran vers bas → on inverse
+        dx, dy = pL[0] - pR[0], pL[1] - pR[1]
+        angle_deg = math.degrees(math.atan2(-dy, dx))
         accidental = 0
         if angle_deg >= angle_thresh_deg:
             accidental = +1
         elif angle_deg <= -angle_thresh_deg:
             accidental = -1
 
-        # Mapping distance → fréquence
         f_raw = min_freq + (max_freq - min_freq) * dist_norm
         f_s = self._smooth(f_raw, alpha=smoothing) if smoothing > 0 else f_raw
 
-        # Quantifier sur Do majeur + dièse/bémol
         scale_midis = major_scale_midi(base_octave, note_span)
         m_est = freq_to_midi(f_s)
         m_near = nearest_from_scale(m_est, scale_midis)
         m_final = int(np.clip(m_near + accidental, 0, 127))
         f_final = note_to_freq(m_final)
-
         prefer_sharp = True if accidental > 0 else (False if accidental < 0 else None)
         note_name = midi_to_name(m_final, prefer_sharp=prefer_sharp)
 
@@ -198,28 +218,36 @@ class PinchTheremin(VideoProcessorBase):
                 cv2.circle(img, p, 8, (0, 255, 0), -1)
             cv2.line(img, pL, pR, (0, 200, 255), 2)
             lines = [
-                f"pinch_L: {pinch_L:.3f}  pinch_R: {pinch_R:.3f}  (seuil {pinch_thresh:.3f})",
+                f"pinch_L: {pinch_L:.3f}  pinch_R: {pinch_R:.3f}",
                 f"dist_norm: {dist_norm:.3f}",
-                f"angle: {angle_deg:+.1f}°  → {'♯' if accidental>0 else ('♭' if accidental<0 else '♮')}",
-                f"midi: {m_final}  freq: {self.freq:.1f} Hz",
-                f"note: {self.note_txt or '-'}",
+                f"angle: {angle_deg:+.1f}° → {'♯' if accidental>0 else ('♭' if accidental<0 else '♮')}",
+                f"note: {self.note_txt or '-'}  |  {self.freq:.1f} Hz",
                 f"play: {self.play}",
             ]
             y0 = 28
             for i, t in enumerate(lines):
-                cv2.putText(img, t, (10, y0 + i*26), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (40, 220, 40), 2, cv2.LINE_AA)
-
+                cv2.putText(img, t, (10, y0 + i*26),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.7, (40, 220, 40), 2, cv2.LINE_AA)
         return frame.from_ndarray(img, format="bgr24")
 
 # ==========================
-#  WebRTC
+#  WebRTC + affichage
 # ==========================
 webrtc_ctx = webrtc_streamer(
     key="theremin-pinch-sharp-flat",
     mode=WebRtcMode.SENDRECV,
     video_processor_factory=PinchTheremin,
     rtc_configuration=RTC_CONFIGURATION,
-    media_stream_constraints={"video": True, "audio": False},
+    media_stream_constraints={
+        "video": {
+            "width": {"ideal": 640},
+            "height": {"ideal": 480},
+            "frameRate": {"ideal": 15, "max": 15},
+            "facingMode": "user",
+        },
+        "audio": False,
+    },
+    async_processing=True,
 )
 
 # ==========================
@@ -238,7 +266,6 @@ def webaudio(freq: float, play: bool, volume: float):
                 window.ctx = new AudioContext();
             }}
             const ctx = window.ctx;
-
             if(!window.osc) {{
                 window.osc = ctx.createOscillator();
                 window.osc.type = 'sine';
@@ -246,17 +273,12 @@ def webaudio(freq: float, play: bool, volume: float):
                 window.osc.connect(window.gain).connect(ctx.destination);
                 window.osc.start();
             }}
-
             const resume = () => {{
                 if (ctx.state !== 'running') {{ ctx.resume(); }}
-                window.removeEventListener('click', resume);
-                window.removeEventListener('touchstart', resume);
-                window.removeEventListener('keydown', resume);
             }};
-            window.addEventListener('click', resume);
-            window.addEventListener('touchstart', resume);
-            window.addEventListener('keydown', resume);
-
+            ['click','touchstart','keydown'].forEach(ev =>
+                window.addEventListener(ev, resume)
+            );
             const f = {freq};
             const g = {gain};
             if (f > 0) {{
