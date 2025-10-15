@@ -1,112 +1,50 @@
 # -*- coding: utf-8 -*-
-# Theremin à pinch (pouce-pouce) + dièse/bémol selon la diagonale
+# Test webcam + mains : repères + trait entre les pouces (double pinch)
 
-# --- Stabilité MediaPipe / asyncio ---
-import os, asyncio
-os.environ["MEDIAPIPE_DISABLE_GPU"] = "1"     # CPU only
-os.environ["GLOG_minloglevel"] = "3"          # baisse les logs Mediapipe
-os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"      # baisse les logs TF Lite
+# --- Calmer les logs & forcer CPU ---
+import os, asyncio, platform
+os.environ["MEDIAPIPE_DISABLE_GPU"] = "1"
+os.environ["GLOG_minloglevel"] = "3"
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 asyncio.set_event_loop_policy(asyncio.DefaultEventLoopPolicy())
 
-
 import math
-from typing import List, Optional
+from typing import Optional, List
 
 import cv2
 import numpy as np
 import streamlit as st
-import streamlit.components.v1 as components
 from streamlit_webrtc import webrtc_streamer, WebRtcMode, RTCConfiguration, VideoProcessorBase
 
-# ==========================
-#  Config Streamlit
-# ==========================
-st.set_page_config(page_title="Theremin Pinch Dièse/Bémol", layout="wide")
-st.title("🖐️🎶 Theremin à pinch : distance des pouces → notes, diagonale → ♯/♭")
+st.set_page_config(page_title="Test Webcam + Mains", layout="wide")
+st.title("🎥 Test webcam + détection des mains (MediaPipe)")
 
-# Par défaut: STUN ON sauf sur macOS (où on préfère OFF en dev local)
-DEFAULT_USE_STUN = (platform.system() != "Darwin")
-
+# --- UI ---
 with st.sidebar:
     st.subheader("Réglages")
-    use_stun = st.toggle("Connexion internet (activer STUN)", value=DEFAULT_USE_STUN,
-                         help="Active les serveurs STUN (nécessaire en déploiement). Désactive en dev local macOS si ça cause des logs.")
-    base_octave = st.slider("Octave de base (C)", 2, 6, 4)
-    note_span = st.slider("Étendue (notes de la gamme)", 5, 14, 8,
-                          help="Nombre de degrés autour de l'octave (Do majeur).")
-    min_freq = st.slider("Fréquence min (Hz)", 50, 600, 196)     # G3 ≈ 196 Hz
-    max_freq = st.slider("Fréquence max (Hz)", 200, 2000, 988)   # B5 ≈ 988 Hz
-    smoothing = st.slider("Lissage (0=réactif, 1=très lissé)", 0.0, 0.95, 0.25)
-    pinch_thresh = st.slider("Seuil pinch (normalisé)", 0.02, 0.15, 0.06, step=0.01,
-                             help="Plus petit = pince très serrée exigée.")
-    angle_thresh_deg = st.slider("Seuil angle pour ♯/♭ (°)", 5, 45, 15)
-    volume = st.slider("Volume", 0.0, 1.0, 0.5)
+    pinch_thresh = st.slider("Seuil pinch (normalisé)", 0.02, 0.15, 0.06, step=0.01)
+    angle_thresh_deg = st.slider("Seuil angle ♯/♭ (affiché)", 5, 45, 15)
     show_overlay = st.toggle("Afficher repères & métriques", value=True)
 
-st.caption(
-    "Joue **uniquement** quand les deux mains pincent (pouce–index rapprochés). "
-    "Plus les **pouces** s’éloignent, plus la **note monte**. "
-    "Si la ligne entre les deux pouces est **montante** → ♯, **descendante** → ♭."
-)
+st.caption("Pinch = pouce–index rapprochés. Un trait s’affiche entre les **deux pouces** si les deux mains pincent.")
 
-# ==========================
-#  Fonctions musicales
-# ==========================
-SEMITONES = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"]
-
-def note_to_freq(n: int) -> float:
-    return 440.0 * (2.0 ** ((n - 69) / 12.0))
-
-def freq_to_midi(freq: float) -> float:
-    return 69 + 12 * math.log2(max(freq, 1e-6) / 440.0)
-
-def major_scale_midi(octave: int, span: int) -> List[int]:
-    """Do majeur centré sur C@octave, renvoie 'span' degrés autour."""
-    C_midi = 12 * (octave + 1)
-    degrees = [0, 2, 4, 5, 7, 9, 11, 12]  # C D E F G A B C
-    pool = []
-    for off in (-12, 0, +12, +24):
-        pool += [C_midi + d + off for d in degrees]
-    pool = sorted(pool)
-    pool = sorted(pool, key=lambda x: abs(x - C_midi))[:span]
-    return sorted(pool)
-
-def midi_to_name(m: int, prefer_sharp: Optional[bool]=None) -> str:
-    name_ix = m % 12
-    octave = m // 12 - 1
-    name = SEMITONES[name_ix]
-    if "♯/♭" in name:
-        sharp, flat = name.split("/")
-        sharp, flat = sharp.strip(), flat.strip()
-        chosen = sharp if (prefer_sharp or prefer_sharp is None) else flat
-        return f"{chosen}{octave}"
-    return f"{name}{octave}"
-
-def nearest_from_scale(midi_float: float, scale_midis: List[int]) -> int:
-    return min(scale_midis, key=lambda x: abs(x - midi_float))
-
-# ==========================
-#  Config WebRTC + TURN/STUN
-# ==========================
+# --- ICE/TURN/STUN: secrets d'abord, sinon fallback OpenRelay ---
 def build_ice_servers():
     servers = []
-    # 1️⃣ — Serveurs TURN custom via secrets (optionnel)
-    urls = st.secrets.get("TURN_URLS", "").split() if "TURN_URLS" in st.secrets else []
-    user = st.secrets.get("TURN_USERNAME")
-    cred = st.secrets.get("TURN_CREDENTIAL")
-    if urls:
+    if "TURN_URLS" in st.secrets:
+        urls = st.secrets["TURN_URLS"].split()
+        user = st.secrets.get("TURN_USERNAME")
+        cred = st.secrets.get("TURN_CREDENTIAL")
         servers.append({"urls": urls, "username": user, "credential": cred})
-
-    # 2️⃣ — Serveur STUN Google
+    # STUN Google (utile même si TURN configuré)
     servers.append({"urls": ["stun:stun.l.google.com:19302"]})
-
-    # 3️⃣ — Fallback public OpenRelay (fonctionne souvent sur Streamlit Cloud)
-    if not urls:
+    # Fallback public si pas de secrets
+    if "TURN_URLS" not in st.secrets:
         servers.append({
             "urls": [
                 "turn:openrelay.metered.ca:80",
                 "turn:openrelay.metered.ca:443?transport=tcp",
-                "turn:openrelay.metered.ca:443"
+                "turn:openrelay.metered.ca:443",
             ],
             "username": "openrelayproject",
             "credential": "openrelayproject",
@@ -115,131 +53,105 @@ def build_ice_servers():
 
 RTC_CONFIGURATION = RTCConfiguration({"iceServers": build_ice_servers()})
 
-# ==========================
-#  Classe principale MediaPipe
-# ==========================
+# --- MediaPipe Hands ---
 try:
     import mediapipe as mp
     mp_hands = mp.solutions.hands
-except Exception:
-    st.error("❌ MediaPipe introuvable. Vérifie les dépendances.")
+except Exception as e:
+    st.error("❌ MediaPipe introuvable. Vérifie requirements.txt.")
     st.stop()
 
-class PinchTheremin(VideoProcessorBase):
+class HandDebug(VideoProcessorBase):
     def __init__(self):
         self.hands = mp_hands.Hands(
             static_image_mode=False,
             max_num_hands=2,
             min_detection_confidence=0.6,
             min_tracking_confidence=0.6,
-            model_complexity=0,   # plus léger pour le cloud
+            model_complexity=0,  # plus léger/stable en cloud
         )
-        self.freq = 0.0
-        self.note_txt = ""
-        self.play = False
-        self._sfreq = None
-
-    def _smooth(self, new_val: float, alpha: float) -> float:
-        if self._sfreq is None:
-            self._sfreq = new_val
-        else:
-            self._sfreq = (1 - alpha) * new_val + alpha * self._sfreq
-        return self._sfreq
 
     @staticmethod
     def _norm_distance(p1, p2, norm_by: float) -> float:
         return math.hypot(p1[0]-p2[0], p1[1]-p2[1]) / max(norm_by, 1.0)
 
-    def _extract_points(self, img_bgr: np.ndarray):
+    def _extract(self, img_bgr):
         h, w, _ = img_bgr.shape
         img_rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
         res = self.hands.process(img_rgb)
+        items = []
         if not res.multi_hand_landmarks:
-            return []
-        infos = []
+            return items
         for lm, handed in zip(res.multi_hand_landmarks, res.multi_handedness):
             pts = [(int(pt.x * w), int(pt.y * h)) for pt in lm.landmark]
             xs = [p[0] for p in pts]
             bbox_w = max(max(xs) - min(xs), 1)
-            infos.append({
-                "handed": handed.classification[0].label,
-                "thumb": pts[4],
-                "index": pts[8],
-                "bbox_w": bbox_w
+            items.append({
+                "handed": handed.classification[0].label,  # 'Left'/'Right'
+                "thumb": pts[4],   # pouce (extrémité)
+                "index": pts[8],   # index (extrémité)
+                "bbox_w": bbox_w,
+                "landmarks": pts
             })
-        return infos
+        return items
 
     def recv(self, frame):
         img = frame.to_ndarray(format="bgr24")
         h, w, _ = img.shape
-        hands = self._extract_points(img)
 
-        if len(hands) < 2:
-            self.play = False
-            self.freq = 0.0
-            self.note_txt = ""
-            return frame.from_ndarray(img, format="bgr24")
+        hands = self._extract(img)
 
-        left = next((h for h in hands if h["handed"] == "Left"), None)
-        right = next((h for h in hands if h["handed"] == "Right"), None)
-        if left is None or right is None:
-            left, right = hands[0], hands[1]
+        # Dessin repères si demandé
+        if show_overlay:
+            for item in hands:
+                # petits points sur quelques landmarks
+                for pid in [4, 8]:
+                    cv2.circle(img, item["landmarks"][pid], 6, (0, 255, 0), -1)
 
-        pinch_L = self._norm_distance(left["thumb"], left["index"], left["bbox_w"])
-        pinch_R = self._norm_distance(right["thumb"], right["index"], right["bbox_w"])
-        is_pinch = (pinch_L < pinch_thresh) and (pinch_R < pinch_thresh)
+        # Si 2 mains, calcule pinch gauche/droite + trait entre pouces si double pinch
+        info_text = []
+        if len(hands) >= 2:
+            left = next((x for x in hands if x["handed"] == "Left"), hands[0])
+            right = next((x for x in hands if x["handed"] == "Right"), hands[1 if left is hands[0] else 0])
 
-        pL, pR = left["thumb"], right["thumb"]
-        dist_norm = math.hypot(pL[0]-pR[0], pL[1]-pR[1]) / float(w)
-        dist_norm = float(np.clip(dist_norm, 0.0, 1.0))
+            pinch_L = self._norm_distance(left["thumb"], left["index"], left["bbox_w"])
+            pinch_R = self._norm_distance(right["thumb"], right["index"], right["bbox_w"])
+            is_pinch = (pinch_L < pinch_thresh) and (pinch_R < pinch_thresh)
 
-        dx, dy = pL[0] - pR[0], pL[1] - pR[1]
-        angle_deg = math.degrees(math.atan2(-dy, dx))
-        accidental = 0
-        if angle_deg >= angle_thresh_deg:
-            accidental = +1
-        elif angle_deg <= -angle_thresh_deg:
-            accidental = -1
+            pL, pR = left["thumb"], right["thumb"]
+            # distance normalisée par largeur d'image
+            dist_norm = math.hypot(pL[0]-pR[0], pL[1]-pR[1]) / float(w)
+            dist_norm = float(np.clip(dist_norm, 0.0, 1.0))
 
-        f_raw = min_freq + (max_freq - min_freq) * dist_norm
-        f_s = self._smooth(f_raw, alpha=smoothing) if smoothing > 0 else f_raw
+            # angle (pour info visuelle)
+            dx, dy = pL[0]-pR[0], pL[1]-pR[1]
+            angle_deg = math.degrees(math.atan2(-dy, dx))
+            if show_overlay:
+                color = (0, 200, 255) if is_pinch else (80, 80, 80)
+                cv2.line(img, pL, pR, color, 3)
+                cv2.circle(img, pL, 7, (0, 255, 255), -1)
+                cv2.circle(img, pR, 7, (0, 255, 255), -1)
 
-        scale_midis = major_scale_midi(base_octave, note_span)
-        m_est = freq_to_midi(f_s)
-        m_near = nearest_from_scale(m_est, scale_midis)
-        m_final = int(np.clip(m_near + accidental, 0, 127))
-        f_final = note_to_freq(m_final)
-        prefer_sharp = True if accidental > 0 else (False if accidental < 0 else None)
-        note_name = midi_to_name(m_final, prefer_sharp=prefer_sharp)
-
-        self.play = bool(is_pinch)
-        self.freq = f_final if self.play else 0.0
-        self.note_txt = note_name if self.play else ""
+            info_text = [
+                f"pinch_L: {pinch_L:.3f}  pinch_R: {pinch_R:.3f}  (seuil {pinch_thresh:.3f})",
+                f"dist_norm(pouce↔pouce): {dist_norm:.3f}",
+                f"angle: {angle_deg:+.1f}°  (≳{angle_thresh_deg}° = montante, ≲-{angle_thresh_deg}° = descendante)",
+                f"double pinch détecté: {is_pinch}",
+            ]
 
         if show_overlay:
-            for p in [pL, pR, left["index"], right["index"]]:
-                cv2.circle(img, p, 8, (0, 255, 0), -1)
-            cv2.line(img, pL, pR, (0, 200, 255), 2)
-            lines = [
-                f"pinch_L: {pinch_L:.3f}  pinch_R: {pinch_R:.3f}",
-                f"dist_norm: {dist_norm:.3f}",
-                f"angle: {angle_deg:+.1f}° → {'♯' if accidental>0 else ('♭' if accidental<0 else '♮')}",
-                f"note: {self.note_txt or '-'}  |  {self.freq:.1f} Hz",
-                f"play: {self.play}",
-            ]
             y0 = 28
-            for i, t in enumerate(lines):
+            for i, t in enumerate(info_text):
                 cv2.putText(img, t, (10, y0 + i*26),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.7, (40, 220, 40), 2, cv2.LINE_AA)
+
         return frame.from_ndarray(img, format="bgr24")
 
-# ==========================
-#  WebRTC + affichage
-# ==========================
+# --- WebRTC (vidéo seule) ---
 webrtc_ctx = webrtc_streamer(
-    key="theremin-pinch-sharp-flat",
+    key="hand-test",
     mode=WebRtcMode.SENDRECV,
-    video_processor_factory=PinchTheremin,
+    video_processor_factory=HandDebug,
     rtc_configuration=RTC_CONFIGURATION,
     media_stream_constraints={
         "video": {
@@ -253,55 +165,5 @@ webrtc_ctx = webrtc_streamer(
     async_processing=True,
 )
 
-# ==========================
-#  Audio WebAudio côté client
-# ==========================
-def webaudio(freq: float, play: bool, volume: float):
-    freq = max(0.0, float(freq))
-    gain = float(volume) if (play and freq > 0.0) else 0.0
-    components.html(
-        f"""
-        <div id="webaudio"></div>
-        <script>
-        (function(){{
-            const AudioContext = window.AudioContext || window.webkitAudioContext;
-            if(!window.ctx) {{
-                window.ctx = new AudioContext();
-            }}
-            const ctx = window.ctx;
-            if(!window.osc) {{
-                window.osc = ctx.createOscillator();
-                window.osc.type = 'sine';
-                window.gain = ctx.createGain();
-                window.osc.connect(window.gain).connect(ctx.destination);
-                window.osc.start();
-            }}
-            const resume = () => {{
-                if (ctx.state !== 'running') {{ ctx.resume(); }}
-            }};
-            ['click','touchstart','keydown'].forEach(ev =>
-                window.addEventListener(ev, resume)
-            );
-            const f = {freq};
-            const g = {gain};
-            if (f > 0) {{
-                window.osc.frequency.setTargetAtTime(f, ctx.currentTime, 0.01);
-            }}
-            window.gain.gain.setTargetAtTime(g, ctx.currentTime, 0.02);
-        }})();
-        </script>
-        """,
-        height=0,
-    )
-
-if webrtc_ctx and webrtc_ctx.video_processor:
-    webaudio(webrtc_ctx.video_processor.freq,
-             webrtc_ctx.video_processor.play,
-             volume)
-    st.markdown(
-        f"**Note :** {webrtc_ctx.video_processor.note_txt or '-'} &nbsp;|&nbsp; "
-        f"**Fréquence :** {webrtc_ctx.video_processor.freq:.1f} Hz &nbsp;|&nbsp; "
-        f"**Lecture :** {'on' if webrtc_ctx.video_processor.play else 'off'}"
-    )
-else:
-    st.info("Active la webcam (autorisation navigateur).")
+if not (webrtc_ctx and webrtc_ctx.state.playing):
+    st.info("Autorise la webcam puis regarde l’aperçu. Les repères et le trait s’affichent si double pinch.")
