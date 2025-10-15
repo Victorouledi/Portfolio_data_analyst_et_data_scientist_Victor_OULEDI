@@ -7,9 +7,9 @@ aiortc==1.14.0
 aioice==0.10.1
 av==16.0.1
 
-# --- Vision ---
+# --- Vision (headless pour le cloud) ---
 mediapipe==0.10.8          # stable + compatible protobuf 3.20.x
-opencv-contrib-python==4.12.0.88
+opencv-python-headless==4.12.0.88
 
 # --- Numérique ---
 numpy>=2.1,<2.3

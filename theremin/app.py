@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # Theremin à pinch (pouce-pouce) + dièse/bémol selon la diagonale
 
-# --- Stabilité macOS / MediaPipe / asyncio ---
-import os, asyncio
-os.environ["MEDIAPIPE_DISABLE_GPU"] = "1"  # force CPU: évite les crashs Metal/GL sur mac
+# --- Stabilité MediaPipe / asyncio ---
+import os, asyncio, platform
+os.environ["MEDIAPIPE_DISABLE_GPU"] = "1"  # CPU-only: stable partout (mac & cloud)
 asyncio.set_event_loop_policy(asyncio.DefaultEventLoopPolicy())
 
 import math
@@ -21,11 +21,12 @@ from streamlit_webrtc import webrtc_streamer, WebRtcMode, RTCConfiguration, Vide
 st.set_page_config(page_title="Theremin Pinch Dièse/Bémol", layout="wide")
 st.title("🖐️🎶 Theremin à pinch : distance des pouces → notes, diagonale → ♯/♭")
 
+# Par défaut: STUN ON sauf sur macOS (où on préfère OFF en dev local)
+DEFAULT_USE_STUN = (platform.system() != "Darwin")
 with st.sidebar:
     st.subheader("Réglages")
-    # réseau: local=pas de STUN (dev mac), internet=STUN (déploiement)
-    use_stun = st.toggle("Connexion internet (activer STUN)", value=False,
-                         help="Active les serveurs STUN pour le déploiement en ligne. Désactive en local.")
+    use_stun = st.toggle("Connexion internet (activer STUN)", value=DEFAULT_USE_STUN,
+                         help="Active les serveurs STUN (nécessaire en déploiement). Désactive en dev local macOS si ça cause des logs.")
     base_octave = st.slider("Octave de base (C)", 2, 6, 4)
     note_span = st.slider("Étendue (notes de la gamme)", 5, 14, 8,
                           help="Nombre de degrés autour de l'octave (Do majeur).")
@@ -96,7 +97,6 @@ except Exception:
 
 class PinchTheremin(VideoProcessorBase):
     def __init__(self):
-        # modèle le plus stable (CPU) sur macOS ARM
         self.hands = mp_hands.Hands(
             static_image_mode=False,
             max_num_hands=2,
@@ -121,7 +121,6 @@ class PinchTheremin(VideoProcessorBase):
         return math.hypot(p1[0]-p2[0], p1[1]-p2[1]) / max(norm_by, 1.0)
 
     def _extract_points(self, img_bgr: np.ndarray):
-        """Retourne liste d'infos mains: handed, thumb, index, bbox_w."""
         h, w, _ = img_bgr.shape
         img_rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
         res = self.hands.process(img_rgb)
@@ -130,7 +129,7 @@ class PinchTheremin(VideoProcessorBase):
         infos = []
         for lm, handed in zip(res.multi_hand_landmarks, res.multi_handedness):
             pts = [(int(pt.x * w), int(pt.y * h)) for pt in lm.landmark]
-            xs = [p[0] for p in pts]; ys = [p[1] for p in pts]
+            xs = [p[0] for p in pts]
             bbox_w = max(max(xs) - min(xs), 1)
             infos.append({
                 "handed": handed.classification[0].label,  # 'Left'/'Right'
