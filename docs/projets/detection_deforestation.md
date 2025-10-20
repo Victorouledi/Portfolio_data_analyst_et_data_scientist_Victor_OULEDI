@@ -7,7 +7,7 @@ toc: true
 ---
 
 ## Application Streamlit  
-Application web interactive pour **détecter automatiquement la déforestation** à partir d’imageries satellite (type Sentinel-2).  
+Application web interactive pour **détecter automatiquement la déforestation** à partir d’imageries satellites (type Sentinel-2).  
 👉 [Ouvrir l’app](https://detectiondeforestationamazonie.streamlit.app/)
 
 ![](../asset/Computer_vision/images/app_deforest.png)
@@ -27,7 +27,7 @@ Application web interactive pour **détecter automatiquement la déforestation**
 
 ## Stack & outillage
 - **Python** : TensorFlow/Keras (modèle ResNet50), NumPy, PIL, Requests  
-- **Géospatial** : Folium, Mercantile (assemblage des tuiles satellite ESRI), GeoJSON  
+- **Géospatial** : Folium, Mercantile (assemblage des tuiles satellites ESRI), GeoJSON  
 - **App Web** : **Streamlit** + CSS personnalisé pour un rendu fluide  
 - **Visualisation** : Matplotlib, affichage interactif des prédictions et des probabilités  
 - **CI/CD** : déploiement via **Streamlit Cloud**
@@ -37,7 +37,7 @@ Application web interactive pour **détecter automatiquement la déforestation**
 
 ## Données
 - Données issues d'un [dataset kaggle](https://www.kaggle.com/datasets/zafish/deforestation?select=fragments) + sélection personnelle d'images
-- Patches satellite Sentinel-2 répartis en deux classes :  
+- Patches satellites Sentinel-2 répartis en deux classes :  
   - `no_deforestation/` : zones forestières intactes  
   - `deforestation/` : zones dégradées ou ouvertes  
 - **3 500 images d’entraînement** après nettoyage et augmentation.  
