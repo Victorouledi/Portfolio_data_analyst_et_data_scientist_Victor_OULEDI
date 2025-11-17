@@ -1,7 +1,7 @@
 title: "Victor Ouledi — Portfolio"
 description: " Data Scientist, Data Analyst, Machine Learning & AI Engineer (NLP, Computer Vision)"
 url: "https://victorouledi.github.io"
-baseurl: "/Portfolio_data_analyst_et_data_scientist_Victor_OULEDI"
+baseurl: "/Portfolio_ML_and_AI_Engineer_Victor_OULEDI"
 
 remote_theme: "mmistakes/minimal-mistakes@4.24.0"
 minimal_mistakes_skin: "dark"
